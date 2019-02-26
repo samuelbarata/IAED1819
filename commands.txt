@@ -1,0 +1,33 @@
+IAED dir:
+
+cd Desktop && cd 'Parallels Shared Folders' && cd Home && cd Desktop && cd 'My Cloud Offline Files' && cd IST && cd 1ano && cd IAED
+
+'Parallels Shared Folders'/Home/Desktop/'My Cloud Offline Files'/IST/1ano/IAED
+
+
+bash:
+
+cd [diretorio]
+cd .. {anda para trás}
+ls {conteudo do diretorio}
+mkdir [nome da pasta a criar]
+cat [inputfile] {mostra o ficheiro no terminal}
+cp [inputfile] [outputfile] {cria uma cpoia do input com o nome do output}
+ln -s [diretorio] {cria atalho [ex.: Desktop$: ln -s 'Parallels Shared Folders'/Home/Desktop/'My Cloud Offline Files'/IST/1ano/IAED]}
+touch [outputfile name] {cria um ficheiro em branco}
+nano [inputfile name] {editar ficheiro no terminal}
+
+
+compile & run:
+
+gcc -ansi -pedantic -Wall -o [outputfile] [inputfile]
+./[outputfile] {corre o programa compilado}
+
+
+
+git:
+
+git clone [git folder]
+git pull {download updated folder}
+git commit -m [message]
+git push
