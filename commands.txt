@@ -1,10 +1,3 @@
-IAED dir:
-
-cd Desktop && cd 'Parallels Shared Folders' && cd Home && cd Desktop && cd 'My Cloud Offline Files' && cd IST && cd 1ano && cd IAED
-
-'Parallels Shared Folders'/Home/Desktop/'My Cloud Offline Files'/IST/1ano/IAED
-
-
 bash:
 
 cd [diretorio]
@@ -31,3 +24,5 @@ git clone [git folder]
 git pull {download updated folder}
 git commit -m [message]
 git push
+
+git pull upstream master {download updates original git}
