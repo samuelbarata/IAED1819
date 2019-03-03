@@ -24,5 +24,8 @@ git clone [git folder]
 git pull {download updated folder}
 git commit -m [message]
 git push
+git log {past commits}
+git diff {mostra as diferenças entre o ficheiro atual e o que está no repo}
+
 
 git pull upstream master {download updates original git}
