@@ -20,7 +20,7 @@ gcc -ansi -pedantic -Wall -o [outputfile] [inputfile]
 
 git:
 
-git clone [git folder]
+git clone [remote_location] [clone name]
 git pull {download updated folder}
 git add [file name / .] {. adiciona todos}
 git commit -m [message]
@@ -33,8 +33,8 @@ git reser [SSH commit] {a HEAD passa a ser o passado, o SSH pode ser visto pelo 
 git branck {mostra onde estou a trabalhar}
 git checkout [branch name] {troca para o branch}
 git merge [branch name] {o ramo volta a juntar-se ao principal}
-
-
+git remote -v {mostra os remotes}
+git fetch {tipo o pull mas ainda n percebi o q faz}
 
 
 git pull upstream master {download updates original git}
