@@ -22,10 +22,12 @@ git:
 
 git clone [git folder]
 git pull {download updated folder}
+git add [file name / .] {. adiciona todos}
 git commit -m [message]
 git push
 git log {past commits}
 git diff {mostra as diferenças entre o ficheiro atual e o que está no repo}
-
+git checkout [versão? {HEAD}] [filename] {reverte as alterações do ficheiro local para as do repo}
+git unstage [filename] {remove o commit feito a esse ficheiro}
 
 git pull upstream master {download updates original git}
