@@ -29,5 +29,12 @@ git log {past commits}
 git diff {mostra as diferenças entre o ficheiro atual e o que está no repo}
 git checkout [versão? {HEAD}] [filename] {reverte as alterações do ficheiro local para as do repo}
 git unstage [filename] {remove o commit feito a esse ficheiro}
+git reser [SSH commit] {a HEAD passa a ser o passado, o SSH pode ser visto pelo log}
+git branck {mostra onde estou a trabalhar}
+git checkout [branch name] {troca para o branch}
+git merge [branch name] {o ramo volta a juntar-se ao principal}
+
+
+
 
 git pull upstream master {download updates original git}
