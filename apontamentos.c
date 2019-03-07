@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+/*EOF = End of File*/
 #define VARIAVEL 0
 /*variavel global inalteravel*/
 
@@ -53,7 +53,21 @@ void teste_random(){
     printf("%d\n", a+b);
 }
 
-void aula04(){}
+void aula04(){
+    /* < f.txt input file*/
+    /* > o.txt output file*/
+    char a = 'A';
+    printf("O caracter %c corresponde ao ASCII dec:%d, hex:%x\n", a, a, a);
+    int b = getchar();
+    putchar(b);/*Ainda n percebo bem estas funcs*/
+
+    /*Vetores e Matrizes*/
+    int vetor[5];
+    int matrix[5][5];
+}
+
+
+
 void aula05(){}
 void aula06(){}
 void aula07(){}
@@ -65,8 +79,8 @@ void aula10(){}
 int main(){
 
     /*teste_random();*/
-
-    printf("Introduza o numero da aula que quer ver [1 - 3]: ");
+    /*long %ld*/
+    printf("Introduza o numero da aula que quer ver [1 - 4]: ");
     int aula = 0;
     scanf("%d", &aula);
     switch(aula){
