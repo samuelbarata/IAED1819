@@ -43,7 +43,7 @@ void aula03(){
     /*& le o endereco da variavel*/
     int x=0;
     int y=++x; /*x = x + 1; y = x*/
-    int z=x++; /*y = x; x = x + 1*/
+    int z=x++; /*z = x; x = x + 1*/
 }
 
 void teste_random(){
@@ -66,9 +66,24 @@ void aula04(){
     int matrix[5][5];
 }
 
+void aula05(){
+    /*tabelas e vetores sao passados por referencia [como listas em python]; podem ser alteradas fora da sua funcao*/
+    typedef struct avali {
+        int num;
+        char disciplina[7];
+        double nota;
+    }Avaliacao;
+    /*Avaliacao samuel; ou...*/
+    struct avali samuel;
+    samuel.num = 94230;
+    samuel.disciplina = "IAED";
+    samuel.nota = 19.9;
+
+    typedef int Inteiro;
+    /*Escrever Inteiro == int*/
+}
 
 
-void aula05(){}
 void aula06(){}
 void aula07(){}
 void aula08(){}
@@ -80,7 +95,7 @@ int main(){
 
     /*teste_random();*/
     /*long %ld*/
-    printf("Introduza o numero da aula que quer ver [1 - 4]: ");
+    printf("Introduza o numero da aula que quer ver [1 - 5]: ");
     int aula = 0;
     scanf("%d", &aula);
     switch(aula){
