@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 /*EOF = End of File*/
 #define VARIAVEL 0
 /*variavel global inalteravel*/
@@ -83,8 +84,53 @@ void aula05(){
     /*Escrever Inteiro == int*/
 }
 
+int aula06 = 06;
+void aula06(){
+    char a,b; /*1 byte [8 bits]*/
+    strcmp(a,b); /*sao iguais devolve 0; pode dar <0 ou >0 de acordo com o primeiro caracter diferente*/
+    short int c;
+    long int d;
+    unsigned long int e; /*n tem sinal logo fica com mais espaço, ao usar o long fica com ainda mais espaço*/
+    int f; /*4 bytes*/
 
-void aula06(){}
+    /*float < double < long double*/
+    sizeof(e) /*diz o n+ de bits acho eu*/
+    /*
+    char %c
+    int %d
+    float %f
+    hexa %x
+    unsigned %u
+    */
+    int i1, i2;
+    float g;
+    /*divisao completa entre 2 inteiros:*/
+    g = i1/(float) i2;
+
+    /*aprender enum*/
+
+    /*variaveis globais sao declaradas fora das funçoes e sao sempre inicializadas a 0*/
+    aula06 = 05; /*declarada fora*/
+    static k = 3; /*nao global*/
+    const char msg[] = "Ola people"; /*const n altera valor*/
+    char codes [][3] = {"AA","AB","BA","BB"};
+    /*! = not*/
+    /*!0 = 1*/
+    /*
+    & = AND bit a bit
+    ^ XOR 
+    << SHL
+    >> SHR
+    74 | 184 faz a soma binaria
+    */
+    /*condicao ? true : false*/
+    (i1 & 1) ? "yes" : "no"
+    /*so ve o ultimo bit logo diz sim se o numero for par e nao se for impar*/
+    /*break; para o ciclo ou a funcao*/
+    EXIT_SUCCESS;
+}
+
+
 void aula07(){}
 void aula08(){}
 void aula09(){}
@@ -95,7 +141,7 @@ int main(){
 
     /*teste_random();*/
     /*long %ld*/
-    printf("Introduza o numero da aula que quer ver [1 - 5]: ");
+    printf("Introduza o numero da aula que quer ver [1 - 6]: ");
     int aula = 0;
     scanf("%d", &aula);
     switch(aula){
