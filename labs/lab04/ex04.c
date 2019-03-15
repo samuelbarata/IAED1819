@@ -2,14 +2,18 @@
 #define MAX 80
 
 int main(){
-    int st[MAX], i,j, end=1;
+    int i,j, end=1;
+    char st[MAX];
     scanf("%s", st);
-    for(i = 0; st[i] != EOF; i++){printf("%d",i);}
-    for(j = 0; j == i; j++){
+    for(i = 0; st[i] != '\0'; i++){}
+    i--;
+    for(j = 0; j < i; ){
         if (st[i] != st[j]){
             end = 0;
+            break;
         }
         i--;
+        j++;
     }
     if(end){
         printf("yes\n");
