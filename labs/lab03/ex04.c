@@ -1,26 +1,23 @@
 #include <stdio.h>
 
 int main(){
-    int in, total, str[500],i, inside;
+    int in, inside;
+    char str;
     inside=0;
-    for(total=0;in!=EOF;total++){
+    do{
         in = getchar();
-        str[total] = in;
-    }
-    for(i=0;i<total-1;i++){
-        if(str[i] == ' '){
+        if(in==EOF)break;
+        if(!inside && in == ' ')putchar('0');
+        if(in == ' '){
             inside = 0;
-            putchar(str[i]);
+            putchar(in);
         }
-        else if(inside){putchar(str[i]);}
-        else if(inside == 0 && (str[i]!='0' && str[i]!=' ')){
+        else if(inside){putchar(in);}
+        else if(inside == 0 && (in!='0' && in!=' ')){
             inside = 1;
-            putchar(str[i]);
+            putchar(in);
         }
-        else if(inside == 0 && (str[i]=='0' && str[i+1]==' ')){
-            putchar(str[i]);
-        }
-    }
+    }while(in != EOF);
     printf("\n");
     return 0;
 }
