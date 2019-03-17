@@ -13,8 +13,8 @@ int maiusculas(char s[]){
     for(i=0; s[i-1] != EOF ; i++){s[i] = getchar();}
     m=i-1;
     for(i=0; i < m; i++){
-        if (s[i] > 'z'){
-            printf("%c", s[i]+dif);
+        if (s[i] >= 'a'){
+            printf("%c", s[i]-dif);
         }
         else{
             printf("%c", s[i]);
