@@ -5,14 +5,15 @@ int leLinha(char s[]);
 
 int main(){
     char s[MAX];
-    return leLinha(s);
+    int i, m;
+    m = leLinha(s);
+    for(i=0; i < m; i++){printf("%c", s[i]);}
+    printf("\n");
+    return 0;
 }
 
 int leLinha(char s[]){
-    int i, m;
+    int i;
     for(i=0; s[i-1] != EOF ; i++){s[i] = getchar();}
-    m=i-1;
-    for(i=0; i < m; i++){printf("%c", s[i]);}
-    printf("\n");
-    return m;
+    return i-1;
 }
