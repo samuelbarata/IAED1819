@@ -130,7 +130,6 @@ void aula06(){
     EXIT_SUCCESS;
 }
 
-
 void aula07(){}
 void aula08(){}
 void aula09(){}
@@ -141,7 +140,7 @@ int main(){
 
     /*teste_random();*/
     /*long %ld*/
-    printf("Introduza o numero da aula que quer ver [1 - 6]: ");
+    printf("Introduza o numero da aula que quer ver [1 - 7]: ");
     int aula = 0;
     scanf("%d", &aula);
     switch(aula){
