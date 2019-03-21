@@ -130,7 +130,24 @@ void aula06(){
     EXIT_SUCCESS;
 }
 
-void aula07(){}
+void aula07(){
+/*
+selection sort{
+    percorrer um array, encontrar o menor elemento; por no inicio; repetir para os restantes;
+    comparacoes = N²/2
+    trocas = N
+    nao é estavel pq ordem de chaves duplicadas n é mantida
+}
+Insertion Sort{
+    elemento a elemento, pegar nele e mover até ao sitio ideal
+    deslocando os outros elementos para a esquerda ou para a direita;
+    melhor caso:    N-1 comparacoes
+    pior caso:      N²-1 comparacoes
+}
+
+*/}
+
+
 void aula08(){}
 void aula09(){}
 void aula10(){}
@@ -145,16 +162,17 @@ int main(){
     scanf("%d", &aula);
     switch(aula){
         case 0: return 0;
-        case 1: aula01();
-        case 2: aula02();
-        case 3: aula03();
-        case 4: aula04();
-        case 5: aula05();
-        case 6: aula06();
-        case 7: aula07();
-        case 8: aula08();
-        case 9: aula09();
-        case 10: aula10();
+        case 1: aula01();break;
+        case 2: aula02();break;
+        case 3: aula03();break;
+        case 4: aula04();break;
+        case 5: aula05();break;
+        case 6: aula06();break;
+        case 7: aula07();break;
+        case 8: aula08();break;
+        case 9: aula09();break;
+        case 10: aula10();break;
+        default: return 404;
     }
     printf("\n");
     return 0;
