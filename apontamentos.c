@@ -143,8 +143,13 @@ Insertion Sort{
     deslocando os outros elementos para a esquerda ou para a direita;
     melhor caso:    N-1 comparacoes
     pior caso:      N²-1 comparacoes
+    alg. estável
 }
-
+Bubble Sort{
+    a começar no inicio compara com o seguinte; troca se for maior q o seguinte
+    repete atépercorrer tudo sem trocar nenhuma vez
+    
+}
 */}
 
 
