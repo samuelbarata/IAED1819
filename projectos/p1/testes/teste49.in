@@ -1,0 +1,39 @@
+s 1
+s 2
+s 3
+s 4
+s 5
+s 6
+s 7
+s 8
+s 9
+s 10
+a batatas:12052019:1000:1:10:aa:bb
+a cenouras:12052019:1000:1:9:cc:dd
+a lasanha:12052019:1000:1:8:ee:ff
+a esparguete:12052019:1000:1:5:gg:hh
+a bolonhesa:12052019:1000:1:7:ii:jj
+a carne:12052019:1000:1:1:kk:ll
+a bolachas:12052019:1000:1:3:mm:nn
+m cenouras:2
+m cenouras:2
+i cenouras:1000
+t cenouras:1
+A bolachas:oo
+R bolachas:nn
+R bolachas:mm
+R bolachas:oo
+a dor de cabeca:12052019:1000:1:3:yy:zz
+a dor de cabeca:12052019:1001:29:3:yy:zz
+l
+r batatas
+r cenouras
+r lasanha
+r esparguete
+r bolonhesa
+r carne
+r bolachas
+r dor de cabeca
+l
+R bolachas:eu
+x
