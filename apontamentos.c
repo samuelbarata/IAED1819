@@ -74,27 +74,26 @@ void aula05(){
         char disciplina[7];
         double nota;
     }Avaliacao;
-    /*Avaliacao samuel; ou...*/
-    struct avali samuel;
+    Avaliacao samuel;
     samuel.num = 94230;
-    samuel.disciplina = "IAED";
+    strcpy(samuel.disciplina, "IAED");
     samuel.nota = 19.9;
 
     typedef int Inteiro;
     /*Escrever Inteiro == int*/
 }
 
-int aula06 = 06;
+int aula6 = 06;
 void aula06(){
     char a,b; /*1 byte [8 bits]*/
     strcmp(a,b); /*sao iguais devolve 0; pode dar <0 ou >0 de acordo com o primeiro caracter diferente*/
     short int c;
     long int d;
     unsigned long int e; /*n tem sinal logo fica com mais espaço, ao usar o long fica com ainda mais espaço*/
-    int f; /*4 bytes*/
+    int f, i1, i2; /*4 bytes*/
 
     /*float < double < long double*/
-    sizeof(e) /*diz o n+ de bits acho eu*/
+    sizeof(e); /*diz o n+ de bits acho eu*/
     /*
     char %c
     int %d
@@ -105,12 +104,12 @@ void aula06(){
     int i1, i2;
     float g;
     /*divisao completa entre 2 inteiros:*/
-    g = i1/(float) i2;
+    g = i1 /(float) i2;
 
     /*aprender enum*/
 
     /*variaveis globais sao declaradas fora das funçoes e sao sempre inicializadas a 0*/
-    aula06 = 05; /*declarada fora*/
+    aula6 = 05; /*declarada fora*/
     static k = 3; /*nao global*/
     const char msg[] = "Ola people"; /*const n altera valor*/
     char codes [][3] = {"AA","AB","BA","BB"};
@@ -124,10 +123,9 @@ void aula06(){
     74 | 184 faz a soma binaria
     */
     /*condicao ? true : false*/
-    (i1 & 1) ? "yes" : "no"
+    (i1 & 1) ? "yes" : "no";
     /*so ve o ultimo bit logo diz sim se o numero for par e nao se for impar*/
     /*break; para o ciclo ou a funcao*/
-    EXIT_SUCCESS;
 }
 
 void aula07(){
@@ -152,9 +150,29 @@ Bubble Sort{
 }
 */}
 
+void aula08(){
+    /*Outros sorts*/
+}
 
-void aula08(){}
-void aula09(){}
+void aula09(){
+    int x = 10;
+    int *px = &x; /*posição de memoria de x q é um int; igual aos [R0] de AC*//*&x devolve a memoria de x*/
+    printf("%d\n", *px);
+    *px = 5;
+    printf("%d\n", *px);
+    printf("%d\n", x);
+    int *p = g();   /*aloca nova memoria*/
+    free(p);        /*liberta a memoria*/
+    
+}
+int * g(){
+    int *px = malloc(sizeof(int));
+    *px = 10;
+    return px;
+}
+
+
+
 void aula10(){}
 
 
@@ -162,7 +180,7 @@ int main(){
 
     /*teste_random();*/
     /*long %ld*/
-    printf("Introduza o numero da aula que quer ver [1 - 7]: ");
+    printf("Introduz o numero da aula que quer ver [1 - 9]: ");
     int aula = 0;
     scanf("%d", &aula);
     switch(aula){
