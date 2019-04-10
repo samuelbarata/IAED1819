@@ -1,34 +1,27 @@
-#include <ex02.h>
-
-int main(){
-    stack k;
-    init(*k);
-    push(*k, 1);
-    push(*k, 2);
-    printf("%d %d", pop(*k),pop(*k));
-    destroy(*k);
-    return 0;
-}
+#include "ex02.h"
 
 void init(stack * s){
-    *s.cap = 4;
-    *s.sz = 0;
+    stack temp = *s;
+    temp.cap = 4;
+    temp.sz = 0;
 }
 
 void push(stack * s, int e){
-    if(s.sz < s.cap){
-        *s.sz++;
-        *s.v = e;
-        *s.v++;
+    stack temp = *s;
+    if(temp.sz < temp.cap){
+        temp.sz++;
+        temp.v = e;
+        temp.v++;
     }
 }
 
 int pop(stack * s){
     int aux;
+    stack temp = *s;
     if(!is_empty(s)){
-        *s.sz--;
-        aux = *s.v;
-        *s.v--;
+        temp.sz--;
+        aux = temp.v;
+        temp.v--;
         return aux;
     }
     return 0;
@@ -39,5 +32,6 @@ void destroy(stack * s){
 }
 
 int is_empty(stack * s){
-    return !(*s.sz > 0);
+    stack temp = *s;
+    return !(temp.sz > 0);
 }
