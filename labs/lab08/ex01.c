@@ -9,7 +9,7 @@ int main(){
     p = string;
     len = strlen(string);
     for(i = 0; i<len; i++,p++){
-        printf("%s", p);
+        printf("%s\n", p);
     }
     return 0;
 }
