@@ -7,7 +7,7 @@ int main(){
 	for(i=0;(j = getchar())!=EOF && j!='\n';i++){
 		if(j == '(' || j == '[' || j == '{')
 			push(&k, j);
-		if(j == ')' || j == ']' || j == '}'){
+		else if(j == ')' || j == ']' || j == '}'){
 			if(is_empty(&k)){
 				printf("no\n");
 				return 0;
@@ -32,8 +32,10 @@ int main(){
 			return 0;
 		}
 	}
-	if(is_empty(&k))
+	if(is_empty(&k)){
 		printf("yes\n");
+		return 0;
+	}
 	printf("no\n");
 	return 0;
 }
