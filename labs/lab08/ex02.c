@@ -2,7 +2,10 @@
 
 void init(stack * s){
     stack temp = *s;
-    temp.cap = 4;
+    int v[max];
+
+    temp.v = &v;
+    temp.cap = max;
     temp.sz = 0;
 }
 

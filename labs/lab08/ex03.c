@@ -2,8 +2,8 @@
 
 int main(){
 	int i, j, check = 1,temp;
-	stack * k;
-	init(k);
+	stack k;
+	init(&k);
 	for(i=0;(j = getchar())!=EOF && j!='\n';i++){
 		if(j == '(' || j == '[' || j == '{')
 			push(k, j);
