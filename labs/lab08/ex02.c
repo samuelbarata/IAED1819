@@ -1,28 +1,25 @@
 #include "ex02.h"
 
 void init(stack * s){
-    stack temp = *s;
-    temp.v = malloc(sizeof(int)*max);
-    temp.cap = max;
-    temp.sz = 0;
+    (*s).v = malloc(sizeof(int)*max);
+    (*s).cap = max;
+    (*s).sz = 0;
 }
 
 void push(stack * s, int e){
-    stack temp = *s;
-    if(temp.sz < temp.cap){
-        temp.sz++;
-        *temp.v = e;
-        temp.v++;
+    if((*s).sz < (*s).cap){
+        (*s).sz++;
+        *(*s).v = e;
+        (*s).v++;
     }
 }
 
 int pop(stack * s){
     int aux;
-    stack temp = *s;
     if(!is_empty(s)){
-        temp.sz--;
-        aux = *temp.v;
-        temp.v--;
+        (*s).sz--;
+        aux = *(*s).v;
+        (*s).v--;
         return aux;
     }
     return 0;
@@ -33,6 +30,5 @@ void destroy(stack * s){
 }
 
 int is_empty(stack * s){
-    stack temp = *s;
-    return !(temp.sz > 0);
+    return !((*s).sz > 0);
 }
