@@ -8,8 +8,7 @@ int main(){
     fgets(string,max,stdin);
     p = string;
     len = strlen(string);
-    for(i = 0; i<len; i++,p++){
+    for(i = 0; i<len; i++,p++)
         printf("%s\n", p);
-    }
     return 0;
 }
