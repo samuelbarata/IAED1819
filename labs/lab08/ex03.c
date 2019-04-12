@@ -6,13 +6,13 @@ int main(){
 	init(&k);
 	for(i=0;(j = getchar())!=EOF && j!='\n';i++){
 		if(j == '(' || j == '[' || j == '{')
-			push(k, j);
+			push(&k, j);
 		if(j == ')' || j == ']' || j == '}'){
-			if(is_empty(k)){
-				printf("no");
+			if(is_empty(&k)){
+				printf("no\n");
 				return 0;
 			}
-			temp = pop(k);
+			temp = pop(&k);
 			if(temp == '('){
 				if(j!=')'){
 					check = 0;
@@ -28,12 +28,12 @@ int main(){
 			}
 		}
 		if(!check){
-			printf("no");
+			printf("no\n");
 			return 0;
 		}
 	}
-	if(is_empty(k))
-		printf("yes");
-	printf("no");
+	if(is_empty(&k))
+		printf("yes\n");
+	printf("no\n");
 	return 0;
 }

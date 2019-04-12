@@ -2,9 +2,7 @@
 
 void init(stack * s){
     stack temp = *s;
-    int v[max];
-
-    temp.v = &v;
+    temp.v = malloc(sizeof(int)*max);
     temp.cap = max;
     temp.sz = 0;
 }
@@ -13,7 +11,7 @@ void push(stack * s, int e){
     stack temp = *s;
     if(temp.sz < temp.cap){
         temp.sz++;
-        temp.v = e;
+        *temp.v = e;
         temp.v++;
     }
 }
@@ -23,7 +21,7 @@ int pop(stack * s){
     stack temp = *s;
     if(!is_empty(s)){
         temp.sz--;
-        aux = temp.v;
+        aux = *temp.v;
         temp.v--;
         return aux;
     }
