@@ -171,16 +171,30 @@ int * g(){
     return px;
 }
 
-
-
-void aula10(){}
+void aula10(){
+    char buffer[256];
+    char *string[10];
+    int i;
+    for(i=0;i<10;i++){
+        puts("introd");
+        scanf("%s", buffer);
+        string[i]=malloc(sizeof(char)+(strlen(buffer)+1));
+        strcpy(string[i],buffer);
+    }
+    /*------------*/
+    struct node{
+        int data;
+        struct node *next;
+    };
+    
+}
 
 
 int main(){
 
     /*teste_random();*/
     /*long %ld*/
-    printf("Introduz o numero da aula que quer ver [1 - 9]: ");
+    printf("Introduz o numero da aula que quer ver [1 - 10]: ");
     int aula = 0;
     scanf("%d", &aula);
     switch(aula){
