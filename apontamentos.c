@@ -189,6 +189,9 @@ void aula10(){
     
 }
 
+void aula11(){}
+void aula12() {}
+void aula13() {}
 
 int main(){
 
@@ -209,6 +212,9 @@ int main(){
         case 8: aula08();break;
         case 9: aula09();break;
         case 10: aula10();break;
+        case 11: aula11();break;
+        case 12: aula12();break;
+        case 13: aula13();break;
         default: return 404;
     }
     printf("\n");
