@@ -17,7 +17,7 @@ fi
 
 ${CC} -o ${prog_name} ${cfile}
 rv_compile=$?
-if [${rv_compile} != 0];then
+if [ ${rv_compile} != 0 ];then
 	echo "ERROR: Compilation failed!"
 	return 1
 else
