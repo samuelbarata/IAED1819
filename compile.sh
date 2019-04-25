@@ -9,13 +9,14 @@ prog_name="${1}"
 cfile="${1}".c
 DIFF="diff --ignore-space-change --ignore-blank-lines"
 CC="gcc -ansi -Wall -Wextra -pedantic"
+MORE=" -fcolor-diagnostics -g -fdebug-info-for-profiling  -fsanitize=address"
 
 if [ ! -f "${cfile}" ]; then
 	echo "ERROR: file ${cfile} not found!"
 	return 1
 fi
 
-${CC} -o ${prog_name} ${cfile}
+${CC} -o ${prog_name} ${cfile} ${MORE}
 rv_compile=$?
 if [ ${rv_compile} != 0 ];then
 	echo "ERROR: Compilation failed!"
