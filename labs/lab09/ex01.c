@@ -31,7 +31,14 @@ node *push(node *head, int e){
 }
 
 void print(node *head){
-    printf("%d", (*head).v);
+    printf("%d\n", (*head).v);
     if ((*((*head).next)).next != NULL)
         print((*head).next);
+}
+
+node *pop(node *head){
+    node (*p);
+    
+    free(p);
+    return NULL
 }
