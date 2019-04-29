@@ -7,11 +7,15 @@ void init(stack * s){
 }
 
 void push(stack * s, int e){
-    if((*s).sz < (*s).cap){
-        (*s).sz++;
-        *(*s).v = e;
-        (*s).v++;
+    int *k;
+    if(!((*s).sz < (*s).cap)){
+        (*s).v = realloc(s, (*s).cap * 2);
+        (*s).cap *= 2;
     }
+    (*s).sz++;
+    k = (*s).v;
+    k += (*s).sz;
+    *k = e;
 }
 
 int pop(stack * s){
