@@ -1,7 +1,7 @@
 #!/bin/bash
 clear
 if [[ $# -lt 1 ]] ; then
-	echo "Usage: $0 <main-file> <src-file2> ..."
+	echo "Usage: $0 <main-file> <src-file2>.c ..."
 	exit 1
 fi
 

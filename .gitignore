@@ -5,7 +5,7 @@
 characters_UTF8.txt
 *.DS_Store
 *.dSYM
-*.warning
+*.warnings
     
 #executaveis:
 apontamentos
