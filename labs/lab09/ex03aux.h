@@ -3,7 +3,7 @@
 #include <string.h>
 #define MAX 100
 
-//int debug = 0;
+/*/int debug = 0;/*/
 
 typedef struct stru_node {
     struct stru_node *next;
