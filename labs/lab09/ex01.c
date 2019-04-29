@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+int debug = 0;
+
 typedef struct stru_node {
     struct stru_node *next;
     int v;
@@ -14,31 +16,35 @@ void print(node *head);
 
 int main(){
     int c;
-    node (*head) = NULL, (*p);
-    p = head;
+    node (*head);
+    head = NULL;
     while ((c = getchar())!='0'){
-        p = push(p, c);
+        head = push(head, c);
     }
+    print(head);
     return 0;
 }
 
 node *push(node *head, int e){
-    node (*p) = malloc(sizeof(node));
-    (*head).next = p;
-    (*p).v = e;
-    (*p).next = NULL;
+    node (*p) = malloc(sizeof(node));       /*p contem o endereço da alocação*/
+    p->v = e;
+    p->next = head;                         /*endereço anterior*/
+    if(debug)printf("push:%p:%d\n", p, p->v);
     return p;
 }
 
 void print(node *head){
-    printf("%d\n", (*head).v);
-    if ((*((*head).next)).next != NULL)
-        print((*head).next);
+    putchar(head->v);
+    if(debug)printf("next:%p\n",head->next);
+    printf("\n");
+    if (head->next != NULL)
+        print(head->next);
+    pop(head);
 }
 
 node *pop(node *head){
-    node (*p);
-    
-    free(p);
-    return NULL
+    node *p;
+    p = head->next;
+    free(head);
+    return p;
 }
