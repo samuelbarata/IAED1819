@@ -13,7 +13,7 @@ CC="gcc -ansi -Wall -Wextra -pedantic"
 MORE=" -fcolor-diagnostics -g -fdebug-info-for-profiling  -fsanitize=address"
 
 if [ ! -f "${cfile}" ]; then
-	echo "ERROR: file ${cfile} not found!"
+	echo -e "${RED}ERROR: file ${cfile} not found!${NC}"
 	exit 1
 fi
 
@@ -26,8 +26,9 @@ if [ ${rv_compile} != 0 ]; then
 	exit 1
 
 elif [ -s ${prog_name}.warnings ]; then
-    echo -e "${YELLOW}Program ${prog_name} compiled with warnings and running:${NC}"
+    echo -e "${YELLOW}Program ${prog_name} compiled with warnings${NC}"
     cat ${prog_name}.warnings
+	echo "running:"
 
 else
 	echo -e "${GREEN}Program ${prog_name} successfully compiled and running:${NC}"
@@ -35,10 +36,8 @@ fi
 
 ./${prog_name}
 output=$?
-if [ ${output} != 0 ]; then
-	echo "ERROR: Program did not return 0!"
-else
-	echo "Program successfully ran"
-fi
+
+echo -e "${GREEN}Program successfully ran and return ${NC}${RED}${output}${NC}"
+
 rm -f ${prog_name}.warnings
 exit 1

@@ -14,31 +14,41 @@ node *destroy(node *head);
 void print(node *head);
 
 int main(){
-    node *head = NULL;
+    node *head = NULL, *p=head;
     char buffer[MAX] = "";
     scanf("%s", buffer);
+    head = push(head, buffer);      /*/primeiro elemento da lista/*/
+    p = head;                       /*/ultimo elemento da lista/*/
     while(strcmp("x",buffer)){
-        head = push(head, buffer);
+        p = push(p, buffer);
         scanf("%s", buffer);
     }
     return 0;
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 node *push(node *head, const char *s){
-    if(head == NULL){                                   /*/recebe um ponteiro nulo significa q está no fim da lista/*/
-        node(*p) = malloc(sizeof(node));
-        char *k = malloc(sizeof(char) * (strlen(s) + 1));
-        strcpy(k, s);
-        p->s = k;
-        p->next = NULL;
-        return p;
-    }
-    if(head->next == NULL){                             /*/se o seguinte é nulo está no ultimo elemento existente da lista/*/
-        head->next = push(head->next,s);                /*/grava o elemento acabado de criar/*/
-        return NULL;
-    }
-    return push(head->next, s);                         /*/está a percorrer a lista/*/
+    node(*p) = malloc(sizeof(node));
+    char *k = malloc(sizeof(char) * (strlen(s) + 1));
+    strcpy(k, s);
+    p->s = k;
+    p->next = NULL;
+    return p;
 }
 
 void print(node *head){
@@ -48,10 +58,11 @@ void print(node *head){
 }
 
 node *pop(node *head){
-    node *p;
-    p = head->next;
-    free(head);
-    return p;
+    if(head->next->next == NULL){
+        free(head->next);
+        return head;
+    }
+    return pop(head->next);
 }
 
 node *destroy(node *head){
