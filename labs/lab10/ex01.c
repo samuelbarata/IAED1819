@@ -3,12 +3,14 @@
 #include <string.h>
 #define MAX 1024
 
-int debug = 1;
+int debug = 0;
 
 typedef struct stru_node{
     struct stru_node *next;
     char *s;
 } node;
+
+node *p;
 
 node *pop(node *head);
 node *push(node *head, const char *);
@@ -16,7 +18,7 @@ node *destroy(node *head);
 void print(node *head);
 
 int main(){
-    node *head = NULL, *p;
+    node *head = NULL;
     char buffer[MAX] = "";
     scanf("%s", buffer);
     while(strcmp("x",buffer)){
@@ -32,6 +34,8 @@ int main(){
         }
         scanf("%s", buffer);
     }
+    print(head);
+    destroy(head);
     return 0;
 }
 
@@ -55,9 +59,11 @@ node *push(node *head, const char *s){
 }
 
 void print(node *head){
-    printf("%s",head->s);
-    if (head->next != NULL)
+    if (head->next != NULL){
         print(head->next);
+        printf("%s\n",head->s);
+    }else
+        printf("%s\n",head->s);
 }
 
 node *pop(node *head){
@@ -70,11 +76,9 @@ node *pop(node *head){
 }
 
 node *destroy(node *head){
-    node *aux;
-    if(head == NULL)
-        return head;
-    aux = head->next;
-    free(head->s);
-    free(head);
-    return destroy(aux);
+    do{
+        head = pop(head);
+        if(debug)printf("pop:\t%p\n",(void*)head);
+    }while(head!=NULL);
+    return head;
 }
