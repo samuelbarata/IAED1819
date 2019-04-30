@@ -14,41 +14,28 @@ node *destroy(node *head);
 void print(node *head);
 
 int main(){
-    node *head = NULL, *p=head;
+    node *head = NULL, *p;
     char buffer[MAX] = "";
+    p = head;       /*/no inicio ambos apontam para o mesmo local/*/
     scanf("%s", buffer);
-    head = push(head, buffer);      /*/primeiro elemento da lista/*/
-    p = head;                       /*/ultimo elemento da lista/*/
     while(strcmp("x",buffer)){
-        p = push(p, buffer);
+        p->next = push(p, buffer);
         scanf("%s", buffer);
     }
     return 0;
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 node *push(node *head, const char *s){
-    node(*p) = malloc(sizeof(node));
+    node(*j) = malloc(sizeof(node));
     char *k = malloc(sizeof(char) * (strlen(s) + 1));
     strcpy(k, s);
-    p->s = k;
-    p->next = NULL;
-    return p;
+    j->s = k;
+    j->next = NULL;
+    if (head == NULL){          /*/primeiro elemento/*/
+        head = j;
+    }
+    return j;
 }
 
 void print(node *head){
