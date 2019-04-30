@@ -52,4 +52,4 @@ fi
 
 rm -f ${prog_name}.warnings
 rm -f ${prog_name}
-exit 1
+exit ${output}
