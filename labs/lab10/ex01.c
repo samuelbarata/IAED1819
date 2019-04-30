@@ -3,6 +3,8 @@
 #include <string.h>
 #define MAX 1024
 
+int debug = 1;
+
 typedef struct stru_node{
     struct stru_node *next;
     char *s;
@@ -16,10 +18,18 @@ void print(node *head);
 int main(){
     node *head = NULL, *p;
     char buffer[MAX] = "";
-    p = head;       /*/no inicio ambos apontam para o mesmo local/*/
     scanf("%s", buffer);
     while(strcmp("x",buffer)){
-        p->next = push(p, buffer);
+        if(head == NULL){
+            head = push(head, buffer);
+            if(debug)printf("head:\t%p\n", (void*)head);
+            p = head;                   /*/aponta para a ultima posição da lista/*/
+        }
+        else{
+            p->next = push(p, buffer);
+            p = p->next;
+            if(debug)printf("p:\t%p\n", (void*)p);
+        }
         scanf("%s", buffer);
     }
     return 0;
@@ -27,14 +37,20 @@ int main(){
 
 
 node *push(node *head, const char *s){
-    node(*j) = malloc(sizeof(node));
-    char *k = malloc(sizeof(char) * (strlen(s) + 1));
+    node (*j);
+    char *k;
+    j = malloc(sizeof(node));
+    k = malloc(sizeof(char) * (strlen(s) + 1));
     strcpy(k, s);
     j->s = k;
     j->next = NULL;
-    if (head == NULL){          /*/primeiro elemento/*/
+    if(head == NULL){
         head = j;
     }
+    else{
+        head->next = j;
+    }
+    if(debug)printf("j:\t%p\t",(void*)j);
     return j;
 }
 
@@ -45,18 +61,20 @@ void print(node *head){
 }
 
 node *pop(node *head){
-    if(head->next->next == NULL){
-        free(head->next);
-        return head;
-    }
-    return pop(head->next);
+    node *aux;
+    aux = head;
+    head = head->next;
+    free(aux->s);
+    free(aux);
+    return head;
 }
 
 node *destroy(node *head){
     node *aux;
+    if(head == NULL)
+        return head;
     aux = head->next;
+    free(head->s);
     free(head);
-    if(aux != NULL)
-        destroy(aux);
-    return aux;
+    return destroy(aux);
 }
