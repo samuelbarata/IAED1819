@@ -36,7 +36,7 @@ if [ ${rv_compile} != 0 ]; then
 elif [ -s ${prog_name}.warnings ]; then
     echo -e "${YELLOW}Program ${NC}${GREEN}${prog_name}${NC}${YELLOW} compiled with warnings${NC}"
     cat ${prog_name}.warnings
-	echo -e "${YELLOW}running:${NC}"
+	echo -e "${BLUE}running:${NC}"
 
 else
 	echo -e "${BLUE}Program ${prog_name} successfully compiled and running:${NC}"
