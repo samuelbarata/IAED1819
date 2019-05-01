@@ -1,19 +1,18 @@
 #include "ex02.h"
 
 int main(){
-	int i, j, check = 1,temp;
+	int j, check = 1, temp;
 	stack k;
 	init(&k);
-	for(i=0;(j = getchar())!=EOF && j!='\n';i++){
+	while((j = getchar())!=EOF && j!='\n'){
 		if(j == '(' || j == '[' || j == '{')
 			push(&k, j);
 		else if(j == ')' || j == ']' || j == '}'){
-			if(is_empty(&k)){
-				printf("no\n");
-				return 0;
-			}
 			temp = pop(&k);
-			if(temp == '('){
+			if(temp==0){
+				check = 0;
+			}
+			else if(temp == '('){
 				if(j!=')'){
 					check = 0;
 				}
@@ -29,13 +28,16 @@ int main(){
 		}
 		if(!check){
 			printf("no\n");
+			destroy(&k);
 			return 0;
 		}
 	}
 	if(is_empty(&k)){
 		printf("yes\n");
+		destroy(&k);
 		return 0;
 	}
 	printf("no\n");
+	destroy(&k);
 	return 0;
 }

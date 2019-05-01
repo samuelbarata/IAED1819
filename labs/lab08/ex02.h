@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #define max 4
+#define debug 0
 
 typedef struct {
     int *v;  /* contents of the stack */
