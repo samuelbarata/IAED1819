@@ -1,4 +1,4 @@
-#include "ex01aux.h"
+#include "ex02aux.h"
 
 node *push(node *head, int e){
     node (*p) = malloc(sizeof(node));       /*p contem o endereço da alocação*/
@@ -12,7 +12,8 @@ void print(node *head){
     if(debug)printf("print:%p",(void*)head);
     if(head == NULL)
         return;
-    printf("%d\n",head->v);
+    putchar(head->v);
+    printf("\n");
     print(head->next);
 }
 

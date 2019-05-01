@@ -4,18 +4,20 @@ int is_eq(node *h1, node *h2);   /* compara duas listas*/
 node *rev(node *head);           /* devolve uma nova lista que corresponda a lista dada invertida */
 
 int main(){
-    int c;
+    char c;
     node (*head), *p;
+    debug = 0;
     head = NULL;
-    while ((c = getchar())!='\n'){
+    while ((c=getchar())!='\n' && c!=EOF){
         head = push(head, c);
     }
     p = rev(head);
     if(is_eq(p, head)){
         printf("yes\n");
-        return 0;
-    }
-    printf("no\n");
+    } else
+        printf("no\n");
+    head = destroy(head);
+    p = destroy(p);
     return 0;
 }
 
@@ -29,6 +31,8 @@ int is_eq(node *h1, node *h2){
 
 node *rev(node *head){
     node *p = NULL, *local_head = head;
+    if(p == local_head)             /*/pilha vazia/*/
+        return p;
     p = push(p, local_head->v);
     while (local_head->next != NULL){
         local_head = local_head->next;

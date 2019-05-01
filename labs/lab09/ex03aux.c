@@ -10,7 +10,7 @@ node *push(node *head, char *s){
 }
 
 void print(node *head){
-    printf("%s",head->s);
+    printf("%s\n",head->s);
     if (head->next != NULL)
         print(head->next);
     pop(head);
@@ -19,6 +19,7 @@ void print(node *head){
 node *pop(node *head){
     node *p;
     p = head->next;
+    free(head->s);
     free(head);
     return p;
 }
@@ -26,7 +27,7 @@ node *pop(node *head){
 node *destroy(node *head){
     node *aux;
     aux = head->next;
-    free(head);
+    pop(head);
     if(aux != NULL)
         destroy(aux);
     return aux;
