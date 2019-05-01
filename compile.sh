@@ -4,14 +4,13 @@
 #	01/05/2019
 #
 
-
 show_help() {
 	echo "Usage: $0 <main-file> <src-file2>.c ..."
-	echo "Example: $0 -y ex03 aux1.c aux2.c"
+	echo "Example: $0 -y ex01 aux01.c aux02.c"
 	echo "-h | --help		-	mostra este menu"
 	echo "-c | --compila		-	compila o ficheiro"
 	echo "-y | --testa		-	corre os testes no ficheiro"
-	echo "-n			-	corre o ficheiro"
+	echo "-n | --corre		-	corre o ficheiro"
 	echo "-v | --valgrind		-	corre os testes com valgrind"
 }
 
@@ -27,7 +26,6 @@ DIFF="diff --ignore-space-change --ignore-blank-lines"
 CC="gcc -ansi -Wall -Wextra -pedantic"
 MORE=" -g -fsanitize=address"
 COMMANDO=""
-
 
 codigo_geral(){
 	clear
@@ -71,12 +69,6 @@ codigo_geral(){
 		echo -e "${BLUE}Program ${prog_name} successfully compiled${NC}"
 	fi
 }
-
-
-
-
-
-
 
 funcao_c() {
 	cat ${prog_name}.warnings
@@ -155,9 +147,8 @@ funcao_v() {
 
 		${DIFF} ${student_out} ${test_out}
 		rv_diff=$?
-		
 
-
+		#valgrind
 		noerrs='X'
 		noleaks='X'
 		killed='X'
@@ -253,33 +244,32 @@ case "$1" in
 		#COMPILA
 		COMMANDO='c'
 		shift
-		codigo_geral "$*"
-		funcao_c "$*"
+		codigo_geral $*
+		funcao_c $*
 		;;
 	-y|-Y|--testa)
 		#TESTA
 		COMMANDO='y'
 		shift
-		codigo_geral "$*"
-		funcao_y "$*"
+		codigo_geral $*
+		funcao_y $*
 		;;
 	-v|--valgrind|-V)
 		#VALGRIND
 		COMMANDO='v'
 		shift
-		codigo_geral "$*"
-		funcao_v "$*"
+		codigo_geral $*
+		funcao_v $*
 		;;
-	-n|-N)
+	-n|-N|--corre)
 		#CORRE
 		COMMANDO='n'
 		shift
-		codigo_geral "$*"
-		funcao_n "$*"
+		codigo_geral $*
+		funcao_n $*
 		;;
 	*)
 		COMMANDO='n'
-		codigo_geral "$*"
-		funcao_n "$*"
-
+		codigo_geral $*
+		funcao_n $*
 esac
