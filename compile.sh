@@ -37,7 +37,6 @@ codigo_geral(){
 	prog_name="${1}"
 	cfile="${1}".c
 	shift
-	shift
 
 	if  ! ( which `cut <<<valgrind -f1 -d\ ` >/dev/null 2>&1 ) ; then		#se falhar aqui provavelmente não tem valgrind, provavelmente está num mac e apaga tralha desnecessária
 		BLINK=''
