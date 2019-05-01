@@ -1,10 +1,9 @@
 #!/bin/bash
+#
+#	Samuel Barata
+#	01/05/2019
+#
 
-#╭──────────────────────────────────────────────────────────────────────────────────────────────╮
-#│	Compila e corre um ficheiro																	│
-#│	Recebe como input C/Y/N/V [compilar/correr testes / experimentar manualmente / Valgrind]	│
-#│	Para apenas compilar: escolher N e após mensagem azul fazer ^C								│
-#╰──────────────────────────────────────────────────────────────────────────────────────────────╯
 
 show_help() {
 	echo "Usage: $0 <main-file> <src-file2>.c ..."
