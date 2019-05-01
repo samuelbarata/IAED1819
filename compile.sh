@@ -210,8 +210,7 @@ funcao_v() {
 	rm -f ${student_out} ${vg_out}
 
 	cat ${prog_name}.warnings
-	rm -f ${prog_name}.warnings
-	rm -f ${prog_name}
+	rm -f ${prog_name} ${prog_name}.warnings
 	exit 0
 }
 
