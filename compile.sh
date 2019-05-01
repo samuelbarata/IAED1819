@@ -244,32 +244,32 @@ case "$1" in
 		#COMPILA
 		COMMANDO='c'
 		shift
-		codigo_geral "$*"
-		funcao_c "$*"
+		codigo_geral $*
+		funcao_c $*
 		;;
 	-y|-Y|--testa)
 		#TESTA
 		COMMANDO='y'
 		shift
-		codigo_geral "$*"
-		funcao_y "$*"
+		codigo_geral $*
+		funcao_y $*
 		;;
 	-v|--valgrind|-V)
 		#VALGRIND
 		COMMANDO='v'
 		shift
-		codigo_geral "$*"
-		funcao_v "$*"
+		codigo_geral $*
+		funcao_v $*
 		;;
 	-n|-N|--corre)
 		#CORRE
 		COMMANDO='n'
 		shift
-		codigo_geral "$*"
-		funcao_n "$*"
+		codigo_geral $*
+		funcao_n $*
 		;;
 	*)
 		COMMANDO='n'
-		codigo_geral "$*"
-		funcao_n "$*"
+		codigo_geral $*
+		funcao_n $*
 esac
