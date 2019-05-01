@@ -243,16 +243,14 @@ funcao_n(){
 }
 
 case "$1" in
-	-h|--help)
+	-h|--help|-H)
 		#HELP
-		echo "h"
 		show_help
 		COMMANDO='h'
 		exit 0
 		;;
-	-c|--compila)
+	-c|--compila|-H)
 		#COMPILA
-		echo "c"
 		COMMANDO='c'
 		shift
 		codigo_geral "$*"
@@ -260,15 +258,13 @@ case "$1" in
 		;;
 	-y|-Y|--testa)
 		#TESTA
-		echo "y"
 		COMMANDO='y'
 		shift
 		codigo_geral "$*"
 		funcao_y "$*"
 		;;
-	-v|--valgrind)
+	-v|--valgrind|-V)
 		#VALGRIND
-		echo "v"
 		COMMANDO='v'
 		shift
 		codigo_geral "$*"
@@ -276,15 +272,14 @@ case "$1" in
 		;;
 	-n|-N)
 		#CORRE
-		echo "n"
 		COMMANDO='n'
 		shift
 		codigo_geral "$*"
 		funcao_n "$*"
 		;;
 	*)
-		#OUTROS
-		show_help
-		exit 1
+		COMMANDO='n'
+		codigo_geral "$*"
+		funcao_n "$*"
 
 esac
