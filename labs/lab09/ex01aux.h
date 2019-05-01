@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-//int debug = 0;
+int debug;
 
 typedef struct stru_node {
     struct stru_node *next;

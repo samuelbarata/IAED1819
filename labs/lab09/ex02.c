@@ -1,4 +1,4 @@
-#include "ex01.h"
+#include "ex01aux.h"
 
 int is_eq(node *h1, node *h2);   /* compara duas listas*/
 node *rev(node *head);           /* devolve uma nova lista que corresponda a lista dada invertida */
