@@ -12,6 +12,7 @@ show_help() {
 	echo "-y | --testa		-	corre os testes no ficheiro"
 	echo "-n | --corre		-	corre o ficheiro"
 	echo "-v | --valgrind		-	corre os testes com valgrind"
+	echo "-N|-Y|-C 	-	compila com menos flags"
 }
 
 RED='\033[0;31m'
@@ -235,19 +236,33 @@ case "$1" in
 	-h|--help|-H)
 		#HELP
 		show_help
-		COMMANDO='h'
+		COMMANDO='v'
 		exit 0
 		;;
-	-c|--compila|-H)
+	-c|--compila)
 		#COMPILA
-		COMMANDO='c'
+		COMMANDO='v'
 		shift
 		codigo_geral $*
 		funcao_c $*
 		;;
-	-y|-Y|--testa)
+	-C)
+		#COMPILA
+		COMMANDO='n'
+		shift
+		codigo_geral $*
+		funcao_c $*
+		;;
+	-y|--testa)
 		#TESTA
-		COMMANDO='y'
+		COMMANDO='v'
+		shift
+		codigo_geral $*
+		funcao_y $*
+		;;
+	-Y)
+		#TESTA
+		COMMANDO='n'
 		shift
 		codigo_geral $*
 		funcao_y $*
@@ -259,7 +274,14 @@ case "$1" in
 		codigo_geral $*
 		funcao_v $*
 		;;
-	-n|-N|--corre)
+	-n|--corre)
+		#CORRE
+		COMMANDO='v'
+		shift
+		codigo_geral $*
+		funcao_n $*
+		;;
+	-N)
 		#CORRE
 		COMMANDO='n'
 		shift
@@ -267,7 +289,7 @@ case "$1" in
 		funcao_n $*
 		;;
 	*)
-		COMMANDO='n'
+		COMMANDO='v'
 		codigo_geral $*
 		funcao_n $*
 esac
