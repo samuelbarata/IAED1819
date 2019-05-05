@@ -83,7 +83,7 @@ int verifica_erros(contact *contacto, contact *a_comparar){
     return verifica_erros(contacto,a_comparar->next);
 }
 
-contact *encontra_nome(){
+contact *encrontra_nome(){
     contact *contacto;
     contacto = projeto2.head;
     while(contacto != NULL){

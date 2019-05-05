@@ -4,6 +4,8 @@ void adiciona();
 void lista();
 void remove_c();
 void altera_e();
+void remove_c();
+void procura();
 
 int main(){
     contact *pointer, *aux;
@@ -78,7 +80,7 @@ void procura(){
 }
 
 
-void remove(){
+void remove_c(){
     contact *contacto;
     contacto = encrontra_nome();
     if(contacto)
