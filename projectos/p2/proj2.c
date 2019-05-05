@@ -1,15 +1,29 @@
+/*╭─────────────────────────────────────────────╮
+  │  File:  proj1.c                             │
+  │  Author:  Samuel Barata (94230)             │
+  │  Description: Contem as funcoes principais  │
+  ╰─────────────────────────────────────────────╯
+*/
+
 #include "aux.h"
 
-void adiciona();
-void lista();
-void remove_c();
-void altera_e();
-void remove_c();
-void procura();
-void cont_dom();
+/*╭─────────────────────────────────────┬───────┬────────────────────────────────────────╮
+  │                                      Funcoes                                         │
+  ╰─────────────────────────────────────┴───────┴────────────────────────────────────────╯*/
+
+void adiciona();    /*adiciona um evento ao livro de contactos*/
+void lista();       /*lista os contactos por ordem de registo*/
+void remove_c();    /*remove um contacto dado um nome*/
+void altera_e();    /*altera o email de um contacto dado um nome*/
+void procura();     /*procura um contacto dado um nome*/
+void cont_dom();    /*conta todos os email com um dado dominio*/
+
+/*╭───────────────────────────────────────┬────┬─────────────────────────────────────────╮
+  │                                        main                                          │
+  ╰───────────────────────────────────────┴────┴─────────────────────────────────────────╯*/
 
 int main(){
-    projeto2.head = NULL;
+    projeto2.head = NULL;   /*inicializa o livro de contactos como vazio*/
     projeto2.tail = NULL;
     while((scanf("%c", &buffer.comando)),buffer.comando!='x'){
         switch (buffer.comando){
@@ -38,11 +52,16 @@ int main(){
                 break;
         }  
     }
+    /*liberta toda a memoria ainda alocada*/
     destroi_lista();
     return 0;
 }
 
+/*╭────────────────────────────────┬──────────────────┬──────────────────────────────────╮
+  │                                 Funcoes Principais                                   │
+  ╰────────────────────────────────┴──────────────────┴──────────────────────────────────╯*/
 
+/**/
 void adiciona(){
     contact *contacto;
     contacto = cria_contacto();
@@ -61,7 +80,7 @@ void adiciona(){
     }
 }
 
-
+/**/
 void lista(){
     contact *contacto;
     contacto = projeto2.head;
@@ -71,7 +90,7 @@ void lista(){
     }
 }
 
-
+/**/
 void procura(){
     contact *contacto;
     contacto = encrontra_nome();
@@ -81,7 +100,7 @@ void procura(){
         printf("Nome inexistente.\n");
 }
 
-
+/**/
 void remove_c(){
     contact *contacto;
     contacto = encrontra_nome();
@@ -91,7 +110,7 @@ void remove_c(){
         printf("Nome inexistente.\n");
 }
 
-
+/**/
 void altera_e(){
     contact *contacto;
     contacto = encrontra_nome();
@@ -105,7 +124,7 @@ void altera_e(){
         printf("Nome inexistente.\n");
 }
 
-
+/**/
 void cont_dom(){
     unsigned long int contador = 0;
     contact *contacto;

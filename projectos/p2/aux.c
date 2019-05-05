@@ -1,16 +1,23 @@
+/*╭─────────────────────────────────────────────╮
+  │  File:  aux.c                               │
+  │  Author:  Samuel Barata (94230)             │
+  │  Description: Contem as funcoes auxiliares  │
+  ╰─────────────────────────────────────────────╯
+*/
+
 #include "aux.h"
 
-int vg = 0;
 
+/**/
 contact *malloc_contacto(){
     contact *p;
-    if(vg)printf("malloc\n");
     p = malloc(sizeof(contact));
     p->next = NULL;
     p->previous = NULL;
     return p;
 }
 
+/**/
 void destroi_contacto(contact *p){
     if(p->previous)
         p->previous->next = p->next;
@@ -27,6 +34,7 @@ void destroi_contacto(contact *p){
     free(p);
 }
 
+/**/
 void read_stdin(){
     if(buffer.comando == 'c')
         scanf("%s", buffer.dominio);
@@ -41,6 +49,7 @@ void read_stdin(){
     }
 }
 
+/**/
 void split_email(){
     char *p;
     p = buffer.email;
@@ -71,10 +80,12 @@ contact *cria_contacto(){
     return contacto;
 }
 
+/**/
 void printa_contacto(contact *contacto){
     printf("%s %s%s %s\n",contacto->name,contacto->local,contacto->dominio,contacto->phone);
 }
 
+/**/
 int verifica_erros(contact *contacto, contact *a_comparar){
     if(!a_comparar)
         return 0;
@@ -83,6 +94,7 @@ int verifica_erros(contact *contacto, contact *a_comparar){
     return verifica_erros(contacto,a_comparar->next);
 }
 
+/**/
 contact *encrontra_nome(){
     contact *contacto;
     contacto = projeto2.head;
@@ -94,9 +106,8 @@ contact *encrontra_nome(){
     return contacto;
 }
 
+/**/
 void destroi_lista(){
-    while(projeto2.head){
+    while(projeto2.head)
         destroi_contacto(projeto2.head);
-        if(vg)printf("destroi\n");
-    }
 }
