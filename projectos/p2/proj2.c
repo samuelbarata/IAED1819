@@ -89,5 +89,14 @@ void remove(){
 
 
 void altera_e(){
-
+    contact *contacto;
+    contacto = encrontra_nome();
+    if (contacto){
+        strcpy(contacto->local, buffer.local);
+        strcpy(contacto->dominio, buffer.dominio);
+    }
+    else
+        printf("Nome inexistente.\n");
 }
+
+
