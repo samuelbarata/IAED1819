@@ -1,7 +1,7 @@
 #include "aux.h"
 
-void adiciona_contacto();
-void lista_contactos();
+void adiciona();
+void lista();
 
 int main(){
     contact *pointer, *aux;
@@ -11,13 +11,16 @@ int main(){
     while((scanf("%c", &buffer.comando)),buffer.comando!='x'){
         switch (buffer.comando){
             case 'a':
-                read_stdin(&buffer);
-                adiciona_contacto();
+                read_stdin();
+                adiciona();
                 printa_contacto(projeto2.tail);
                 break;
             case 'l':
+                lista();
                 break;
             case 'p':
+                read_stdin();
+                procura();
                 break;
             case 'r':
                 break;
@@ -31,11 +34,11 @@ int main(){
 }
 
 
-void adiciona_contacto(){
+void adiciona(){
     contact *contacto;
     contacto = cria_contacto();
     if (verifica_erros(contacto, projeto2.head)){
-        printf("erro\n");
+        printf("Nome existente.\n");
         destroi_contacto(contacto);
         return;
     }
@@ -51,7 +54,7 @@ void adiciona_contacto(){
 }
 
 
-void lista_contactos(){
+void lista(){
     contact *contacto;
     contacto = projeto2.head;
     while(contacto != NULL){
@@ -59,3 +62,19 @@ void lista_contactos(){
         contacto = contacto->next;
     }
 }
+
+
+void procura(){
+    contact *contacto;
+    contacto = projeto2.head;
+    while(contacto != NULL){
+        if(!strcmp(contacto->name, buffer.nome))
+            break;
+        contacto = contacto->next;
+    }
+    if(contacto)
+        printa_contacto(contacto);
+    else
+        printf("Nome inexistente.\n");
+}
+
