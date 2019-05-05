@@ -94,3 +94,10 @@ contact *encrontra_nome(){
     return contacto;
 }
 
+void destroi_lista(){
+    contact *aux;
+    while(projeto2.head!=NULL){
+        aux = projeto2.head->next;
+        destroi_contacto(projeto2.head);
+    }
+}
