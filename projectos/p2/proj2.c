@@ -1,15 +1,22 @@
 #include "aux.h"
 
 
+void adiciona_contacto(contact *);
 
 int main(){
     /*lista de pointers para as variaveis globais 0-comando 1-nome
     2-local 3-dominio 4-telefone*/
-    char **buffer;
-    buffer = init_buffer();
-    while((scanf("%s", buffer[0])),buffer[0][0]!='x'){
-        switch (buffer[0][0]){
+    contact *pointer, *aux;
+    projeto2.head = NULL;
+    projeto2.tail = NULL;
+    projeto2.num_contactos;
+    while((scanf("%c", buffer.comando)),buffer.comando!='x'){
+        switch (buffer.comando){
             case 'a':
+                read_stdin(&buffer);
+                aux = cria_contacto();
+                verifica_erros(aux);
+                printa_contacto(pointer);
                 break;
             case 'l':
                 break;
@@ -23,6 +30,11 @@ int main(){
                 break;
         }  
     }
-    destroy_buffer(buffer);
     return 0;
+}
+
+
+void adiciona_contacto(contact *pointer){
+    contact *contacto;
+    contacto = cria_contacto();
 }
