@@ -2,6 +2,8 @@
 
 void adiciona();
 void lista();
+void remove_c();
+void altera_e();
 
 int main(){
     contact *pointer, *aux;
@@ -23,6 +25,8 @@ int main(){
                 procura();
                 break;
             case 'r':
+                read_stdin();
+                remove_c();
                 break;
             case 'e':
                 break;
@@ -66,15 +70,24 @@ void lista(){
 
 void procura(){
     contact *contacto;
-    contacto = projeto2.head;
-    while(contacto != NULL){
-        if(!strcmp(contacto->name, buffer.nome))
-            break;
-        contacto = contacto->next;
-    }
+    contacto = encrontra_nome();
     if(contacto)
         printa_contacto(contacto);
     else
         printf("Nome inexistente.\n");
 }
 
+
+void remove(){
+    contact *contacto;
+    contacto = encrontra_nome();
+    if(contacto)
+        destroi_contacto(contacto);
+    else
+        printf("Nome inexistente.\n");
+}
+
+
+void altera_e(){
+
+}

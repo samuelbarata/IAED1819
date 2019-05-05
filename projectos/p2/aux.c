@@ -17,6 +17,10 @@ void destroi_contacto(contact *p){
     free(p->local);
     free(p->dominio);
     free(p->phone);
+    if(p==projeto2.head)
+        projeto2.head = p->next;
+    else if(p==projeto2.tail)
+        projeto2.tail = p->previous;
     free(p);
 }
 
@@ -78,3 +82,15 @@ int verifica_erros(contact *contacto, contact *a_comparar){
         return 1;
     return verifica_erros(contacto,a_comparar->next);
 }
+
+contact *encontra_nome(){
+    contact *contacto;
+    contacto = projeto2.head;
+    while(contacto != NULL){
+        if(!strcmp(contacto->name, buffer.nome))
+            break;
+        contacto = contacto->next;
+    }
+    return contacto;
+}
+

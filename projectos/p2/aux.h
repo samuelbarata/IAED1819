@@ -24,21 +24,21 @@ typedef struct buff{
     char local[max_email], dominio[max_email];
 } buff;
 
-typedef struct lista{
+typedef struct livro{
     unsigned long int num_contactos;
     contact *head;
     contact *tail;
-} lista;
+} livro;
 
-lista projeto2;
+livro projeto2;
 buff buffer;
 
 
 void read_stdin ();
 contact *cria_contacto();
-contact *encontra_nome(char *);
 contact *malloc_contacto();
 void destroi_contacto(contact *);
 void split_email();
 void printa_contacto(contact *);
 int verifica_erros(contact *, contact *);
+contact *encrontra_nome();
