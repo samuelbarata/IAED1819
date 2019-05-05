@@ -32,7 +32,6 @@ typedef struct livro{
 livro projeto2;
 buff buffer;
 
-
 void read_stdin ();
 contact *cria_contacto();
 contact *malloc_contacto();
@@ -41,3 +40,4 @@ void split_email();
 void printa_contacto(contact *);
 int verifica_erros(contact *, contact *);
 contact *encrontra_nome();
+void destroi_lista();

@@ -38,6 +38,7 @@ int main(){
                 break;
         }  
     }
+    destroi_lista();
     return 0;
 }
 

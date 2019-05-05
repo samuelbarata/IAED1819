@@ -1,7 +1,10 @@
 #include "aux.h"
 
+int vg = 0;
+
 contact *malloc_contacto(){
     contact *p;
+    if(vg)printf("malloc\n");
     p = malloc(sizeof(contact));
     p->next = NULL;
     p->previous = NULL;
@@ -51,10 +54,7 @@ void split_email(){
 /*buffer -> contacto*/
 contact *cria_contacto(){
     contact *contacto;
-    contacto = malloc(sizeof(contact));
-
-    contacto->next = NULL;
-    contacto->previous = NULL;
+    contacto = malloc_contacto();
 
     contacto->name = malloc(sizeof(char) * strlen(buffer.nome) + 1);
     strcpy(contacto->name, buffer.nome);
@@ -76,7 +76,7 @@ void printa_contacto(contact *contacto){
 }
 
 int verifica_erros(contact *contacto, contact *a_comparar){
-    if(a_comparar==NULL)
+    if(!a_comparar)
         return 0;
     if(!strcmp(contacto->name, a_comparar->name))
         return 1;
@@ -86,7 +86,7 @@ int verifica_erros(contact *contacto, contact *a_comparar){
 contact *encrontra_nome(){
     contact *contacto;
     contacto = projeto2.head;
-    while(contacto != NULL){
+    while(contacto){
         if(!strcmp(contacto->name, buffer.nome))
             break;
         contacto = contacto->next;
@@ -95,9 +95,8 @@ contact *encrontra_nome(){
 }
 
 void destroi_lista(){
-    contact *aux;
-    while(projeto2.head!=NULL){
-        aux = projeto2.head->next;
+    while(projeto2.head){
         destroi_contacto(projeto2.head);
+        if(vg)printf("destroi\n");
     }
 }
