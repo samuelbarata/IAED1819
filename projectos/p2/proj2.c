@@ -4,8 +4,6 @@ void adiciona_contacto();
 void lista_contactos();
 
 int main(){
-    /*lista de pointers para as variaveis globais 0-comando 1-nome
-    2-local 3-dominio 4-telefone*/
     contact *pointer, *aux;
     projeto2.head = NULL;
     projeto2.tail = NULL;
