@@ -1,4 +1,3 @@
-/*UTF-8*/
 #include "aux.h"
 
 /*aloca memoria para a variavel global de argumentos*/

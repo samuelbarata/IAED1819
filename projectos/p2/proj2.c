@@ -1,5 +1,3 @@
-/*UTF-8*/
-
 #include "aux.h"
 
 
