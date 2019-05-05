@@ -6,18 +6,16 @@ void remove_c();
 void altera_e();
 void remove_c();
 void procura();
+void cont_dom();
 
 int main(){
-    contact *pointer, *aux;
     projeto2.head = NULL;
     projeto2.tail = NULL;
-    projeto2.num_contactos;
     while((scanf("%c", &buffer.comando)),buffer.comando!='x'){
         switch (buffer.comando){
             case 'a':
                 read_stdin();
                 adiciona();
-                printa_contacto(projeto2.tail);
                 break;
             case 'l':
                 lista();
@@ -31,8 +29,12 @@ int main(){
                 remove_c();
                 break;
             case 'e':
+                read_stdin();
+                altera_e();
                 break;
             case 'c':
+                read_stdin();
+                cont_dom();
                 break;
         }  
     }
@@ -48,7 +50,6 @@ void adiciona(){
         destroi_contacto(contacto);
         return;
     }
-    projeto2.num_contactos++;
     if(!projeto2.head){
         projeto2.head = contacto;
         projeto2.tail = contacto;
@@ -94,6 +95,8 @@ void altera_e(){
     contact *contacto;
     contacto = encrontra_nome();
     if (contacto){
+        contacto->local = realloc(contacto->local, sizeof(char)*strlen(buffer.local)+1);
+        contacto->dominio = realloc(contacto->dominio, sizeof(char) * strlen(buffer.dominio) + 1);
         strcpy(contacto->local, buffer.local);
         strcpy(contacto->dominio, buffer.dominio);
     }
@@ -102,3 +105,17 @@ void altera_e(){
 }
 
 
+void cont_dom(){
+    unsigned long int contador = 0;
+    contact *contacto;
+    char *dom;
+    contacto = projeto2.head;
+    while(contacto != NULL){
+        dom = contacto->dominio;
+        dom++;
+        if(!strcmp(dom, buffer.dominio))
+            contador++;
+        contacto = contacto->next;
+    }
+    printf("%s:%lu\n", buffer.dominio, contador);
+}

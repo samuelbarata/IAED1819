@@ -25,7 +25,6 @@ typedef struct buff{
 } buff;
 
 typedef struct livro{
-    unsigned long int num_contactos;
     contact *head;
     contact *tail;
 } livro;

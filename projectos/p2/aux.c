@@ -10,7 +10,7 @@ contact *malloc_contacto(){
 
 void destroi_contacto(contact *p){
     if(p->previous)
-        p->previous = p->next;
+        p->previous->next = p->next;
     if(p->next)
         p->next->previous = p->previous;
     free(p->name);
@@ -31,7 +31,7 @@ void read_stdin(){
             scanf("%s", buffer.nome);
         if (buffer.comando == 'a' || buffer.comando == 'e'){
             scanf("%s", buffer.email);
-            split_email(&buffer);
+            split_email();
         }
         if (buffer.comando == 'a')
             scanf("%s", buffer.tel);
@@ -43,7 +43,7 @@ void split_email(){
     p = buffer.email;
     while(p[0]!='@')
         p++;
-    strcpy(buffer.dominio,p);
+    strcpy(buffer.dominio, p);
     *p='\0';
     strcpy(buffer.local, buffer.email);
 }
