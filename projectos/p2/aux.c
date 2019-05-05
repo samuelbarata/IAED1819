@@ -37,7 +37,7 @@ void read_stdin(){
 void split_email(){
     char *p;
     p = buffer.email;
-    while(p!='@')
+    while(p[0]!='@')
         p++;
     strcpy(buffer.dominio,p);
     *p='\0';
@@ -46,9 +46,35 @@ void split_email(){
 
 /*buffer -> contacto*/
 contact *cria_contacto(){
+    contact *contacto;
+    contacto = malloc(sizeof(contact));
 
+    contacto->next = NULL;
+    contacto->previous = NULL;
+
+    contacto->name = malloc(sizeof(char) * strlen(buffer.nome) + 1);
+    strcpy(contacto->name, buffer.nome);
+
+    contacto->local = malloc(sizeof(char) * strlen(buffer.local) + 1);
+    strcpy(contacto->local, buffer.local);
+
+    contacto->dominio = malloc(sizeof(char) * strlen(buffer.dominio) + 1);
+    strcpy(contacto->dominio, buffer.dominio);
+
+    contacto->phone = malloc(sizeof(char) * strlen(buffer.tel) + 1);
+    strcpy(contacto->phone, buffer.tel);
+
+    return contacto;
 }
 
 void printa_contacto(contact *contacto){
     printf("%s %s%s %s\n",contacto->name,contacto->local,contacto->dominio,contacto->phone);
+}
+
+int verifica_erros(contact *contacto, contact *a_comparar){
+    if(a_comparar==NULL)
+        return 0;
+    if(!strcmp(contacto->name, a_comparar->name))
+        return 1;
+    return verifica_erros(contacto,a_comparar->next);
 }

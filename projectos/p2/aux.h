@@ -21,7 +21,7 @@ typedef struct buff{
     char nome[max_str];
     char email[max_str];
     char tel[max_phone];
-    char local[max_email], dominio[max_email]
+    char local[max_email], dominio[max_email];
 } buff;
 
 typedef struct lista{
@@ -41,4 +41,4 @@ contact *malloc_contacto();
 void destroi_contacto(contact *);
 void split_email();
 void printa_contacto(contact *);
-void verifica_erros(contact *);
+int verifica_erros(contact *, contact *);
