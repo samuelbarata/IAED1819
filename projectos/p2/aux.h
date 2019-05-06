@@ -60,6 +60,5 @@ contact *malloc_contacto();                 /*cria um contacto vazio*/
 void destroi_contacto(contact *);           /*destroi um contacto recebendo o seu endereço*/
 void split_email();                         /*divide o email local + dominio(inclui @)*/
 void printa_contacto(contact *);            /*imprime um contacto recebendo o seu endereço*/
-int verifica_erros(contact *, contact *);   /*verifica se 2 contactos sao o mesmo [recursiva]*/
 contact *encrontra_nome();                  /*procura o nome do buffer nos contactos do livro*/
 void destroi_lista();                       /*free toda a memoria ainda alocada*/

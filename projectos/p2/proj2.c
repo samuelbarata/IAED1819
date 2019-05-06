@@ -69,7 +69,7 @@ adiciona ao "livro" ou apaga*/
 void adiciona(){
     contact *contacto;
     contacto = cria_contacto();
-    if (verifica_erros(contacto, projeto2.head)){
+    if (encrontra_nome()){
         printf("Nome existente.\n");
         destroi_contacto(contacto);
         return;

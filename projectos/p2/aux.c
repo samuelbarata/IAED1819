@@ -86,28 +86,17 @@ void printa_contacto(contact *contacto){
     contacto->name,contacto->local,contacto->dominio,contacto->phone);
 }
 
-/*contacto e o recebido
-a_comparar percorre a lista toda (primeira chamada deve conter head para
-percorrer a lista toda até ao fim)
-recursiva*/
-int verifica_erros(contact *contacto, contact *a_comparar){
-    if(!a_comparar)
-        return 0;
-    if(!strcmp(contacto->name, a_comparar->name))
-        return 1;
-    return verifica_erros(contacto,a_comparar->next);
-}
-
-/*devolve o endereco de memoria do contacto cujo nome está no buffer*/
+/*devolve o endereco de memoria do contacto cujo nome esta no buffer
+ou NULL se não encontrar*/
 contact *encrontra_nome(){
     contact *contacto;
     contacto = projeto2.head;
     while(contacto){
         if(!strcmp(contacto->name, buffer.nome))
-            break;
+            return contacto;
         contacto = contacto->next;
     }
-    return contacto;
+    return NULL;
 }
 
 /*apaga todas as memorias alocadas*/
