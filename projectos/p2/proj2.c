@@ -6,6 +6,7 @@
 */
 
 #include "aux.h"
+#include "hash.h"
 
 /*╭─────────────────────────────────────┬───────┬────────────────────────────────────────╮
   │                                      Funcoes                                         │
@@ -23,6 +24,7 @@ void cont_dom();    /*conta todos os email com um dado dominio*/
   ╰───────────────────────────────────────┴────┴─────────────────────────────────────────╯*/
 
 int main(){
+    hash_table *htable = init_hash_table();
     projeto2.head = NULL;   /*inicializa o livro de contactos como vazio*/
     projeto2.tail = NULL;
     while((scanf("%c", &buffer.comando)),buffer.comando!='x'){

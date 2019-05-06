@@ -6,6 +6,9 @@
   ╰─────────────────────────────────────────────────────────────────────────╯
 */
 
+#ifndef AUX_H
+#define AUX_H
+
 /*╭─────────────╮
   │ bibliotecas │
   ╰─────────────╯*/
@@ -62,3 +65,5 @@ void split_email();                         /*divide o email local + dominio(inc
 void printa_contacto(contact *);            /*imprime um contacto recebendo o seu endereço*/
 contact *encrontra_nome();                  /*procura o nome do buffer nos contactos do livro*/
 void destroi_lista();                       /*free toda a memoria ainda alocada*/
+
+#endif
