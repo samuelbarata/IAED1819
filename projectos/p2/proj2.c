@@ -115,8 +115,8 @@ void altera_e(){
     contact *contacto;
     contacto = encrontra_nome();
     if (contacto){
-        contacto->local = realloc(contacto->local, sizeof(char)*strlen(buffer.local)+1);
-        contacto->dominio = realloc(contacto->dominio, sizeof(char) * strlen(buffer.dominio) + 1);
+        contacto->local=realloc(contacto->local,sizeof(char)*strlen(buffer.local)+1);
+        contacto->dominio=realloc(contacto->dominio,sizeof(char)*strlen(buffer.dominio)+1);
         strcpy(contacto->local, buffer.local);
         strcpy(contacto->dominio, buffer.dominio);
     }

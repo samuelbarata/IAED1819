@@ -8,7 +8,7 @@
 #include "aux.h"
 
 
-/**/
+/*Aloca um contacto na memoria e devolve o seu ponteiro*/
 contact *malloc_contacto(){
     contact *p;
     p = malloc(sizeof(contact));
@@ -17,7 +17,7 @@ contact *malloc_contacto(){
     return p;
 }
 
-/**/
+/*recebe o endereço de um contacto e remove-o da memória e atualiza o "livro"*/
 void destroi_contacto(contact *p){
     if(p->previous)
         p->previous->next = p->next;
@@ -34,7 +34,7 @@ void destroi_contacto(contact *p){
     free(p);
 }
 
-/**/
+/*le do stdin e guarda no buffer*/
 void read_stdin(){
     if(buffer.comando == 'c')
         scanf("%s", buffer.dominio);
@@ -49,7 +49,7 @@ void read_stdin(){
     }
 }
 
-/**/
+/*pega no email do buffer e divide-o em local/dominio*/
 void split_email(){
     char *p;
     p = buffer.email;
@@ -60,7 +60,7 @@ void split_email(){
     strcpy(buffer.local, buffer.email);
 }
 
-/*buffer -> contacto*/
+/*cria um contacto com os dados contidos no buffer*/
 contact *cria_contacto(){
     contact *contacto;
     contacto = malloc_contacto();
@@ -80,12 +80,16 @@ contact *cria_contacto(){
     return contacto;
 }
 
-/**/
+/*imprime um contacto recebendo o seu endereço de memória*/
 void printa_contacto(contact *contacto){
-    printf("%s %s%s %s\n",contacto->name,contacto->local,contacto->dominio,contacto->phone);
+    printf("%s %s%s %s\n",
+    contacto->name,contacto->local,contacto->dominio,contacto->phone);
 }
 
-/**/
+/*contacto e o recebido
+a_comparar percorre a lista toda (primeira chamada deve conter head para
+percorrer a lista toda até ao fim)
+recursiva*/
 int verifica_erros(contact *contacto, contact *a_comparar){
     if(!a_comparar)
         return 0;
@@ -94,7 +98,7 @@ int verifica_erros(contact *contacto, contact *a_comparar){
     return verifica_erros(contacto,a_comparar->next);
 }
 
-/**/
+/*devolve o endereco de memoria do contacto cujo nome está no buffer*/
 contact *encrontra_nome(){
     contact *contacto;
     contacto = projeto2.head;
@@ -106,7 +110,7 @@ contact *encrontra_nome(){
     return contacto;
 }
 
-/**/
+/*apaga todas as memorias alocadas*/
 void destroi_lista(){
     while(projeto2.head)
         destroi_contacto(projeto2.head);
