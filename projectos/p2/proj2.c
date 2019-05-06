@@ -61,7 +61,11 @@ int main(){
   │                                 Funcoes Principais                                   │
   ╰────────────────────────────────┴──────────────────┴──────────────────────────────────╯*/
 
-/**/
+/*o buffer contem a informacao do contacto;
+cria contacto;
+copia os campos;
+verifica para erros
+adiciona ao "livro" ou apaga*/
 void adiciona(){
     contact *contacto;
     contacto = cria_contacto();
@@ -80,17 +84,17 @@ void adiciona(){
     }
 }
 
-/**/
+/*imprime todos os contactos por ordem de adicao*/
 void lista(){
     contact *contacto;
     contacto = projeto2.head;
-    while(contacto != NULL){
+    while(contacto){
         printa_contacto(contacto);
         contacto = contacto->next;
     }
 }
 
-/**/
+/*procura uma pessoa e se encontrar imprime o seu contacto*/
 void procura(){
     contact *contacto;
     contacto = encrontra_nome();
@@ -100,7 +104,7 @@ void procura(){
         printf("Nome inexistente.\n");
 }
 
-/**/
+/*se o contacto existir apaga-o*/
 void remove_c(){
     contact *contacto;
     contacto = encrontra_nome();
@@ -110,7 +114,7 @@ void remove_c(){
         printf("Nome inexistente.\n");
 }
 
-/**/
+/*altera o email dado no buffer se a pessoa existir*/
 void altera_e(){
     contact *contacto;
     contacto = encrontra_nome();
@@ -124,17 +128,17 @@ void altera_e(){
         printf("Nome inexistente.\n");
 }
 
-/**/
+/*recebe um dominio no buffer e conta o numero de email com o mesmo dominio*/
 void cont_dom(){
     unsigned long int contador = 0;
     contact *contacto;
     char *dom;
     contacto = projeto2.head;
-    while(contacto != NULL){
+    while(contacto){
         dom = contacto->dominio;
-        dom++;
+        dom++;  /*como o dominio inclui o '@' por isso avançamos uma posicao seguinte*/
         if(!strcmp(dom, buffer.dominio))
-            contador++;
+            contador++; /*se for o mesmo dominio acrescenta ao contador*/
         contacto = contacto->next;
     }
     printf("%s:%lu\n", buffer.dominio, contador);
