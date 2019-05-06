@@ -10,18 +10,15 @@ hash_table *init_hash_table(){
     return htable;
 }
 
-/*devolve o endereço de uma lista ligada onde vai guardar a memoria do objeto
-0-9-.   -> 0
-a/A     -> 1
-b/B     -> 2
-z/z     -> 26*/
+/*devolve o endereço de uma lista ligada onde vai guardar a memoria do objeto*/
 int hash(){
-    char hasher = buffer.nome[strlen(buffer.nome)-1];
-    if(hasher<65)
-        return 0;
-    if(hasher>=65 && hasher<=90)
-        return hasher - 'A'+1;
-    return hasher - 'a'+1;
+    char *hasher = buffer.nome;
+    unsigned long int hash=0;
+    while(hasher[0]){
+        hash += hasher[0]*hash;
+        hasher++;
+    }
+    return (int)hash%1000;
 }
 
 void *pointer_from_hash(int hash, hash_table (*HThead)){
