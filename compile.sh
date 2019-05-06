@@ -201,6 +201,7 @@ funcao_v() {
 		fi
 
 		if [ ${score} != 1 ]; then
+			clear
 			echo -e "${RED}STOP:${NC} Looks like there's an issue reported by valgrind!"
 			echo -e "${YELLOW}ISSUE:${NC} ${obs}"
 			rv=1
