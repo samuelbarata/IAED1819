@@ -2,7 +2,7 @@
 #define HASH_H
 
 #include "aux.h"
-
+#define hash_size 10000
 
 typedef struct hash_node{
     struct hash_node *phnode;
@@ -11,7 +11,6 @@ typedef struct hash_node{
 } hash_node;
 
 typedef struct hash_table{
-    int indice;
     hash_node *nhnode;
 } hash_table;
 

@@ -2,11 +2,7 @@
 
 /*inicializa uma hash table*/
 hash_table *init_hash_table(){
-    hash_table *htable = malloc(sizeof(hash_table)*27+1);
-
-
-
-
+    hash_table *htable = malloc(sizeof(hash_table) * hash_size + 1);
     return htable;
 }
 
@@ -18,7 +14,7 @@ int hash(){
         hash += hasher[0]*hash;
         hasher++;
     }
-    return (int)hash%1000;
+    return (int)hash % hash_size;
 }
 
 void *pointer_from_hash(int hash, hash_table (*HThead)){
