@@ -17,13 +17,9 @@ typedef struct hash_table{
 
 hash_table *init_hash_table();
 unsigned long hash(unsigned char *); /*devolve a hash de uma string em buffer.nome*/
-hash_node *pointer_from_hash(int, hash_table *);
+hash_table *pointer_from_hash(int, hash_table *);
 hash_node *delete_node(hash_node *, hash_node *);
-
-
-
-
-
-
+void destroy_hashnodes(hash_table *);
+void destroy_hashT(hash_table *);
 
 #endif

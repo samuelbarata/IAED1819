@@ -56,7 +56,8 @@ int main(){
     }
     /*liberta toda a memoria ainda alocada*/
     destroi_lista();
-    destroy
+    destroy_hashT(HTname);
+    destroy_hashT(HTdom);
     return 0;
 }
 
