@@ -2,30 +2,23 @@
 #define HASH_H
 
 #include "aux.h"
-#define hash_size 10000
+#define hash_size 1009
 
 typedef struct hash_node{
-    struct hash_node *phnode;
+    struct hash_node *samehash_prev;
     contact *contacto;
-    struct hash_node *nhnode;
+    struct hash_node *samehash_next;
 } hash_node;
 
 typedef struct hash_table{
-    hash_node *nhnode;
+    struct hash_node *head;
 } hash_table;
 
 
-
-
 hash_table *init_hash_table();
-int hash(); /*devolve a hash de uma string em buffer.nome*/
-void *pointer_from_hash(int , hash_table *);
-
-
-
-
-
-
+unsigned long hash(unsigned char *); /*devolve a hash de uma string em buffer.nome*/
+hash_node *pointer_from_hash(int, hash_table *);
+hash_node *delete_node(hash_node *, hash_node *);
 
 
 

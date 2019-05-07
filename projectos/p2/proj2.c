@@ -24,8 +24,8 @@ void cont_dom();    /*conta todos os email com um dado dominio*/
   ╰───────────────────────────────────────┴────┴─────────────────────────────────────────╯*/
 
 int main(){
-    hash_table *HThead=init_hash_table();
-    projeto2.head = NULL;   /*inicializa o livro de contactos como vazio*/
+    hash_table *HTname = init_hash_table(), *HTdom = init_hash_table();
+    projeto2.head = NULL; /*inicializa o livro de contactos como vazio*/
     projeto2.tail = NULL;
     while((scanf("%c", &buffer.comando)),buffer.comando!='x'){
         switch (buffer.comando){
@@ -56,6 +56,7 @@ int main(){
     }
     /*liberta toda a memoria ainda alocada*/
     destroi_lista();
+    destroy
     return 0;
 }
 
