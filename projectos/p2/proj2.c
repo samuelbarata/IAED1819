@@ -24,9 +24,8 @@ void cont_dom();    /*conta todos os email com um dado dominio*/
   ╰───────────────────────────────────────┴────┴─────────────────────────────────────────╯*/
 
 int main(){
-    hash_table HTname[hash_size], HTdom[hash_size];
-    init_hash_table(&HTdom);
-    init_hash_table(&HTname);
+    init_hash_table(HTdom);
+    init_hash_table(HTname);
     projeto2.head = NULL; /*inicializa o livro de contactos como vazio*/
     projeto2.tail = NULL;
     while((scanf("%c", &buffer.comando)),buffer.comando!='x'){
@@ -54,12 +53,15 @@ int main(){
                 read_stdin();
                 cont_dom();
                 break;
+            case 'd':
+                debug_hash(HTname);
+                break;
         }  
     }
     /*liberta toda a memoria ainda alocada*/
     destroi_lista();
-    destroy_hashT(&HTname);
-    destroy_hashT(&HTdom);
+    destroy_hashT(HTname);
+    destroy_hashT(HTdom);
     return 0;
 }
 
@@ -88,6 +90,7 @@ void adiciona(){
         projeto2.tail->next = contacto;
         projeto2.tail = contacto;
     }
+    hash_push_nome(contacto);
 }
 
 /*imprime todos os contactos por ordem de adicao*/
@@ -114,8 +117,10 @@ void procura(){
 void remove_c(){
     contact *contacto;
     contacto = encrontra_nome();
-    if(contacto)
+    if(contacto){
+        hash_pop_nome(contacto);
         destroi_contacto(contacto);
+    }
     else
         printf("Nome inexistente.\n");
 }
