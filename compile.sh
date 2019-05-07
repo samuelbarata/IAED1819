@@ -72,7 +72,7 @@ codigo_geral(){
 
 funcao_c() {
 	cat ${prog_name}.warnings
-	rm -f ${prog_name} ${prog_name}.warnings
+	rm -f ${prog_name}.warnings
 	exit 0
 }
 

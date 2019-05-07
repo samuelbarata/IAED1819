@@ -1,15 +1,11 @@
 #include "hash.h"
 
 /*inicializa uma hash table com "hash_size" nodes*/
-hash_table *init_hash_table(){
-    hash_table *head = malloc(sizeof(hash_table) * hash_size + 1);
-    hash_table *pointer = head;
+void init_hash_table(hash_table *HT){
     int i;
-    pointer = head;
-    for(i=0;i<hash_size;i++,pointer++){
-        pointer->head = NULL;
+    for(i=0;i<hash_size;i++){
+        HT[i]->head = NULL;
     }
-    return head;
 }
 
 /*devolve uma hash para cada objeto*/
