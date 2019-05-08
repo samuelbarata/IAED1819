@@ -108,9 +108,9 @@ void init_hash_dominio(hash_dominio *HD){
     }
 }
 void destroy_hashD(hash_dominio *HD){
-        int i;
+    int i;
     for(i=0;i<hash_size;i++){
-        destroy_nodes(HDom[i]);
+        destroy_nodes(HD[i]);
     }
 }
 void destroy_nodes(hash_dominio HDom){
@@ -126,7 +126,7 @@ void destroy_nodes(hash_dominio HDom){
 
 dominio *hash_push_dominio(char *str){
     hash me = hasher(str);
-    dominio *dom = encrontra_dominio(str);
+    dominio *dom = hash_find_dom(str);
     if(dom){
         dom->counter++;
         return dom;
@@ -134,6 +134,9 @@ dominio *hash_push_dominio(char *str){
     dom = malloc(sizeof(dominio));
     dom->dom = malloc(sizeof(char)*strlen(str)+1);
     strcpy(dom->dom, str);
+    dom->counter = 1;
+    dom->samehash_next = HDom[me].dom;
+    HDom[me].dom = dom;
     return dom;
 }
 
@@ -158,4 +161,15 @@ void delete_dom(dominio *dom){
     }
     atual->samehash_next = dom->samehash_next;
     free(dom);
+}
+
+dominio *hash_find_dom(char *str){
+    hash me = hasher(str);
+    dominio *head = HDom[me].dom, *atual = head;
+    while(atual){
+        if (!strcmp(str, atual->dom))
+            return atual;
+        atual = atual->samehash_next;
+    }
+    return NULL;
 }

@@ -5,6 +5,7 @@
   ╰─────────────────────────────────────────────╯
 */
 
+#include "estruturas.h"
 #include "aux.h"
 #include "hash.h"
 
@@ -120,6 +121,7 @@ void remove_c(){
     contacto = encontra_pessoa2(buffer.nome);
     if(contacto){
         hash_pop_contacto(contacto);
+        hash_pop_dominio(contacto->dom);
         destroi_contacto(contacto);
     }
     else
@@ -132,7 +134,7 @@ void altera_e(){
     dominio *dom;
     contacto = encontra_pessoa2(buffer.nome);
     if(contacto){
-        contacto->local = realloc(contacto->local, sizeof(char) * strlen(buffer.local) + 1);
+        contacto->local = realloc(contacto->local, sizeof(char) * strlen(buffer.local)+1);
         strcpy(contacto->local, buffer.local);
 
         dom = contacto->dom;
@@ -146,5 +148,8 @@ void altera_e(){
 /*recebe um dominio no buffer e conta o numero de email com o mesmo dominio*/
 void cont_dom(){
     dominio *dom = hash_find_dom(buffer.dominio);
-    printf("%s:%lu\n", buffer.dominio, dom->counter);
+    unsigned int counter = 0;
+    if(dom)
+        counter = dom->counter;
+    printf("%s:%u\n", buffer.dominio, counter);
 }
