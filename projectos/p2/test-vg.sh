@@ -112,10 +112,10 @@ for test_in in `ls -rS ${test_dir}/*.in`; do
     if [ ${score} != 1 ]; then
         clear
         echo "STOP: Looks like there's an issue reported by valgrind!"
-        echo "ISSUE:${obs}" 
+        echo "ISSUE:${obs} file:${test_in}" 
         rv=1
-        echo valgrind --tool=memcheck --leak-check=full ./${prog_name} < ${test_in}
-        exit 1
+        valgrind --tool=memcheck --leak-check=full ./${prog_name} < ${test_in}
+        exit $rv
         break
     fi
     rm -f ${student_out} ${vg_out}
