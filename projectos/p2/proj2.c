@@ -128,12 +128,15 @@ void remove_c(){
 /*altera o email dado no buffer se a pessoa existir*/
 void altera_e(){
     contact *contacto;
-    contacto = encrontra_nome();
+    contacto = encontra_pessoa2(buffer.nome);
     if (contacto){
+        strcpy(buffer.email, contacto->dominio);/*guarda o dominio antigo*/
         contacto->local=realloc(contacto->local,sizeof(char)*strlen(buffer.local)+1);
         contacto->dominio=realloc(contacto->dominio,sizeof(char)*strlen(buffer.dominio)+1);
         strcpy(contacto->local, buffer.local);
         strcpy(contacto->dominio, buffer.dominio);
+        /*buffer.email contem o dominio antigo*/
+        /*operacoes hash table dominios*/
     }
     else
         printf("Nome inexistente.\n");

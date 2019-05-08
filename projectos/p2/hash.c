@@ -25,11 +25,10 @@ hash_table *pointer_from_hash(int hash, hash_table (*HThead)){
 void destroy_hashnodes(hash_table HThead){
     hash_node *head, *next;
     head = HThead.head;
-    next = head->samehash_next;
     while(head){
+        next = head->samehash_next;
         free(head);
         head = next;
-        next = head->samehash_next;
     }
 }
 
@@ -69,11 +68,11 @@ void hash_pop_contacto(contact *contacto){
     delete_node(HTname[hash], node);
 }
 
-void delete_node(hash_table head, hash_node *node){
+void delete_node(hash_table HT, hash_node *node){
     hash_node *atual, *aux;
-    atual = head.head;
+    atual = HT.head;
     if(node == atual){
-        head.head = node->samehash_next;
+        HT.head = node->samehash_next;
         free(node);
         return ;
     }
