@@ -1,3 +1,10 @@
+/*╭─────────────────────────────────────────────────────────────────────────╮
+  │  File:  aux.h                                                           │
+  │  Author:  Samuel Barata (94230)                                         │
+  │  Description: Contem as Estruturas do projeto                           │
+  ╰─────────────────────────────────────────────────────────────────────────╯
+*/
+
 #ifndef ESTRUTURAS_H
 #define ESTRUTURAS_H
 
@@ -5,14 +12,14 @@
   │ constantes  │
   ╰─────────────╯*/
 #define max_str 1023
-#define max_email 511 /*(511)(@511)*/
+#define max_email 511   /*(511)@(511)*/
 #define max_phone 63
-#define no_of_args 5 /*numero de argumentos*/
 
 /*╭─────────────╮
   │  estruturas │
   ╰─────────────╯*/
 
+/**/
 typedef struct dominio{
     unsigned int counter;
     char *dom;
@@ -24,13 +31,13 @@ typedef struct hash_dominio{
 } hash_dominio;
 
 
-typedef struct contact{        /*vai ser usada uma lista duplamente ligada*/
-    struct contact *previous;  /*memoria do contacto anterior*/
-    char *name;             /*maximo de 1023 caracteres ([0-9a-zA-Z-_]+)*/
-    char *local;            /*maximo de 0511 caracteres ([0-9a-zA-Z-_.])*/
-    dominio *dom;           /*maximo de 0511 caracteres (@[0-9a-zA-Z-_.])*/
-    char *phone;            /*maximo de 0063 caracteres ([0-9\-]+)*/
-    struct contact *next;      /*memoria do contacto seguinte*/
+typedef struct contact{         /*vai ser usada uma lista duplamente ligada*/
+    struct contact *previous;   /*memoria do contacto anterior*/
+    char *name;                 /*maximo de 1023 caracteres ([0-9a-zA-Z-_]+)*/
+    char *local;                /*maximo de 0511 caracteres ([0-9a-zA-Z-_.])*/
+    dominio *dom;               /*maximo de 0511 caracteres (@[0-9a-zA-Z-_.])*/
+    char *phone;                /*maximo de 0063 caracteres ([0-9\-]+)*/
+    struct contact *next;       /*memoria do contacto seguinte*/
 }   contact;
 
 typedef struct buff{

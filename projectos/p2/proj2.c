@@ -25,8 +25,8 @@ void cont_dom();    /*conta todos os email com um dado dominio*/
   ╰───────────────────────────────────────┴────┴─────────────────────────────────────────╯*/
 
 int main(){
-    init_hash_dominio(HDom);
-    init_hash_table(HTname);
+    init_hash_dominio();
+    init_hash_table();
     projeto2.head = NULL; /*inicializa o livro de contactos como vazio*/
     projeto2.tail = NULL;
     while((scanf("%c", &buffer.comando)),buffer.comando!='x'){
@@ -55,14 +55,15 @@ int main(){
                 cont_dom();
                 break;
             case 'd':
-                debug_hash(HTname);
+                debug_hash_n();
+                debug_hash_d();
                 break;
         }  
     }
     /*liberta toda a memoria ainda alocada*/
     destroi_lista();
-    destroy_hashT(HTname);
-    destroy_hashD(HDom);
+    destroy_hashT();
+    destroy_hashD();
     return 0;
 }
 
@@ -136,7 +137,6 @@ void altera_e(){
     if(contacto){
         contacto->local = realloc(contacto->local, sizeof(char) * strlen(buffer.local)+1);
         strcpy(contacto->local, buffer.local);
-
         dom = contacto->dom;
         hash_pop_dominio(dom);
         contacto->dom = hash_push_dominio(buffer.dominio);

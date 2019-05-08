@@ -1,8 +1,8 @@
 /*╭─────────────────────────────────────────────────────────────────────────╮
   │  File:  aux.h                                                           │
   │  Author:  Samuel Barata (94230)                                         │
-  │  Description: Contem as bibliotecas, constantes, estruturas do projeto  │
-  │  e declaracoes de funcoes auxiliares                                    │
+  │  Description: Contem as bibliotecas, constantes,                        │
+  │               e declaracoes de funcoes auxiliares                       │
   ╰─────────────────────────────────────────────────────────────────────────╯
 */
 

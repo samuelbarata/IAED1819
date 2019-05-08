@@ -1,10 +1,10 @@
 #include "hash.h"
 
 /*inicializa uma hash table com "hash_size" nodes*/
-void init_hash_table(hash_table *HT){
+void init_hash_table(){
     int i;
     for(i=0;i<hash_size;i++){
-        HT[i].head = NULL;
+        HTname[i].head = NULL;
     }
 }
 
@@ -28,26 +28,11 @@ void destroy_hashnodes(hash_table HThead){
     }
 }
 
-void destroy_hashT(hash_table *HT){
+void destroy_hashT(){
     int i;
     for(i=0;i<hash_size;i++){
-        destroy_hashnodes(HT[i]);
+        destroy_hashnodes(HTname[i]);
     }
-}
-
-
-void debug_hash(hash_table *HT){
-    int i;
-    hash_node *k;
-    for(i=0;i<hash_size;i++){
-        if(HT[i].head!=NULL)
-            printf("\nhash%04d:",i);
-        for(k=HT[i].head;k!=NULL;k=k->samehash_next){
-            /*printf("\t%p:",(void *)k);*/
-            printf("%s",k->contacto->name);
-        }
-    }
-    printf("\n");
 }
 
 void hash_push_nome(contact *contacto){
@@ -101,16 +86,16 @@ hash_node *encrontra_hash_node(char *str, hash_table HT){
 }
 
 /*DOMINIOS*/
-void init_hash_dominio(hash_dominio *HD){
+void init_hash_dominio(){
     int i;
     for(i=0;i<hash_size;i++){
-        HD[i].dom = NULL;
+        HDom[i].dom = NULL;
     }
 }
-void destroy_hashD(hash_dominio *HD){
+void destroy_hashD(){
     int i;
     for(i=0;i<hash_size;i++){
-        destroy_nodes(HD[i]);
+        destroy_nodes(HDom[i]);
     }
 }
 void destroy_nodes(hash_dominio HDom){
@@ -172,4 +157,38 @@ dominio *hash_find_dom(char *str){
         atual = atual->samehash_next;
     }
     return NULL;
+}
+
+/*╭──────────────────────────────────────┬─────┬─────────────────────────────────────────╮
+  │                                       DEBUG                                          │
+  ╰──────────────────────────────────────┴─────┴─────────────────────────────────────────╯*/
+
+/*Imprime um esquema das hashes*/
+void debug_hash_n(){
+    int i;
+    hash_node *k;
+    printf("\nName Hash Table:\n");
+    for(i=0;i<hash_size;i++){
+        if(HTname[i].head!=NULL)
+            printf("\nhash%04d:",i);
+        for(k=HTname[i].head;k!=NULL;k=k->samehash_next){
+            printf(" %s",k->contacto->name);
+        }
+    }
+    printf("\n");
+}
+
+/*Imprime um esquema das hashes*/
+void debug_hash_d(){
+    int i;
+    dominio *k;
+    printf("\n\nDomain Hash Table:\n");
+    for(i=0;i<hash_size;i++){
+        if(HDom[i].dom!=NULL)
+            printf("\nhash%04d:",i);
+        for(k=HDom[i].dom;k!=NULL;k=k->samehash_next){
+            printf(" %s:%u",k->dom, k->counter);
+        }
+    }
+    printf("\n");
 }
