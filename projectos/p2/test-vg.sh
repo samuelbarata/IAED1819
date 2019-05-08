@@ -22,13 +22,21 @@ prog_name=foo_${RANDOM}
 DIFF="diff"
 CC="gcc -g -ansi -Wall -Wextra -pedantic"
 
+RED='\033[0;31m'
+GREEN='\033[0;92m'
+YELLOW='\033[0;33m'
+BLUE='\033[0;34m'
+BLINK='\e[5m'
+NB='\e[25m'
+NC='\033[0m'
+
 ${CC} -o ${prog_name} $*
 rv_compile=$?
 if [ ${rv_compile} != 0 ]; then
-    echo "ERROR: Compilation failed!"
+    echo -e "${RED}ERROR${NC}: Compilation failed!"
     exit 1
 else
-    echo "Program successfully compiled..."
+    echo -e "${BLUE}Program successfully compiled...${NC}"
 fi
 
 rv=0
@@ -42,12 +50,12 @@ for test_in in `ls -rS ${test_dir}/*.in`; do
     rv_student=$?
 
     if [ ! -f "${student_out}" ]; then
-        echo "ERROR: The output of the exercise was not created (file ${student_out})!"
+        echo -e "${RED}ERROR${NC}: The output of the exercise was not created (file ${student_out})!"
         exit 1
     fi
 
     if [ ${rv_student} != 0 ]; then
-        echo "ERROR: Program did not return 0!"
+        echo -e "${RED}ERROR${NC}: Program return ${YELLOW}${rv_student}${NC}!"
         rm -f ${student_out}
         exit 1
     else
@@ -102,19 +110,20 @@ for test_in in `ls -rS ${test_dir}/*.in`; do
     if [[ $nofile == 1 ]]; then obs="nofile ${obs}"; fi
 
     if [ ${rv_diff} == 0 ]; then
-        echo "Test ${test_in} PASSED!"
+        echo -e "Test ${test_in} ${GREEN}PASSED${NC}!"
     else
-        echo "Test ${test_in} FAILURE!"
+        echo -e "Test ${test_in} ${RED}FAILURE!${NC}"
         rv=1
         break
     fi
 
     if [ ${score} != 1 ]; then
         clear
-        echo "STOP: Looks like there's an issue reported by valgrind!"
-        echo "ISSUE:${obs} file:${test_in}" 
+        echo -e "${BLINK}${RED}STOP${NC}${NB}: Looks like there's an issue reported by valgrind!"
+        echo -e "ISSUE:${obs} File:${test_in}" 
         rv=1
         valgrind --tool=memcheck --leak-check=full ./${prog_name} < ${test_in}
+        echo "File:${test_in}"
         exit $rv
         break
     fi
