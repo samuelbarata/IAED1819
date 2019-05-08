@@ -9,17 +9,13 @@ void init_hash_table(hash_table *HT){
 }
 
 /*devolve uma hash para cada objeto*/
+/*http://www.cse.yorku.ca/~oz/hash.html*/
 hash hasher(char *str){
     hash me = 5381;
     int c;
     while ((c = *str++))
         me = ((me << 5) + me) + c; /* hash * 33 + c */
     return me % hash_size;
-}
-
-/*Recbe uma hash table e uma hash e devolve a head da lista correspondente*/
-hash_table *pointer_from_hash(int me, hash_table (*HThead)){
-    return (HThead + me);
 }
 
 void destroy_hashnodes(hash_table HThead){
@@ -105,8 +101,61 @@ hash_node *encrontra_hash_node(char *str, hash_table HT){
 }
 
 /*DOMINIOS*/
+void init_hash_dominio(hash_dominio *HD){
+    int i;
+    for(i=0;i<hash_size;i++){
+        HD[i].dom = NULL;
+    }
+}
+void destroy_hashD(hash_dominio *HD){
+        int i;
+    for(i=0;i<hash_size;i++){
+        destroy_nodes(HDom[i]);
+    }
+}
+void destroy_nodes(hash_dominio HDom){
+    dominio *head, *next;
+    head = HDom.dom;
+    while(head){
+        next = head->samehash_next;
+        free(head->dom);
+        free(head);
+        head = next;
+    }
+}
+
 dominio *hash_push_dominio(char *str){
     hash me = hasher(str);
-    dominio *dom = malloc();
+    dominio *dom = encrontra_dominio(str);
+    if(dom){
+        dom->counter++;
+        return dom;
+    }
+    dom = malloc(sizeof(dominio));
+    dom->dom = malloc(sizeof(char)*strlen(str)+1);
+    strcpy(dom->dom, str);
     return dom;
+}
+
+void hash_pop_dominio(dominio *dom){
+    dom->counter--;
+    if(!dom->counter)
+        delete_dom(dom);
+}
+
+void delete_dom(dominio *dom){
+    hash me = hasher(dom->dom);
+    dominio *head = HDom[me].dom, *atual;
+    atual = head;
+    if(dom == atual){
+        HDom[me].dom = dom->samehash_next;
+        free(dom->dom);
+        free(dom);
+        return ;
+    }
+    while(atual->samehash_next != dom){
+        atual = atual->samehash_next;
+    }
+    atual->samehash_next = dom->samehash_next;
+    free(dom);
 }

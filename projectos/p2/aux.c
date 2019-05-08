@@ -25,7 +25,6 @@ void destroi_contacto(contact *p){
         p->next->previous = p->previous;
     free(p->name);
     free(p->local);
-    free(p->dominio);
     free(p->phone);
     if(p==projeto2.head)
         projeto2.head = p->next;
@@ -55,7 +54,9 @@ void split_email(){
     p = buffer.email;
     while(p[0]!='@')
         p++;
+    p++;
     strcpy(buffer.dominio, p);
+    p--;
     *p='\0';
     strcpy(buffer.local, buffer.email);
 }
@@ -82,8 +83,8 @@ contact *cria_contacto(){
 
 /*imprime um contacto recebendo o seu endereço de memória*/
 void printa_contacto(contact *contacto){
-    printf("%s %s%s %s\n",
-    contacto->name,contacto->local,contacto->dominio,contacto->phone);
+    printf("%s %s@%s %s\n",
+    contacto->name,contacto->local,contacto->dom->dom,contacto->phone);
 }
 
 /*devolve o endereco de memoria do contacto cujo nome esta no buffer

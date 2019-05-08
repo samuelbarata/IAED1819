@@ -24,7 +24,7 @@ void cont_dom();    /*conta todos os email com um dado dominio*/
   ╰───────────────────────────────────────┴────┴─────────────────────────────────────────╯*/
 
 int main(){
-    init_hash_table(HTdom);
+    init_hash_dominio(HDom);
     init_hash_table(HTname);
     projeto2.head = NULL; /*inicializa o livro de contactos como vazio*/
     projeto2.tail = NULL;
@@ -61,7 +61,7 @@ int main(){
     /*liberta toda a memoria ainda alocada*/
     destroi_lista();
     destroy_hashT(HTname);
-    destroy_hashT(HTdom);
+    destroy_hashD(HDom);
     return 0;
 }
 
@@ -129,15 +129,15 @@ void remove_c(){
 /*altera o email dado no buffer se a pessoa existir*/
 void altera_e(){
     contact *contacto;
+    dominio *dom;
     contacto = encontra_pessoa2(buffer.nome);
-    if (contacto){
-        strcpy(buffer.email, contacto->dominio);/*guarda o dominio antigo*/
-        contacto->local=realloc(contacto->local,sizeof(char)*strlen(buffer.local)+1);
-        contacto->dominio=realloc(contacto->dominio,sizeof(char)*strlen(buffer.dominio)+1);
+    if(contacto){
+        contacto->local = realloc(contacto->local, sizeof(char) * strlen(buffer.local) + 1);
         strcpy(contacto->local, buffer.local);
-        strcpy(contacto->dominio, buffer.dominio);
-        /*buffer.email contem o dominio antigo*/
-        /*operacoes hash table dominios*/
+
+        dom = contacto->dom;
+        hash_pop_dominio(dom);
+        contacto->dom = hash_push_dominio(buffer.dominio);
     }
     else
         printf("Nome inexistente.\n");
@@ -145,16 +145,6 @@ void altera_e(){
 
 /*recebe um dominio no buffer e conta o numero de email com o mesmo dominio*/
 void cont_dom(){
-    unsigned long int contador = 0;
-    contact *contacto;
-    char *dom;
-    contacto = projeto2.head;
-    while(contacto){
-        dom = contacto->dominio;
-        dom++;  /*como o dominio inclui o '@' por isso avançamos uma posicao seguinte*/
-        if(!strcmp(dom, buffer.dominio))
-            contador++; /*se for o mesmo dominio acrescenta ao contador*/
-        contacto = contacto->next;
-    }
-    printf("%s:%lu\n", buffer.dominio, contador);
+    dominio *dom = hash_find_dom(buffer.dominio);
+    printf("%s:%lu\n", buffer.dominio, dom->counter);
 }
