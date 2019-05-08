@@ -42,9 +42,9 @@ typedef struct contact{         /*vai ser usada uma lista duplamente ligada*/
 
 typedef struct buff{
     char comando;
-    char nome[max_str];
-    char email[max_str];
-    char tel[max_phone];
+    char nome[max_str+1];
+    char email[max_str+1];
+    char tel[max_phone+1];
     char local[max_email], dominio[max_email];
 } buff;
 

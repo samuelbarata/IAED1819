@@ -1,6 +1,11 @@
 #include "hash.h"
 
-/*inicializa uma hash table com "hash_size" nodes*/
+/*╭──────────────────────────────────────┬─────┬─────────────────────────────────────────╮
+  │                                       NOMES                                          │
+  ╰──────────────────────────────────────┴─────┴─────────────────────────────────────────╯
+*/
+
+/*inicializa uma hash table com "hash_size" nodes a NULL*/
 void init_hash_table(){
     int i;
     for(i=0;i<hash_size;i++){
@@ -8,7 +13,7 @@ void init_hash_table(){
     }
 }
 
-/*devolve uma hash para cada objeto*/
+/*devolve uma hash para cada objeto [max = hash_size]*/
 /*http://www.cse.yorku.ca/~oz/hash.html*/
 hash hasher(char *str){
     hash me = 5381;
@@ -18,6 +23,7 @@ hash hasher(char *str){
     return me % hash_size;
 }
 
+/**/
 void destroy_hashnodes(hash_table HThead){
     hash_node *head, *next;
     head = HThead.head;
@@ -28,6 +34,7 @@ void destroy_hashnodes(hash_table HThead){
     }
 }
 
+/**/
 void destroy_hashT(){
     int i;
     for(i=0;i<hash_size;i++){
@@ -35,6 +42,7 @@ void destroy_hashT(){
     }
 }
 
+/**/
 void hash_push_nome(contact *contacto){
     hash aux = hasher(contacto->name);
     hash_node *node = malloc(sizeof(hash_node));
@@ -43,6 +51,7 @@ void hash_push_nome(contact *contacto){
     HTname[aux].head = node;
 }
 
+/**/
 void hash_pop_contacto(contact *contacto){
     hash_node *node;
     hash me = hasher(contacto->name);
@@ -50,6 +59,7 @@ void hash_pop_contacto(contact *contacto){
     delete_node(HTname, node, me);
 }
 
+/**/
 void delete_node(hash_table *HT, hash_node *node, hash me){
     hash_node *atual;
     atual = HT[me].head;
@@ -65,8 +75,7 @@ void delete_node(hash_table *HT, hash_node *node, hash me){
     free(node);
 }
 
-
-
+/**/
 contact *encontra_pessoa2(char *str){
     hash me = hasher(str);
     hash_node *aux = encrontra_hash_node(str, HTname[me]);
@@ -75,6 +84,7 @@ contact *encontra_pessoa2(char *str){
     return NULL;
 }
 
+/**/
 hash_node *encrontra_hash_node(char *str, hash_table HT){
     hash_node *atual = HT.head;
     while(atual){
@@ -85,7 +95,11 @@ hash_node *encrontra_hash_node(char *str, hash_table HT){
     return NULL;
 }
 
-/*DOMINIOS*/
+/*╭─────────────────────────────────────┬────────┬───────────────────────────────────────╮
+  │                                      DOMINIOS                                        │
+  ╰─────────────────────────────────────┴────────┴───────────────────────────────────────╯
+*/
+
 void init_hash_dominio(){
     int i;
     for(i=0;i<hash_size;i++){
@@ -161,7 +175,8 @@ dominio *hash_find_dom(char *str){
 
 /*╭──────────────────────────────────────┬─────┬─────────────────────────────────────────╮
   │                                       DEBUG                                          │
-  ╰──────────────────────────────────────┴─────┴─────────────────────────────────────────╯*/
+  ╰──────────────────────────────────────┴─────┴─────────────────────────────────────────╯
+*/
 
 /*Imprime um esquema das hashes*/
 void debug_hash_n(){
