@@ -77,7 +77,7 @@ adiciona ao "livro" ou apaga*/
 void adiciona(){
     contact *contacto;
     contacto = cria_contacto();
-    if (encontra_pessoa2(contacto)){
+    if (encontra_pessoa2(contacto->name)){
         printf("Nome existente.\n");
         destroi_contacto(contacto);
         return;
@@ -106,7 +106,7 @@ void lista(){
 /*procura uma pessoa e se encontrar imprime o seu contacto*/
 void procura(){
     contact *contacto;
-    contacto = encrontra_nome();
+    contacto = encontra_pessoa2(buffer.nome);
     if(contacto)
         printa_contacto(contacto);
     else
@@ -116,9 +116,9 @@ void procura(){
 /*se o contacto existir apaga-o*/
 void remove_c(){
     contact *contacto;
-    contacto = encrontra_nome();
+    contacto = encontra_pessoa2(buffer.nome);
     if(contacto){
-        hash_pop_nome(contacto);
+        hash_pop_contacto(contacto);
         destroi_contacto(contacto);
     }
     else

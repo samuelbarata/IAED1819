@@ -22,25 +22,6 @@ hash_table *pointer_from_hash(int hash, hash_table (*HThead)){
     return (HThead + hash);
 }
 
-void delete_node(hash_table *head, hash_node *node){
-    hash_node *atual, *aux;
-    atual = head->head;
-    if(node == atual){
-        aux = atual->samehash_next;
-        free(atual);
-        head->head=aux;
-        return ;
-    }
-    while(atual->samehash_next!=node){
-        atual = atual->samehash_next;
-    }
-    aux = atual->samehash_next->samehash_next;
-    /*free()*/
-    free(atual->samehash_next);
-    atual->samehash_next = aux;
-    return ;
-}
-
 void destroy_hashnodes(hash_table HThead){
     hash_node *head, *next;
     head = HThead.head;
@@ -81,20 +62,44 @@ void hash_push_nome(contact *contacto){
     HTname[aux].head = node;
 }
 
-void hash_pop_nome(contact *contacto){
-    
-}
-
-contact *encontra_pessoa2(contact *contacto){
+void hash_pop_contacto(contact *contacto){
+    hash_node *node;
     unsigned int hash = hashing(contacto->name);
-    return encrontra_nome2(contacto, HTname[hash]);
+    node = encrontra_hash_node(contacto->name, HTname[hash]);
+    delete_node(HTname[hash], node);
 }
 
-contact *encrontra_nome2(contact *contacto, hash_table HT){
+void delete_node(hash_table head, hash_node *node){
+    hash_node *atual, *aux;
+    atual = head.head;
+    if(node == atual){
+        head.head = node->samehash_next;
+        free(node);
+        return ;
+    }
+    while(atual->samehash_next!=node){
+        atual = atual->samehash_next;
+    }
+    aux = atual->samehash_next->samehash_next;
+    free(atual->samehash_next);
+    atual->samehash_next = aux;
+}
+
+
+
+contact *encontra_pessoa2(char *str){
+    unsigned int hash = hashing(str);
+    hash_node *aux = encrontra_hash_node(str, HTname[hash]);
+    if(aux)
+        return aux->contacto;
+    return NULL;
+}
+
+hash_node *encrontra_hash_node(char *str, hash_table HT){
     hash_node *atual = HT.head;
     while(atual){
-        if(!strcmp(contacto->name, atual->contacto->name))
-            return atual->contacto;
+        if(!strcmp(str, atual->contacto->name))
+            return atual;
         atual = atual->samehash_next;
     }
     return NULL;
