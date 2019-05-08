@@ -9,7 +9,7 @@ void init_hash_table(hash_table *HT){
 }
 
 /*devolve uma hash para cada objeto*/
-unsigned int hash(unsigned char *str){
+unsigned int hashing(char *str){
     unsigned hash = 5381;
     int c;
     while ((c = *str++))
@@ -65,16 +65,16 @@ void debug_hash(hash_table *HT){
     hash_node *k;
     for(i=0;i<hash_size;i++){
         if(HT[i].head!=NULL)
-            printf("hash%04d:",i);
+            printf("\nhash%04d:",i);
         for(k=HT[i].head;k!=NULL;k=k->samehash_next){
-            printf(" %s",k->contacto->name);
+            printf("\t%s",k->contacto->name);
         }
-        printf("\n");
     }
+    printf("\n");
 }
 
 void hash_push_nome(contact *contacto){
-    unsigned int aux = hash(contacto->name);
+    unsigned int aux = hashing(contacto->name);
     hash_node *node = malloc(sizeof(node));
     node->contacto = contacto;
     node->samehash_next = HTname[aux].head;
@@ -82,11 +82,11 @@ void hash_push_nome(contact *contacto){
 }
 
 void hash_pop_nome(contact *contacto){
-
+    
 }
 
 contact *encontra_pessoa2(contact *contacto){
-    unsigned int hash = hash(contacto->name);
+    unsigned int hash = hashing(contacto->name);
     return encrontra_nome2(contacto, HTname[hash]);
 }
 
@@ -94,7 +94,7 @@ contact *encrontra_nome2(contact *contacto, hash_table HT){
     hash_node *atual = HT.head;
     while(atual){
         if(!strcmp(contacto->name, atual->contacto->name))
-            return contacto;
+            return atual->contacto;
         atual = atual->samehash_next;
     }
     return NULL;

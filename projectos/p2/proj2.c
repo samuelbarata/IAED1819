@@ -77,7 +77,7 @@ adiciona ao "livro" ou apaga*/
 void adiciona(){
     contact *contacto;
     contacto = cria_contacto();
-    if (encrontra_nome()){
+    if (encontra_pessoa2(contacto)){
         printf("Nome existente.\n");
         destroi_contacto(contacto);
         return;
