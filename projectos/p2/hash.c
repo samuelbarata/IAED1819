@@ -47,7 +47,8 @@ void debug_hash(hash_table *HT){
         if(HT[i].head!=NULL)
             printf("\nhash%04d:",i);
         for(k=HT[i].head;k!=NULL;k=k->samehash_next){
-            printf("\t%s",k->contacto->name);
+            /*printf("\t%p:",(void *)k);*/
+            printf("%s",k->contacto->name);
         }
     }
     printf("\n");
@@ -55,7 +56,7 @@ void debug_hash(hash_table *HT){
 
 void hash_push_nome(contact *contacto){
     unsigned int aux = hashing(contacto->name);
-    hash_node *node = malloc(sizeof(node));
+    hash_node *node = malloc(sizeof(hash_node));
     node->contacto = contacto;
     node->samehash_next = HTname[aux].head;
     HTname[aux].head = node;
@@ -65,23 +66,22 @@ void hash_pop_contacto(contact *contacto){
     hash_node *node;
     unsigned int hash = hashing(contacto->name);
     node = encrontra_hash_node(contacto->name, HTname[hash]);
-    delete_node(HTname[hash], node);
+    delete_node(HTname, node, hash);
 }
 
-void delete_node(hash_table HT, hash_node *node){
-    hash_node *atual, *aux;
-    atual = HT.head;
+void delete_node(hash_table *HT, hash_node *node, unsigned int hash){
+    hash_node *atual;
+    atual = HT[hash].head;
     if(node == atual){
-        HT.head = node->samehash_next;
+        HT[hash].head = node->samehash_next;
         free(node);
         return ;
     }
     while(atual->samehash_next!=node){
         atual = atual->samehash_next;
     }
-    aux = atual->samehash_next->samehash_next;
-    free(atual->samehash_next);
-    atual->samehash_next = aux;
+    atual->samehash_next = node->samehash_next;
+    free(node);
 }
 
 
