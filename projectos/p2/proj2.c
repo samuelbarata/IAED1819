@@ -91,6 +91,7 @@ void adiciona(){
         projeto2.tail = contacto;
     }
     hash_push_nome(contacto);
+    contacto->dom = hash_push_dominio(buffer.dominio);
 }
 
 /*imprime todos os contactos por ordem de adicao*/

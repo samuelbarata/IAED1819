@@ -9,17 +9,17 @@ void init_hash_table(hash_table *HT){
 }
 
 /*devolve uma hash para cada objeto*/
-unsigned int hashing(char *str){
-    unsigned hash = 5381;
+hash hasher(char *str){
+    hash me = 5381;
     int c;
     while ((c = *str++))
-        hash = ((hash << 5) + hash) + c; /* hash * 33 + c */
-    return hash % hash_size;
+        me = ((me << 5) + me) + c; /* hash * 33 + c */
+    return me % hash_size;
 }
 
 /*Recbe uma hash table e uma hash e devolve a head da lista correspondente*/
-hash_table *pointer_from_hash(int hash, hash_table (*HThead)){
-    return (HThead + hash);
+hash_table *pointer_from_hash(int me, hash_table (*HThead)){
+    return (HThead + me);
 }
 
 void destroy_hashnodes(hash_table HThead){
@@ -55,7 +55,7 @@ void debug_hash(hash_table *HT){
 }
 
 void hash_push_nome(contact *contacto){
-    unsigned int aux = hashing(contacto->name);
+    hash aux = hasher(contacto->name);
     hash_node *node = malloc(sizeof(hash_node));
     node->contacto = contacto;
     node->samehash_next = HTname[aux].head;
@@ -64,16 +64,16 @@ void hash_push_nome(contact *contacto){
 
 void hash_pop_contacto(contact *contacto){
     hash_node *node;
-    unsigned int hash = hashing(contacto->name);
-    node = encrontra_hash_node(contacto->name, HTname[hash]);
-    delete_node(HTname, node, hash);
+    hash me = hasher(contacto->name);
+    node = encrontra_hash_node(contacto->name, HTname[me]);
+    delete_node(HTname, node, me);
 }
 
-void delete_node(hash_table *HT, hash_node *node, unsigned int hash){
+void delete_node(hash_table *HT, hash_node *node, hash me){
     hash_node *atual;
-    atual = HT[hash].head;
+    atual = HT[me].head;
     if(node == atual){
-        HT[hash].head = node->samehash_next;
+        HT[me].head = node->samehash_next;
         free(node);
         return ;
     }
@@ -87,8 +87,8 @@ void delete_node(hash_table *HT, hash_node *node, unsigned int hash){
 
 
 contact *encontra_pessoa2(char *str){
-    unsigned int hash = hashing(str);
-    hash_node *aux = encrontra_hash_node(str, HTname[hash]);
+    hash me = hasher(str);
+    hash_node *aux = encrontra_hash_node(str, HTname[me]);
     if(aux)
         return aux->contacto;
     return NULL;
@@ -102,4 +102,11 @@ hash_node *encrontra_hash_node(char *str, hash_table HT){
         atual = atual->samehash_next;
     }
     return NULL;
+}
+
+/*DOMINIOS*/
+dominio *hash_push_dominio(char *str){
+    hash me = hasher(str);
+    dominio *dom = malloc();
+    return dom;
 }

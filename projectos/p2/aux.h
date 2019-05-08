@@ -27,12 +27,13 @@
 /*╭─────────────╮
   │  estruturas │
   ╰─────────────╯*/
-typedef struct cont{            /*vai ser usada uma lista duplamente ligada*/
-    struct cont *previous;      /*memoria do contacto anterior*/
-    char *name;                     /*maximo de 1023 caracteres ([0-9a-zA-Z-_]+)*/
-    char *local,*dominio;           /*maximo de 0511 caracteres ([0-9a-zA-Z-_.] + @[0-9a-zA-Z-_.])*/
-    char *phone;                    /*maximo de 0063 caracteres ([0-9\-]+)*/
-    struct cont *next;          /*memoria do contacto seguinte*/
+typedef struct cont{        /*vai ser usada uma lista duplamente ligada*/
+    struct cont *previous;  /*memoria do contacto anterior*/
+    char *name;             /*maximo de 1023 caracteres ([0-9a-zA-Z-_]+)*/
+    char *local;            /*maximo de 0511 caracteres ([0-9a-zA-Z-_.])*/
+    dominio *dom;           /*maximo de 0511 caracteres (@[0-9a-zA-Z-_.])*/
+    char *phone;            /*maximo de 0063 caracteres ([0-9\-]+)*/
+    struct cont *next;      /*memoria do contacto seguinte*/
 }   contact;
 
 typedef struct buff{

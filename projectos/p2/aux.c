@@ -71,8 +71,8 @@ contact *cria_contacto(){
     contacto->local = malloc(sizeof(char) * strlen(buffer.local) + 1);
     strcpy(contacto->local, buffer.local);
 
-    contacto->dominio = malloc(sizeof(char) * strlen(buffer.dominio) + 1);
-    strcpy(contacto->dominio, buffer.dominio);
+    /*contacto->dominio = malloc(sizeof(char) * strlen(buffer.dominio) + 1);
+    strcpy(contacto->dominio, buffer.dominio);*/
 
     contacto->phone = malloc(sizeof(char) * strlen(buffer.tel) + 1);
     strcpy(contacto->phone, buffer.tel);
