@@ -1,0 +1,803 @@
+==5981== Memcheck, a memory error detector
+==5981== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==5981== Using Valgrind-3.14.0 and LibVEX; rerun with -h for copyright info
+==5981== Command: ./proj2
+==5981== 
+a ola a@b 34
+==5981== Invalid write of size 8
+==5981==    at 0x109BAD: hash_push_nome (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x1093A7: adiciona (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109247: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Address 0x4a39638 is 0 bytes after a block of size 8 alloc'd
+==5981==    at 0x483577F: malloc (vg_replace_malloc.c:299)
+==5981==    by 0x109B83: hash_push_nome (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x1093A7: adiciona (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109247: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981== 
+a sdf asd@safd 35
+a sdkfg dfg@sdf 23534
+a asdfpjsd dfs@sfdg 8451
+==5981== Invalid read of size 8
+==5981==    at 0x109D63: encrontra_hash_node (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109D05: encontra_pessoa2 (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109330: adiciona (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109247: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Address 0x4a39638 is 0 bytes after a block of size 8 alloc'd
+==5981==    at 0x483577F: malloc (vg_replace_malloc.c:299)
+==5981==    by 0x109B83: hash_push_nome (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x1093A7: adiciona (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109247: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981== 
+d
+
+==5981== Invalid read of size 8
+==5981==    at 0x109B31: debug_hash (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x1092B9: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Address 0x4a39a38 is 0 bytes after a block of size 8 alloc'd
+==5981==    at 0x483577F: malloc (vg_replace_malloc.c:299)
+==5981==    by 0x109B83: hash_push_nome (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x1093A7: adiciona (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109247: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981== 
+hash0001:	sdkfg
+hash0002:	asdfpjsd	ola
+hash0004:	sdf
+a sidufhgioshdfg dsfgsdfg@asdfasdf 7542
+a a a@a.pt 132
+a b b@b.pt 342
+a c c@c.pt 2314
+a d d@d.pt 3214
+d
+
+hash0000:	a	sidufhgioshdfg
+hash0001:	b	sdkfg
+hash0002:	c	asdfpjsd	ola
+hash0003:	d
+hash0004:	sdf
+a e e@e.pt 24335
+d
+
+hash0000:	a	sidufhgioshdfg
+hash0001:	b	sdkfg
+hash0002:	c	asdfpjsd	ola
+hash0003:	d
+hash0004:	e	sdf
+r d
+==5981== Invalid read of size 8
+==5981==    at 0x109C68: delete_node (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109C3E: hash_pop_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109447: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Address 0x4a3aa78 is 0 bytes after a block of size 8 alloc'd
+==5981==    at 0x483577F: malloc (vg_replace_malloc.c:299)
+==5981==    by 0x109B83: hash_push_nome (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x1093A7: adiciona (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109247: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981== 
+d
+
+hash0000:	a	sidufhgioshdfg
+hash0001:	b	sdkfg
+hash0002:	c	asdfpjsd	ola
+==5981== Invalid read of size 8
+==5981==    at 0x109B12: debug_hash (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x1092B9: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Address 0x4a3aa70 is 0 bytes inside a block of size 8 free'd
+==5981==    at 0x48369AB: free (vg_replace_malloc.c:530)
+==5981==    by 0x109C7B: delete_node (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109C3E: hash_pop_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109447: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Block was alloc'd at
+==5981==    at 0x483577F: malloc (vg_replace_malloc.c:299)
+==5981==    by 0x109B83: hash_push_nome (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x1093A7: adiciona (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109247: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981== 
+==5981== Invalid read of size 8
+==5981==    at 0x109B15: debug_hash (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x1092B9: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Address 0x4a3a8c8 is 8 bytes inside a block of size 48 free'd
+==5981==    at 0x48369AB: free (vg_replace_malloc.c:530)
+==5981==    by 0x1096BA: destroi_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109453: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Block was alloc'd at
+==5981==    at 0x483577F: malloc (vg_replace_malloc.c:299)
+==5981==    by 0x1095CA: malloc_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x1097C3: cria_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10931C: adiciona (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109247: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981== 
+==5981== Invalid read of size 1
+==5981==    at 0x4838CC2: __strlen_sse2 (vg_replace_strmem.c:462)
+==5981==    by 0x48C6BEE: vfprintf (vfprintf.c:1638)
+==5981==    by 0x48CD815: printf (printf.c:33)
+==5981==    by 0x109B2C: debug_hash (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x1092B9: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Address 0x4a3a930 is 0 bytes inside a block of size 2 free'd
+==5981==    at 0x48369AB: free (vg_replace_malloc.c:530)
+==5981==    by 0x109645: destroi_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109453: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Block was alloc'd at
+==5981==    at 0x483577F: malloc (vg_replace_malloc.c:299)
+==5981==    by 0x1097DF: cria_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10931C: adiciona (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109247: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981== 
+==5981== Invalid read of size 1
+==5981==    at 0x4838CD4: __strlen_sse2 (vg_replace_strmem.c:462)
+==5981==    by 0x48C6BEE: vfprintf (vfprintf.c:1638)
+==5981==    by 0x48CD815: printf (printf.c:33)
+==5981==    by 0x109B2C: debug_hash (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x1092B9: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Address 0x4a3a931 is 1 bytes inside a block of size 2 free'd
+==5981==    at 0x48369AB: free (vg_replace_malloc.c:530)
+==5981==    by 0x109645: destroi_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109453: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Block was alloc'd at
+==5981==    at 0x483577F: malloc (vg_replace_malloc.c:299)
+==5981==    by 0x1097DF: cria_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10931C: adiciona (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109247: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981== 
+==5981== Invalid read of size 1
+==5981==    at 0x48F0C95: _IO_new_file_xsputn (fileops.c:1226)
+==5981==    by 0x48F0C95: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1204)
+==5981==    by 0x48C53FA: vfprintf (vfprintf.c:1638)
+==5981==    by 0x48CD815: printf (printf.c:33)
+==5981==    by 0x109B2C: debug_hash (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x1092B9: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Address 0x4a3a930 is 0 bytes inside a block of size 2 free'd
+==5981==    at 0x48369AB: free (vg_replace_malloc.c:530)
+==5981==    by 0x109645: destroi_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109453: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Block was alloc'd at
+==5981==    at 0x483577F: malloc (vg_replace_malloc.c:299)
+==5981==    by 0x1097DF: cria_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10931C: adiciona (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109247: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981== 
+==5981== Invalid read of size 1
+==5981==    at 0x483D528: mempcpy (vg_replace_strmem.c:1536)
+==5981==    by 0x48F0C54: _IO_new_file_xsputn (fileops.c:1243)
+==5981==    by 0x48F0C54: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1204)
+==5981==    by 0x48C53FA: vfprintf (vfprintf.c:1638)
+==5981==    by 0x48CD815: printf (printf.c:33)
+==5981==    by 0x109B2C: debug_hash (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x1092B9: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Address 0x4a3a930 is 0 bytes inside a block of size 2 free'd
+==5981==    at 0x48369AB: free (vg_replace_malloc.c:530)
+==5981==    by 0x109645: destroi_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109453: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Block was alloc'd at
+==5981==    at 0x483577F: malloc (vg_replace_malloc.c:299)
+==5981==    by 0x1097DF: cria_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10931C: adiciona (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109247: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981== 
+hash0003:	d
+hash0004:	e	sdf
+a d d@d.pt 235
+==5981== Invalid read of size 8
+==5981==    at 0x109D3F: encrontra_hash_node (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109D05: encontra_pessoa2 (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109330: adiciona (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109247: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Address 0x4a3aa70 is 0 bytes inside a block of size 8 free'd
+==5981==    at 0x48369AB: free (vg_replace_malloc.c:530)
+==5981==    by 0x109C7B: delete_node (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109C3E: hash_pop_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109447: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Block was alloc'd at
+==5981==    at 0x483577F: malloc (vg_replace_malloc.c:299)
+==5981==    by 0x109B83: hash_push_nome (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x1093A7: adiciona (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109247: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981== 
+==5981== Invalid read of size 8
+==5981==    at 0x109D42: encrontra_hash_node (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109D05: encontra_pessoa2 (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109330: adiciona (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109247: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Address 0x4a3a8c8 is 8 bytes inside a block of size 48 free'd
+==5981==    at 0x48369AB: free (vg_replace_malloc.c:530)
+==5981==    by 0x1096BA: destroi_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109453: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Block was alloc'd at
+==5981==    at 0x483577F: malloc (vg_replace_malloc.c:299)
+==5981==    by 0x1095CA: malloc_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x1097C3: cria_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10931C: adiciona (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109247: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981== 
+==5981== Invalid read of size 1
+==5981==    at 0x4839D03: strcmp (vg_replace_strmem.c:848)
+==5981==    by 0x109D54: encrontra_hash_node (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109D05: encontra_pessoa2 (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109330: adiciona (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109247: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Address 0x4a3a930 is 0 bytes inside a block of size 2 free'd
+==5981==    at 0x48369AB: free (vg_replace_malloc.c:530)
+==5981==    by 0x109645: destroi_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109453: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Block was alloc'd at
+==5981==    at 0x483577F: malloc (vg_replace_malloc.c:299)
+==5981==    by 0x1097DF: cria_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10931C: adiciona (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109247: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981== 
+==5981== Invalid read of size 1
+==5981==    at 0x4839D24: strcmp (vg_replace_strmem.c:848)
+==5981==    by 0x109D54: encrontra_hash_node (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109D05: encontra_pessoa2 (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109330: adiciona (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109247: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Address 0x4a3a931 is 1 bytes inside a block of size 2 free'd
+==5981==    at 0x48369AB: free (vg_replace_malloc.c:530)
+==5981==    by 0x109645: destroi_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109453: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Block was alloc'd at
+==5981==    at 0x483577F: malloc (vg_replace_malloc.c:299)
+==5981==    by 0x1097DF: cria_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10931C: adiciona (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109247: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981== 
+==5981== Invalid read of size 8
+==5981==    at 0x109D15: encontra_pessoa2 (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109330: adiciona (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109247: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Address 0x4a3aa70 is 0 bytes inside a block of size 8 free'd
+==5981==    at 0x48369AB: free (vg_replace_malloc.c:530)
+==5981==    by 0x109C7B: delete_node (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109C3E: hash_pop_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109447: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Block was alloc'd at
+==5981==    at 0x483577F: malloc (vg_replace_malloc.c:299)
+==5981==    by 0x109B83: hash_push_nome (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x1093A7: adiciona (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109247: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981== 
+Nome existente.
+r d
+==5981== Invalid read of size 8
+==5981==    at 0x109D3F: encrontra_hash_node (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109D05: encontra_pessoa2 (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109430: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Address 0x4a3aa70 is 0 bytes inside a block of size 8 free'd
+==5981==    at 0x48369AB: free (vg_replace_malloc.c:530)
+==5981==    by 0x109C7B: delete_node (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109C3E: hash_pop_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109447: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Block was alloc'd at
+==5981==    at 0x483577F: malloc (vg_replace_malloc.c:299)
+==5981==    by 0x109B83: hash_push_nome (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x1093A7: adiciona (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109247: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981== 
+==5981== Invalid read of size 8
+==5981==    at 0x109D42: encrontra_hash_node (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109D05: encontra_pessoa2 (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109430: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Address 0x4a3a8c8 is 8 bytes inside a block of size 48 free'd
+==5981==    at 0x48369AB: free (vg_replace_malloc.c:530)
+==5981==    by 0x1096BA: destroi_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109453: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Block was alloc'd at
+==5981==    at 0x483577F: malloc (vg_replace_malloc.c:299)
+==5981==    by 0x1095CA: malloc_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x1097C3: cria_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10931C: adiciona (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109247: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981== 
+==5981== Invalid read of size 1
+==5981==    at 0x4839D03: strcmp (vg_replace_strmem.c:848)
+==5981==    by 0x109D54: encrontra_hash_node (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109D05: encontra_pessoa2 (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109430: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Address 0x4a3a930 is 0 bytes inside a block of size 2 free'd
+==5981==    at 0x48369AB: free (vg_replace_malloc.c:530)
+==5981==    by 0x109645: destroi_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109453: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Block was alloc'd at
+==5981==    at 0x483577F: malloc (vg_replace_malloc.c:299)
+==5981==    by 0x1097DF: cria_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10931C: adiciona (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109247: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981== 
+==5981== Invalid read of size 1
+==5981==    at 0x4839D24: strcmp (vg_replace_strmem.c:848)
+==5981==    by 0x109D54: encrontra_hash_node (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109D05: encontra_pessoa2 (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109430: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Address 0x4a3a931 is 1 bytes inside a block of size 2 free'd
+==5981==    at 0x48369AB: free (vg_replace_malloc.c:530)
+==5981==    by 0x109645: destroi_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109453: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Block was alloc'd at
+==5981==    at 0x483577F: malloc (vg_replace_malloc.c:299)
+==5981==    by 0x1097DF: cria_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10931C: adiciona (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109247: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981== 
+==5981== Invalid read of size 8
+==5981==    at 0x109D15: encontra_pessoa2 (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109430: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Address 0x4a3aa70 is 0 bytes inside a block of size 8 free'd
+==5981==    at 0x48369AB: free (vg_replace_malloc.c:530)
+==5981==    by 0x109C7B: delete_node (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109C3E: hash_pop_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109447: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Block was alloc'd at
+==5981==    at 0x483577F: malloc (vg_replace_malloc.c:299)
+==5981==    by 0x109B83: hash_push_nome (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x1093A7: adiciona (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109247: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981== 
+==5981== Invalid read of size 8
+==5981==    at 0x109BDE: hash_pop_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109447: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Address 0x4a3a8c8 is 8 bytes inside a block of size 48 free'd
+==5981==    at 0x48369AB: free (vg_replace_malloc.c:530)
+==5981==    by 0x1096BA: destroi_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109453: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Block was alloc'd at
+==5981==    at 0x483577F: malloc (vg_replace_malloc.c:299)
+==5981==    by 0x1095CA: malloc_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x1097C3: cria_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10931C: adiciona (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109247: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981== 
+==5981== Invalid read of size 1
+==5981==    at 0x1099DB: hashing (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109BE9: hash_pop_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109447: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Address 0x4a3a930 is 0 bytes inside a block of size 2 free'd
+==5981==    at 0x48369AB: free (vg_replace_malloc.c:530)
+==5981==    by 0x109645: destroi_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109453: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Block was alloc'd at
+==5981==    at 0x483577F: malloc (vg_replace_malloc.c:299)
+==5981==    by 0x1097DF: cria_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10931C: adiciona (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109247: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981== 
+==5981== Invalid read of size 8
+==5981==    at 0x109BF1: hash_pop_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109447: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Address 0x4a3a8c8 is 8 bytes inside a block of size 48 free'd
+==5981==    at 0x48369AB: free (vg_replace_malloc.c:530)
+==5981==    by 0x1096BA: destroi_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109453: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Block was alloc'd at
+==5981==    at 0x483577F: malloc (vg_replace_malloc.c:299)
+==5981==    by 0x1095CA: malloc_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x1097C3: cria_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10931C: adiciona (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109247: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981== 
+==5981== Invalid read of size 8
+==5981==    at 0x109D3F: encrontra_hash_node (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109C15: hash_pop_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109447: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Address 0x4a3aa70 is 0 bytes inside a block of size 8 free'd
+==5981==    at 0x48369AB: free (vg_replace_malloc.c:530)
+==5981==    by 0x109C7B: delete_node (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109C3E: hash_pop_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109447: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Block was alloc'd at
+==5981==    at 0x483577F: malloc (vg_replace_malloc.c:299)
+==5981==    by 0x109B83: hash_push_nome (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x1093A7: adiciona (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109247: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981== 
+==5981== Invalid read of size 8
+==5981==    at 0x109D42: encrontra_hash_node (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109C15: hash_pop_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109447: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Address 0x4a3a8c8 is 8 bytes inside a block of size 48 free'd
+==5981==    at 0x48369AB: free (vg_replace_malloc.c:530)
+==5981==    by 0x1096BA: destroi_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109453: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Block was alloc'd at
+==5981==    at 0x483577F: malloc (vg_replace_malloc.c:299)
+==5981==    by 0x1095CA: malloc_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x1097C3: cria_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10931C: adiciona (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109247: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981== 
+==5981== Invalid read of size 1
+==5981==    at 0x4905C60: __strcmp_sse2_unaligned (strcmp-sse2-unaligned.S:24)
+==5981==    by 0x109D54: encrontra_hash_node (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109C15: hash_pop_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109447: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Address 0x4a3a930 is 0 bytes inside a block of size 2 free'd
+==5981==    at 0x48369AB: free (vg_replace_malloc.c:530)
+==5981==    by 0x109645: destroi_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109453: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Block was alloc'd at
+==5981==    at 0x483577F: malloc (vg_replace_malloc.c:299)
+==5981==    by 0x1097DF: cria_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10931C: adiciona (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109247: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981== 
+==5981== Invalid read of size 1
+==5981==    at 0x4839D03: strcmp (vg_replace_strmem.c:848)
+==5981==    by 0x109D54: encrontra_hash_node (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109C15: hash_pop_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109447: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Address 0x4a3a930 is 0 bytes inside a block of size 2 free'd
+==5981==    at 0x48369AB: free (vg_replace_malloc.c:530)
+==5981==    by 0x109645: destroi_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109453: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Block was alloc'd at
+==5981==    at 0x483577F: malloc (vg_replace_malloc.c:299)
+==5981==    by 0x1097DF: cria_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10931C: adiciona (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109247: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981== 
+==5981== Invalid read of size 1
+==5981==    at 0x4839D20: strcmp (vg_replace_strmem.c:848)
+==5981==    by 0x109D54: encrontra_hash_node (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109C15: hash_pop_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109447: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Address 0x4a3a931 is 1 bytes inside a block of size 2 free'd
+==5981==    at 0x48369AB: free (vg_replace_malloc.c:530)
+==5981==    by 0x109645: destroi_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109453: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Block was alloc'd at
+==5981==    at 0x483577F: malloc (vg_replace_malloc.c:299)
+==5981==    by 0x1097DF: cria_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10931C: adiciona (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109247: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981== 
+==5981== Invalid read of size 1
+==5981==    at 0x4839D24: strcmp (vg_replace_strmem.c:848)
+==5981==    by 0x109D54: encrontra_hash_node (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109C15: hash_pop_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109447: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Address 0x4a3a931 is 1 bytes inside a block of size 2 free'd
+==5981==    at 0x48369AB: free (vg_replace_malloc.c:530)
+==5981==    by 0x109645: destroi_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109453: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Block was alloc'd at
+==5981==    at 0x483577F: malloc (vg_replace_malloc.c:299)
+==5981==    by 0x1097DF: cria_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10931C: adiciona (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109247: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981== 
+==5981== Invalid free() / delete / delete[] / realloc()
+==5981==    at 0x48369AB: free (vg_replace_malloc.c:530)
+==5981==    by 0x109C7B: delete_node (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109C3E: hash_pop_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109447: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Address 0x4a3aa70 is 0 bytes inside a block of size 8 free'd
+==5981==    at 0x48369AB: free (vg_replace_malloc.c:530)
+==5981==    by 0x109C7B: delete_node (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109C3E: hash_pop_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109447: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Block was alloc'd at
+==5981==    at 0x483577F: malloc (vg_replace_malloc.c:299)
+==5981==    by 0x109B83: hash_push_nome (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x1093A7: adiciona (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109247: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981== 
+==5981== Invalid read of size 8
+==5981==    at 0x1095FC: destroi_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109453: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Address 0x4a3a8c0 is 0 bytes inside a block of size 48 free'd
+==5981==    at 0x48369AB: free (vg_replace_malloc.c:530)
+==5981==    by 0x1096BA: destroi_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109453: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Block was alloc'd at
+==5981==    at 0x483577F: malloc (vg_replace_malloc.c:299)
+==5981==    by 0x1095CA: malloc_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x1097C3: cria_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10931C: adiciona (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109247: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981== 
+==5981== Invalid read of size 8
+==5981==    at 0x109608: destroi_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109453: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Address 0x4a3a8c0 is 0 bytes inside a block of size 48 free'd
+==5981==    at 0x48369AB: free (vg_replace_malloc.c:530)
+==5981==    by 0x1096BA: destroi_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109453: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Block was alloc'd at
+==5981==    at 0x483577F: malloc (vg_replace_malloc.c:299)
+==5981==    by 0x1095CA: malloc_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x1097C3: cria_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10931C: adiciona (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109247: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981== 
+==5981== Invalid read of size 8
+==5981==    at 0x10960F: destroi_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109453: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Address 0x4a3a8e8 is 40 bytes inside a block of size 48 free'd
+==5981==    at 0x48369AB: free (vg_replace_malloc.c:530)
+==5981==    by 0x1096BA: destroi_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109453: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Block was alloc'd at
+==5981==    at 0x483577F: malloc (vg_replace_malloc.c:299)
+==5981==    by 0x1095CA: malloc_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x1097C3: cria_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10931C: adiciona (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109247: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981== 
+==5981== Invalid read of size 8
+==5981==    at 0x10961B: destroi_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109453: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Address 0x4a3a8e8 is 40 bytes inside a block of size 48 free'd
+==5981==    at 0x48369AB: free (vg_replace_malloc.c:530)
+==5981==    by 0x1096BA: destroi_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109453: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Block was alloc'd at
+==5981==    at 0x483577F: malloc (vg_replace_malloc.c:299)
+==5981==    by 0x1095CA: malloc_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x1097C3: cria_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10931C: adiciona (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109247: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981== 
+==5981== Invalid read of size 8
+==5981==    at 0x109628: destroi_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109453: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Address 0x4a3a8e8 is 40 bytes inside a block of size 48 free'd
+==5981==    at 0x48369AB: free (vg_replace_malloc.c:530)
+==5981==    by 0x1096BA: destroi_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109453: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Block was alloc'd at
+==5981==    at 0x483577F: malloc (vg_replace_malloc.c:299)
+==5981==    by 0x1095CA: malloc_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x1097C3: cria_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10931C: adiciona (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109247: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981== 
+==5981== Invalid read of size 8
+==5981==    at 0x109630: destroi_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109453: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Address 0x4a3a8c0 is 0 bytes inside a block of size 48 free'd
+==5981==    at 0x48369AB: free (vg_replace_malloc.c:530)
+==5981==    by 0x1096BA: destroi_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109453: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Block was alloc'd at
+==5981==    at 0x483577F: malloc (vg_replace_malloc.c:299)
+==5981==    by 0x1095CA: malloc_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x1097C3: cria_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10931C: adiciona (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109247: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981== 
+==5981== Invalid read of size 8
+==5981==    at 0x10963A: destroi_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109453: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Address 0x4a3a8c8 is 8 bytes inside a block of size 48 free'd
+==5981==    at 0x48369AB: free (vg_replace_malloc.c:530)
+==5981==    by 0x1096BA: destroi_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109453: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Block was alloc'd at
+==5981==    at 0x483577F: malloc (vg_replace_malloc.c:299)
+==5981==    by 0x1095CA: malloc_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x1097C3: cria_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10931C: adiciona (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109247: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981== 
+==5981== Invalid free() / delete / delete[] / realloc()
+==5981==    at 0x48369AB: free (vg_replace_malloc.c:530)
+==5981==    by 0x109645: destroi_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109453: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Address 0x4a3a930 is 0 bytes inside a block of size 2 free'd
+==5981==    at 0x48369AB: free (vg_replace_malloc.c:530)
+==5981==    by 0x109645: destroi_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109453: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Block was alloc'd at
+==5981==    at 0x483577F: malloc (vg_replace_malloc.c:299)
+==5981==    by 0x1097DF: cria_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10931C: adiciona (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109247: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981== 
+==5981== Invalid read of size 8
+==5981==    at 0x10964A: destroi_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109453: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Address 0x4a3a8d0 is 16 bytes inside a block of size 48 free'd
+==5981==    at 0x48369AB: free (vg_replace_malloc.c:530)
+==5981==    by 0x1096BA: destroi_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109453: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Block was alloc'd at
+==5981==    at 0x483577F: malloc (vg_replace_malloc.c:299)
+==5981==    by 0x1095CA: malloc_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x1097C3: cria_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10931C: adiciona (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109247: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981== 
+==5981== Invalid free() / delete / delete[] / realloc()
+==5981==    at 0x48369AB: free (vg_replace_malloc.c:530)
+==5981==    by 0x109655: destroi_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109453: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Address 0x4a3a980 is 0 bytes inside a block of size 2 free'd
+==5981==    at 0x48369AB: free (vg_replace_malloc.c:530)
+==5981==    by 0x109655: destroi_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109453: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Block was alloc'd at
+==5981==    at 0x483577F: malloc (vg_replace_malloc.c:299)
+==5981==    by 0x109819: cria_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10931C: adiciona (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109247: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981== 
+==5981== Invalid read of size 8
+==5981==    at 0x10965A: destroi_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109453: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Address 0x4a3a8d8 is 24 bytes inside a block of size 48 free'd
+==5981==    at 0x48369AB: free (vg_replace_malloc.c:530)
+==5981==    by 0x1096BA: destroi_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109453: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Block was alloc'd at
+==5981==    at 0x483577F: malloc (vg_replace_malloc.c:299)
+==5981==    by 0x1095CA: malloc_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x1097C3: cria_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10931C: adiciona (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109247: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981== 
+==5981== Invalid free() / delete / delete[] / realloc()
+==5981==    at 0x48369AB: free (vg_replace_malloc.c:530)
+==5981==    by 0x109665: destroi_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109453: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Address 0x4a3a9d0 is 0 bytes inside a block of size 6 free'd
+==5981==    at 0x48369AB: free (vg_replace_malloc.c:530)
+==5981==    by 0x109665: destroi_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109453: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Block was alloc'd at
+==5981==    at 0x483577F: malloc (vg_replace_malloc.c:299)
+==5981==    by 0x109853: cria_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10931C: adiciona (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109247: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981== 
+==5981== Invalid read of size 8
+==5981==    at 0x10966A: destroi_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109453: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Address 0x4a3a8e0 is 32 bytes inside a block of size 48 free'd
+==5981==    at 0x48369AB: free (vg_replace_malloc.c:530)
+==5981==    by 0x1096BA: destroi_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109453: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Block was alloc'd at
+==5981==    at 0x483577F: malloc (vg_replace_malloc.c:299)
+==5981==    by 0x1095CA: malloc_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x1097C3: cria_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10931C: adiciona (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109247: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981== 
+==5981== Invalid free() / delete / delete[] / realloc()
+==5981==    at 0x48369AB: free (vg_replace_malloc.c:530)
+==5981==    by 0x109675: destroi_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109453: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Address 0x4a3aa20 is 0 bytes inside a block of size 5 free'd
+==5981==    at 0x48369AB: free (vg_replace_malloc.c:530)
+==5981==    by 0x109675: destroi_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109453: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Block was alloc'd at
+==5981==    at 0x483577F: malloc (vg_replace_malloc.c:299)
+==5981==    by 0x10988D: cria_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10931C: adiciona (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109247: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981== 
+==5981== Invalid free() / delete / delete[] / realloc()
+==5981==    at 0x48369AB: free (vg_replace_malloc.c:530)
+==5981==    by 0x1096BA: destroi_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109453: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Address 0x4a3a8c0 is 0 bytes inside a block of size 48 free'd
+==5981==    at 0x48369AB: free (vg_replace_malloc.c:530)
+==5981==    by 0x1096BA: destroi_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109453: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Block was alloc'd at
+==5981==    at 0x483577F: malloc (vg_replace_malloc.c:299)
+==5981==    by 0x1095CA: malloc_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x1097C3: cria_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10931C: adiciona (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109247: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981== 
+a d d@d 234
+Nome existente.
+x
+==5981== Invalid read of size 8
+==5981==    at 0x109A43: destroy_hashnodes (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109A99: destroy_hashT (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x1092F7: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Address 0x4a3a478 is 0 bytes after a block of size 8 alloc'd
+==5981==    at 0x483577F: malloc (vg_replace_malloc.c:299)
+==5981==    by 0x109B83: hash_push_nome (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x1093A7: adiciona (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109247: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981== 
+==5981== Invalid free() / delete / delete[] / realloc()
+==5981==    at 0x48369AB: free (vg_replace_malloc.c:530)
+==5981==    by 0x109A56: destroy_hashnodes (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109A99: destroy_hashT (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x1092F7: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Address 0x4a3aa70 is 0 bytes inside a block of size 8 free'd
+==5981==    at 0x48369AB: free (vg_replace_malloc.c:530)
+==5981==    by 0x109C7B: delete_node (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109C3E: hash_pop_contacto (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109447: remove_c (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x10927F: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==  Block was alloc'd at
+==5981==    at 0x483577F: malloc (vg_replace_malloc.c:299)
+==5981==    by 0x109B83: hash_push_nome (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x1093A7: adiciona (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981==    by 0x109247: main (in /home/rawpotat0/Desktop/IAED/projectos/p2/proj2)
+==5981== 
+==5981== 
+==5981== HEAP SUMMARY:
+==5981==     in use at exit: 0 bytes in 0 blocks
+==5981==   total heap usage: 72 allocs, 79 frees, 2,916 bytes allocated
+==5981== 
+==5981== All heap blocks were freed -- no leaks are possible
+==5981== 
+==5981== For counts of detected and suppressed errors, rerun with: -v
+==5981== ERROR SUMMARY: 109 errors from 47 contexts (suppressed: 0 from 0)
