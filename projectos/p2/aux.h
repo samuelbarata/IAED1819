@@ -41,13 +41,15 @@ dominio *cria_dominio(char *str);     /*inicializa um dominio*/
 void destroi_contacto(contact *p);
 void destroi_dominio(dominio *p);
 
-void push_list(d_linked_list, contact *);
-void pop_list(d_linked_list, contact *);
+void push_list(d_linked_list *, contact *);
+void pop_list(d_linked_list *, contact *);
 
 void split_email();                         /*divide o email local + dominio(inclui @)*/
 void printa_contacto(contact *);            /*imprime um contacto recebendo o seu endereço*/
 
 
 void destroi_lista();                       /*free toda a memoria ainda alocada*/
+
+void printd(char *debug_message);
 
 #endif

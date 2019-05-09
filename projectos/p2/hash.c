@@ -27,9 +27,6 @@ void destroy_hash_table(hash_table *HT){
 node_linked *encontra(hash_table *HT, char *str){
     hash h = hasher(str);
     node_linked *atual = HT[h].head;
-    #ifdef DEBUG
-    printf("encontra\n");
-    #endif
     while(atual){
         if(buffer.comando == 'a' | buffer.comando == 'p' | buffer.comando == 'r' | buffer.comando == 'e'){
             if(!strcmp(((contact *)atual->data)->name, str))
@@ -51,15 +48,9 @@ void push(hash_table *HT, void *objeto){
     dominio *dom;
     node_linked *node = malloc(sizeof(node_linked));
     hash h;
-    #ifdef DEBUG
-    printf("push");
-    #endif
     if(buffer.comando == 'a'){
-        #ifdef DEBUG
-        printf(" contacto\n");
-        #endif
         h = hasher(((contact*)objeto)->name);
-        contacto = (contact*) encontra(HTname, ((contact*)objeto)->name);
+        contacto = (contact*)objeto;
         /*  criar/incrementar o dominio         */
         dom = (dominio*)encontra(HTdom, buffer.dominio);
         if(dom)
@@ -72,12 +63,9 @@ void push(hash_table *HT, void *objeto){
         }
         /*                                      */
         contacto->dom = dom;
-        push_list(adress_book, contacto);
+        push_list(&adress_book, contacto);
     }
     else{   /*comando == 'e'*/
-        #ifdef DEBUG
-        printf("dominio\n");
-        #endif
         h = hasher(((dominio *)objeto)->dom);
     }
     node->data = objeto;
@@ -129,6 +117,8 @@ void pop(hash_table *HT, void *objeto){
   ╰──────────────────────────────────────┴─────┴─────────────────────────────────────────╯
 */
 
+#ifdef DEBUG
+
 /*Imprime um esquema das hashes*/
 void debug_hash(char c){
     int i;
@@ -157,3 +147,4 @@ void debug_hash(char c){
     }
     printf("\n");
 }
+#endif

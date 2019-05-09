@@ -31,7 +31,8 @@ node_linked *encontra(hash_table *, char *);       /*recebe uma hash table e enc
 void push(hash_table *, void *);            /*recebe contacto ou dominio e grava*/
 void pop(hash_table *, void *);
 
+#ifdef DEBUG
 void debug_hash(char);
-
+#endif
 
 #endif

@@ -56,7 +56,7 @@ int main(){
                 cont_dom();
                 break;
             #ifdef DEBUG
-                case 'd':       /*DEBUG*/
+                case 'd':  /*adicionar -D DEBUG no compilador*/
                     /*mostra esquema hash*/
                     scanf("%c", &buffer.comando); /*d = dom; n = names*/
                     debug_hash(buffer.comando);
@@ -83,9 +83,6 @@ verifica para erros
 adiciona ao "livro" ou apaga*/
 void adiciona(){
     contact *contacto;
-    #ifdef DEBUG
-    printf("adiciona\n");
-    #endif
     contacto = cria_contacto();
     if (encontra(HTname, contacto->name)){
         printf("Nome existente.\n");
@@ -108,9 +105,11 @@ void lista(){
 /*procura uma pessoa e se encontrar imprime o seu contacto*/
 void procura(){
     contact *contacto;
-    contacto = ((contact *)(encontra(HTname, buffer.nome)->data));
-    if(contacto)
+    node_linked *node = encontra(HTname, buffer.nome);
+    if(node){
+        contacto = ((contact *)node->data);
         printa_contacto(contacto);
+    }
     else
         printf("Nome inexistente.\n");
 }
@@ -118,8 +117,9 @@ void procura(){
 /*se o contacto existir apaga-o*/
 void remove_c(){
     contact *contacto;
-    contacto = ((contact *)(encontra(HTname, buffer.nome)->data));
-    if(contacto){
+    node_linked *node = encontra(HTname, buffer.nome);
+    if(node){
+        contacto = ((contact *)(node->data));
         pop(HTname, contacto);
     }
     else
@@ -130,8 +130,9 @@ void remove_c(){
 void altera_e(){
     contact *contacto;
     dominio *dom;
-    contacto = ((contact *)(encontra(HTname, buffer.nome)->data));
-    if(contacto){
+    node_linked *node = encontra(HTname, buffer.nome);
+    if(node){
+        contacto = ((contact *)(node->data));
         contacto->local = realloc(contacto->local, sizeof(char) * strlen(buffer.local)+1);
         strcpy(contacto->local, buffer.local);
         dom = contacto->dom;
@@ -145,9 +146,12 @@ void altera_e(){
 
 /*recebe um dominio no buffer e conta o numero de email com o mesmo dominio*/
 void cont_dom(){
-    dominio *dom = ((dominio *)(encontra(HTdom, buffer.dominio)->data));
+    dominio *dom = NULL;
+    node_linked *node = encontra(HTdom, buffer.dominio);
     unsigned int counter = 0;
-    if(dom)
+    if(node){
+        dom = ((dominio *)node->data);
         counter = dom->counter;
+    }
     printf("%s:%u\n", buffer.dominio, counter);
 }
