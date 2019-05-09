@@ -30,13 +30,32 @@ void init_adress_book(d_linked_list AB){
 
 /*apaga todo o livro de contactos*/
 void destroy_adress_book(d_linked_list AB){
-
 }
 
+/*cria um contacto com os dados contidos no buffer*/
+contact *cria_contacto(){
+    contact *contacto;
+    contacto = malloc(sizeof(contact));
 
+    contacto->name = malloc(sizeof(char) * strlen(buffer.nome) + 1);
+    strcpy(contacto->name, buffer.nome);
 
+    contacto->local = malloc(sizeof(char) * strlen(buffer.local) + 1);
+    strcpy(contacto->local, buffer.local);
 
+    contacto->phone = malloc(sizeof(char) * strlen(buffer.tel) + 1);
+    strcpy(contacto->phone, buffer.tel);
 
+    return contacto;
+}
+
+dominio *cria_dominio(char *str){
+    dominio *dom = malloc(sizeof(dominio));
+    dom->counter = 1;
+    dom->dom = malloc(sizeof(char)*strlen(str)+1);
+    strcpy(dom->dom, buffer.dominio);
+    return dom;
+}
 
 
 
@@ -46,12 +65,7 @@ void destroy_adress_book(d_linked_list AB){
 /***********************************************************************/
 
 
-/*Aloca um contacto na memoria e devolve o seu ponteiro*/
-contact *malloc_contacto(){
-    contact *p;
-    p = malloc(sizeof(contact));
-    return p;
-}
+
 
 /*recebe o endereço de um contacto e remove-o da memória e atualiza o "livro"*/
 void destroi_contacto(contact *p){
@@ -84,25 +98,7 @@ void split_email(){
     strcpy(buffer.local, buffer.email);
 }
 
-/*cria um contacto com os dados contidos no buffer*/
-contact *cria_contacto(){
-    contact *contacto;
-    contacto = malloc_contacto();
 
-    contacto->name = malloc(sizeof(char) * strlen(buffer.nome) + 1);
-    strcpy(contacto->name, buffer.nome);
-
-    contacto->local = malloc(sizeof(char) * strlen(buffer.local) + 1);
-    strcpy(contacto->local, buffer.local);
-
-    /*contacto->dominio = malloc(sizeof(char) * strlen(buffer.dominio) + 1);
-    strcpy(contacto->dominio, buffer.dominio);*/
-
-    contacto->phone = malloc(sizeof(char) * strlen(buffer.tel) + 1);
-    strcpy(contacto->phone, buffer.tel);
-
-    return contacto;
-}
 
 /*imprime um contacto recebendo o seu endereço de memória*/
 void printa_contacto(contact *contacto){

@@ -55,7 +55,8 @@ int main(){
                 read_stdin();
                 cont_dom();
                 break;
-            case 'd':
+            case 'd':       /*DEBUG*/
+                /*para fazer debug; n mostra esquema hash_table nomes e d dos dominios*/
                 if((scanf("%c", &buffer.comando)),buffer.comando='n')
                     debug_hash_n();
                 else
@@ -64,8 +65,9 @@ int main(){
         }  
     }
     /*liberta toda a memoria ainda alocada*/
-    destroy_adress_book();
-    destroy_hash_table();
+    destroy_adress_book(adress_book);
+    destroy_hash_table(HTname);
+    destroy_hash_table(HTdom);
     return 0;
 }
 
@@ -82,21 +84,12 @@ adiciona ao "livro" ou apaga*/
 void adiciona(){
     contact *contacto;
     contacto = cria_contacto();
-    if (encontra_pessoa2(contacto->name)){
+    if (encontra(HTname, contacto->name)){
         printf("Nome existente.\n");
         destroi_contacto(contacto);
         return;
     }
-    if(!projeto2.head){
-        projeto2.head = contacto;
-        projeto2.tail = contacto;
-    }else{
-        contacto->previous = projeto2.tail;
-        projeto2.tail->next = contacto;
-        projeto2.tail = contacto;
-    }
-    hash_push_nome(contacto);
-    contacto->dom = hash_push_dominio(buffer.dominio);
+    push(contacto);
 }
 
 /*imprime todos os contactos por ordem de adicao*/
@@ -112,7 +105,7 @@ void lista(){
 /*procura uma pessoa e se encontrar imprime o seu contacto*/
 void procura(){
     contact *contacto;
-    contacto = encontra_pessoa2(buffer.nome);
+    contacto = ((contact *)(encontra(HTname, buffer.nome)->));
     if(contacto)
         printa_contacto(contacto);
     else
@@ -122,11 +115,9 @@ void procura(){
 /*se o contacto existir apaga-o*/
 void remove_c(){
     contact *contacto;
-    contacto = encontra_pessoa2(buffer.nome);
+    contacto = (contact *)encontra(HTname, buffer.nome);
     if(contacto){
-        hash_pop_contacto(contacto);
-        hash_pop_dominio(contacto->dom);
-        destroi_contacto(contacto);
+        pop(contacto);
     }
     else
         printf("Nome inexistente.\n");

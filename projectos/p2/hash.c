@@ -20,16 +20,82 @@ void init_hash_table(hash_table *HT){
     }
 }
 
-void destroy_hash_table(hash_table *){
+//void destroy_hash_table(hash_table *HT){
+//    return;
+//}
 
+void *encontra(hash_table *HT, char *str){
+    hash h = hasher(str);
+    node_linked *atual = HT[h].head;
+    while(atual){
+        if(buffer.comando == 'a' | buffer.comando == 'p' | buffer.comando == 'r' | buffer.comando == 'e'){
+            if(!strcmp(((contact *)atual->data)->name, str))
+                return atual->data;
+        }
+        else{
+            if (!strcmp(((dominio *)atual->data)->dom, str))
+                return atual->data;
+        }
+        atual = atual->next;
+    }
+    return NULL;
 }
 
 
+/*recebe uma hash table e um contacto ou dominio e grava na hash table*/
+void push(hash_table *HT, void *objeto){
+    contact *contacto;
+    dominio *dom;
+    node_linked *node = malloc(sizeof(node_linked));
+    hash h;
+    if(buffer.comando == 'a'){
+        h = hasher(((contact*)objeto)->name);
+        /*  criar/incrementar o dominio         */
+        dom = encontra(HTdom, buffer.dominio);
+        if(dom)
+            dom->counter++;
+        else{
+            dom = cria_dominio(buffer.dominio);
+            /*gravar dominio*/
+            buffer.comando='x';
+            push(HTdom, dom);
+        }
+        /*                                      */
+        contacto->dom = dom;
+        
+    }
+    else{   /*comando == 'e'*/
+        h = hasher(((dominio *)objeto)->dom);
+    }
+    node->data = objeto;
+    node->next = HT[h].head;
+    HT[h].head = node;
+}
 
-
-
+/*recebe um contacto ou dominio e remove da hash table*/
+void pop(hash_table *HT, void *objeto){
+    contact *contacto;
+    dominio *dom;
+    node_linked *node;
+    
+}
 
 /***********************************************************************/
+
+void delete_node(hash_table *HT, hash_node *node, hash me){
+    hash_node *atual;
+    atual = HT[me].head;
+    if(node == atual){
+        HT[me].head = node->samehash_next;
+        free(node);
+        return ;
+    }
+    while(atual->samehash_next!=node){
+        atual = atual->samehash_next;
+    }
+    atual->samehash_next = node->samehash_next;
+    free(node);
+}
 
 
 

@@ -21,7 +21,8 @@
 /*╭───────────────────╮
   │ variaveis globais │
   ╰───────────────────╯*/
-d_linked_list adress_book;    /*livro de contactos; inicio e fim da lista ligada*/
+
+d_linked_list adress_book;  /*livro de contactos; inicio e fim da lista ligada*/
 buff buffer;                /*auxiliar das varias variaveis existentes*/
 
 
@@ -34,8 +35,8 @@ void read_stdin();                          /*le do stdin para a estrutura buffe
 void init_adress_book(d_linked_list);
 void destroy_adress_book(d_linked_list);
 
-
-
+contact *cria_contacto();
+dominio *cria_dominio(char *str);     /*inicializa um dominio*/
 
 
 
