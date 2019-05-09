@@ -38,7 +38,7 @@ void destroy_adress_book(d_linked_list);
 contact *cria_contacto();
 dominio *cria_dominio(char *str);     /*inicializa um dominio*/
 
-void destroi_contacto(dominio *p);
+void destroi_contacto(contact *p);
 void destroi_dominio(dominio *p);
 
 void push_list(d_linked_list, contact *);

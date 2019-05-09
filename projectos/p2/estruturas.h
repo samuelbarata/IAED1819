@@ -21,7 +21,7 @@
 
 /*estrutura de uma double linked list [head = first; tail = last]*/
 typedef struct d_linked_list{
-    struct node_double *head, *tail;
+    struct contact *head, *tail;
 } d_linked_list;
 
 /*hash_tables sao linked lists contem a head*/

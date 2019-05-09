@@ -20,21 +20,24 @@ void init_hash_table(hash_table *HT){
     }
 }
 
-//void destroy_hash_table(hash_table *HT){
-//    return;
-//}
+void destroy_hash_table(hash_table *HT){
+    return;
+}
 
 node_linked *encontra(hash_table *HT, char *str){
     hash h = hasher(str);
     node_linked *atual = HT[h].head;
+    #ifdef DEBUG
+    printf("encontra\n");
+    #endif
     while(atual){
         if(buffer.comando == 'a' | buffer.comando == 'p' | buffer.comando == 'r' | buffer.comando == 'e'){
             if(!strcmp(((contact *)atual->data)->name, str))
-                return atual->data;
+                return atual;
         }
         else{
             if (!strcmp(((dominio *)atual->data)->dom, str))
-                return atual->data;
+                return atual;
         }
         atual = atual->next;
     }
@@ -48,11 +51,17 @@ void push(hash_table *HT, void *objeto){
     dominio *dom;
     node_linked *node = malloc(sizeof(node_linked));
     hash h;
+    #ifdef DEBUG
+    printf("push");
+    #endif
     if(buffer.comando == 'a'){
+        #ifdef DEBUG
+        printf(" contacto\n");
+        #endif
         h = hasher(((contact*)objeto)->name);
-        contacto = encontra(HTname, ((contact*)objeto))->data;
+        contacto = (contact*) encontra(HTname, ((contact*)objeto)->name);
         /*  criar/incrementar o dominio         */
-        dom = encontra(HTdom, buffer.dominio);
+        dom = (dominio*)encontra(HTdom, buffer.dominio);
         if(dom)
             dom->counter++;
         else{
@@ -66,6 +75,9 @@ void push(hash_table *HT, void *objeto){
         push_list(adress_book, contacto);
     }
     else{   /*comando == 'e'*/
+        #ifdef DEBUG
+        printf("dominio\n");
+        #endif
         h = hasher(((dominio *)objeto)->dom);
     }
     node->data = objeto;
@@ -118,30 +130,29 @@ void pop(hash_table *HT, void *objeto){
 */
 
 /*Imprime um esquema das hashes*/
-void debug_hash_n(){
+void debug_hash(char c){
     int i;
-    hash_node *k;
-    printf("\nName Hash Table:\n");
-    for(i=0;i<hash_size;i++){
-        if(HTname[i].head!=NULL)
-            printf("\nhash%04d:",i);
-        for(k=HTname[i].head;k!=NULL;k=k->samehash_next){
-            printf(" %s",k->contacto->name);
-        }
+    node_linked *k;
+    hash_table *HT;
+    switch(c){
+        case 'd':
+            HT=HTdom;
+            break;
+        case 'n':
+            HT=HTname;
+            break;
+        default:
+            return;
     }
-    printf("\n");
-}
-
-/*Imprime um esquema das hashes*/
-void debug_hash_d(){
-    int i;
-    dominio *k;
-    printf("\n\nDomain Hash Table:\n");
+    printf("\nHash Table:\n");
     for(i=0;i<hash_size;i++){
-        if(HDom[i].dom!=NULL)
+        if(HT[i].head!=NULL)
             printf("\nhash%04d:",i);
-        for(k=HDom[i].dom;k!=NULL;k=k->samehash_next){
-            printf(" %s:%u",k->dom, k->counter);
+        for(k=HT[i].head;k!=NULL;k=k->next){
+            if(c=='d')
+                printf(" %s", ((dominio *)k->data)->dom);
+            else
+                printf(" %s", ((contact *)k->data)->name);
         }
     }
     printf("\n");

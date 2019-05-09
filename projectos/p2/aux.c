@@ -35,6 +35,9 @@ void destroy_adress_book(d_linked_list AB){
 /*cria um contacto com os dados contidos no buffer*/
 contact *cria_contacto(){
     contact *contacto;
+    #ifdef DEBUG
+    printf("cria contacto\n");
+    #endif
     contacto = malloc(sizeof(contact));
 
     contacto->name = malloc(sizeof(char) * strlen(buffer.nome) + 1);
@@ -76,20 +79,32 @@ void destroi_dominio(dominio *p){
 
 
 void push_list(d_linked_list AB, contact *c){
-    
+    if(!AB.head){
+        AB.head = c;
+        AB.tail = c;
+    }else{
+        c->prev = AB.tail;
+        AB.tail->next = c;
+        AB.tail = c;
+    }
 }
 
 void pop_list(d_linked_list AB, contact *c){
+    if(c->prev)         /*se nao e o primeiro*/
+        c->prev->next = c->next;
+    if(c->next)         /*se nao e o ultimo*/
+        c->next->prev = c->prev;
+    if(c==AB.head)      /*se e o primeiro*/
+        AB.head = c->next;
+    if(c==AB.tail)      /*se e o ultimo*/
+        AB.tail = c->prev;
 
+    destroi_contacto(c);
 }
 
 
 
 /***********************************************************************/
-
-
-
-
 
 
 
@@ -113,23 +128,4 @@ void split_email(){
 void printa_contacto(contact *contacto){
     printf("%s %s@%s %s\n",
     contacto->name,contacto->local,contacto->dom->dom,contacto->phone);
-}
-
-/*devolve o endereco de memoria do contacto cujo nome esta no buffer
-ou NULL se não encontrar*/
-contact *encrontra_nome(){
-    contact *contacto;
-    contacto = projeto2.head;
-    while(contacto){
-        if(!strcmp(contacto->name, buffer.nome))
-            return contacto;
-        contacto = contacto->next;
-    }
-    return NULL;
-}
-
-/*apaga todas as memorias alocadas*/
-void destroi_lista(){
-    while(projeto2.head)
-        destroi_contacto(projeto2.head);
 }

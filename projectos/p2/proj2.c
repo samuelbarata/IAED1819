@@ -55,19 +55,19 @@ int main(){
                 read_stdin();
                 cont_dom();
                 break;
-            case 'd':       /*DEBUG*/
-                /*para fazer debug; n mostra esquema hash_table nomes e d dos dominios*/
-                if((scanf("%c", &buffer.comando)),buffer.comando='n')
-                    debug_hash_n();
-                else
-                    debug_hash_d();
-                break;
+            #ifdef DEBUG
+                case 'd':       /*DEBUG*/
+                    /*mostra esquema hash*/
+                    scanf("%c", &buffer.comando); /*d = dom; n = names*/
+                    debug_hash(buffer.comando);
+                    break;
+            #endif
         }  
     }
     /*liberta toda a memoria ainda alocada*/
-    destroy_adress_book(adress_book);
+    /*destroy_adress_book(adress_book);
     destroy_hash_table(HTname);
-    destroy_hash_table(HTdom);
+    destroy_hash_table(HTdom);*/
     return 0;
 }
 
@@ -83,6 +83,9 @@ verifica para erros
 adiciona ao "livro" ou apaga*/
 void adiciona(){
     contact *contacto;
+    #ifdef DEBUG
+    printf("adiciona\n");
+    #endif
     contacto = cria_contacto();
     if (encontra(HTname, contacto->name)){
         printf("Nome existente.\n");
@@ -105,7 +108,7 @@ void lista(){
 /*procura uma pessoa e se encontrar imprime o seu contacto*/
 void procura(){
     contact *contacto;
-    contacto = ((contact *)(encontra(HTname, buffer.nome)->));
+    contacto = ((contact *)(encontra(HTname, buffer.nome)->data));
     if(contacto)
         printa_contacto(contacto);
     else
@@ -115,9 +118,9 @@ void procura(){
 /*se o contacto existir apaga-o*/
 void remove_c(){
     contact *contacto;
-    contacto = (contact *)encontra(HTname, buffer.nome);
+    contacto = ((contact *)(encontra(HTname, buffer.nome)->data));
     if(contacto){
-        pop(contacto);
+        pop(HTname, contacto);
     }
     else
         printf("Nome inexistente.\n");
@@ -127,13 +130,14 @@ void remove_c(){
 void altera_e(){
     contact *contacto;
     dominio *dom;
-    contacto = encontra_pessoa2(buffer.nome);
+    contacto = ((contact *)(encontra(HTname, buffer.nome)->data));
     if(contacto){
         contacto->local = realloc(contacto->local, sizeof(char) * strlen(buffer.local)+1);
         strcpy(contacto->local, buffer.local);
         dom = contacto->dom;
-        hash_pop_dominio(dom);
-        contacto->dom = hash_push_dominio(buffer.dominio);
+        pop(HTdom, dom);
+        dom = cria_dominio(buffer.dominio);
+        push(HTdom, dom);
     }
     else
         printf("Nome inexistente.\n");
@@ -141,7 +145,7 @@ void altera_e(){
 
 /*recebe um dominio no buffer e conta o numero de email com o mesmo dominio*/
 void cont_dom(){
-    dominio *dom = hash_find_dom(buffer.dominio);
+    dominio *dom = ((dominio *)(encontra(HTdom, buffer.dominio)->data));
     unsigned int counter = 0;
     if(dom)
         counter = dom->counter;
