@@ -29,7 +29,7 @@ void destroy_hash_table(hash_table *HT, char c){
             if(c=='d')
                 destroi_dominio((dominio*)HT[i].head->data);
             free(HT[i].head);
-            HT[i].head = HT[i].head->next;
+            HT[i].head = aux;
         }
     }
     return;
@@ -39,7 +39,7 @@ node_linked *encontra(hash_table *HT, char *str){
     hash h = hasher(str);
     node_linked *atual = HT[h].head;
     while(atual){
-        if(buffer.comando == 'a' | buffer.comando == 'p' | buffer.comando == 'r' | buffer.comando == 'e'){
+        if(buffer.comando == 'a' || buffer.comando == 'p' || buffer.comando == 'r' || buffer.comando == 'e'){
             if(!strcmp(((contact *)atual->data)->name, str))
                 return atual;
         }
