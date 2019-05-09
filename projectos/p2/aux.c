@@ -46,6 +46,8 @@ contact *cria_contacto(){
     contacto->phone = malloc(sizeof(char) * strlen(buffer.tel) + 1);
     strcpy(contacto->phone, buffer.tel);
 
+    contacto->next=NULL;
+    contacto->prev=NULL;
     return contacto;
 }
 
@@ -70,6 +72,18 @@ void destroi_dominio(dominio *p){
     free(p->dom);
     free(p);
 }
+
+
+
+void push_list(d_linked_list AB, contact *c){
+    
+}
+
+void pop_list(d_linked_list AB, contact *c){
+
+}
+
+
 
 /***********************************************************************/
 

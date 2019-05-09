@@ -35,12 +35,6 @@ typedef struct node_linked{
     void *data;
 } node_linked;
 
-/*node de double linked list, contem conteudo e next/prev node*/
-typedef struct node_double{
-    struct node_double *next, *prev;
-    void *data;
-} node_double;
-
 /*contem um dominio e o numero de ocorrencias*/
 typedef struct dominio{
     unsigned int counter;
@@ -49,10 +43,12 @@ typedef struct dominio{
 
 /*contem um contacto, nome email e telefone*/
 typedef struct contact{
+    struct contact *prev;
     char *name;   /*maximo de 1023 caracteres ([0-9a-zA-Z-_]+)*/
     char *local;  /*maximo de 0511 caracteres ([0-9a-zA-Z-_.])*/
     dominio *dom; /*maximo de 0511 caracteres (@[0-9a-zA-Z-_.])*/
     char *phone;
+    struct contact *next;
 } contact;
 
 /*buff usado na variavel global buffer para receber informacao do stdin*/

@@ -89,13 +89,13 @@ void adiciona(){
         destroi_contacto(contacto);
         return;
     }
-    push(contacto);
+    push(HTname, contacto);
 }
 
 /*imprime todos os contactos por ordem de adicao*/
 void lista(){
     contact *contacto;
-    contacto = projeto2.head;
+    contacto = adress_book.head;
     while(contacto){
         printa_contacto(contacto);
         contacto = contacto->next;
