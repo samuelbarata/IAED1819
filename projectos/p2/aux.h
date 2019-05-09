@@ -32,8 +32,8 @@ buff buffer;                /*auxiliar das varias variaveis existentes*/
 void read_stdin();                          /*le do stdin para a estrutura buffer*/
 
 /*livro contactos*/
-void init_adress_book(d_linked_list);
-void destroy_adress_book(d_linked_list);
+void init_adress_book(d_linked_list *);
+void destroy_adress_book(d_linked_list *);
 
 contact *cria_contacto();
 dominio *cria_dominio(char *str);     /*inicializa um dominio*/
@@ -46,9 +46,6 @@ void pop_list(d_linked_list *, contact *);
 
 void split_email();                         /*divide o email local + dominio(inclui @)*/
 void printa_contacto(contact *);            /*imprime um contacto recebendo o seu endereço*/
-
-
-void destroi_lista();                       /*free toda a memoria ainda alocada*/
 
 void printd(char *debug_message);
 

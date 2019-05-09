@@ -27,7 +27,7 @@ void cont_dom();    /*conta todos os email com um dado dominio*/
 */
 
 int main(){
-    init_adress_book(adress_book);
+    init_adress_book(&adress_book);
     init_hash_table(HTname);
     init_hash_table(HTdom);
     while((scanf("%c", &buffer.comando)),buffer.comando!='x'){
@@ -65,9 +65,9 @@ int main(){
         }  
     }
     /*liberta toda a memoria ainda alocada*/
-    /*destroy_adress_book(adress_book);
-    destroy_hash_table(HTname);
-    destroy_hash_table(HTdom);*/
+    destroy_adress_book(&adress_book);
+    destroy_hash_table(HTname, 'n');
+    destroy_hash_table(HTdom, 'd');
     return 0;
 }
 
@@ -139,6 +139,7 @@ void altera_e(){
         pop(HTdom, dom);
         dom = cria_dominio(buffer.dominio);
         push(HTdom, dom);
+        contacto->dom=dom;
     }
     else
         printf("Nome inexistente.\n");

@@ -23,13 +23,19 @@ void read_stdin(){
 }
 
 /*inicializa um livro de contactos*/
-void init_adress_book(d_linked_list AB){
-    AB.head = NULL;
-    AB.tail = NULL;
+void init_adress_book(d_linked_list *AB){
+    AB->head = NULL;
+    AB->tail = NULL;
 }
 
 /*apaga todo o livro de contactos*/
-void destroy_adress_book(d_linked_list AB){
+void destroy_adress_book(d_linked_list *AB){
+    contact *aux;
+    while(AB->head!=NULL){
+        aux = AB->head->next;
+        destroi_contacto(AB->head);
+        AB->head = aux;   
+    }
 }
 
 /*cria um contacto com os dados contidos no buffer*/

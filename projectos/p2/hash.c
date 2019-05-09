@@ -20,7 +20,18 @@ void init_hash_table(hash_table *HT){
     }
 }
 
-void destroy_hash_table(hash_table *HT){
+void destroy_hash_table(hash_table *HT, char c){
+    int i;
+    node_linked *aux;
+    for(i=0;i<hash_size;i++){
+        while(HT[i].head!=NULL){
+            aux = HT[i].head->next;
+            if(c=='d')
+                destroi_dominio((dominio*)HT[i].head->data);
+            free(HT[i].head);
+            HT[i].head = HT[i].head->next;
+        }
+    }
     return;
 }
 
@@ -46,15 +57,17 @@ node_linked *encontra(hash_table *HT, char *str){
 void push(hash_table *HT, void *objeto){
     contact *contacto;
     dominio *dom;
-    node_linked *node = malloc(sizeof(node_linked));
+    node_linked *node = malloc(sizeof(node_linked)), *aux;
     hash h;
     if(buffer.comando == 'a'){
         h = hasher(((contact*)objeto)->name);
         contacto = (contact*)objeto;
         /*  criar/incrementar o dominio         */
-        dom = (dominio*)encontra(HTdom, buffer.dominio);
-        if(dom)
+        aux = encontra(HTdom, buffer.dominio);
+        if(aux){
+            dom = ((dominio*)aux->data);
             dom->counter++;
+        }
         else{
             dom = cria_dominio(buffer.dominio);
             /*gravar dominio*/
@@ -84,7 +97,8 @@ void pop(hash_table *HT, void *objeto){
         node = encontra(HTname, ((contact*)objeto)->name);
         contacto = (contact *)objeto;
         dom = contacto->dom;
-        destroi_contacto(contacto); /*apaga o contacto*/
+        pop_list(&adress_book, contacto); /*apaga o contacto*/
+        buffer.comando='x';
         pop(HTdom, dom);
     }
     else{   /*comando e*/
