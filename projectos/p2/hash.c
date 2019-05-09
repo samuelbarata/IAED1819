@@ -1,18 +1,5 @@
 #include "hash.h"
 
-/*╭──────────────────────────────────────┬─────┬─────────────────────────────────────────╮
-  │                                       NOMES                                          │
-  ╰──────────────────────────────────────┴─────┴─────────────────────────────────────────╯
-*/
-
-/*inicializa uma hash table com "hash_size" nodes a NULL*/
-void init_hash_table(){
-    int i;
-    for(i=0;i<hash_size;i++){
-        HTname[i].head = NULL;
-    }
-}
-
 /*devolve uma hash para cada objeto [max = hash_size]*/
 /*http://www.cse.yorku.ca/~oz/hash.html*/
 hash hasher(char *str){
@@ -22,6 +9,37 @@ hash hasher(char *str){
         me = ((me << 5) + me) + c; /* hash * 33 + c */
     return me % hash_size;
 }
+
+/*HASH TABLES*/
+
+/*inicializa uma hash table com "hash_size" nodes a NULL*/
+void init_hash_table(hash_table *HT){
+    int i;
+    for(i=0;i<hash_size;i++){
+        HT[i].head = NULL;
+    }
+}
+
+void destroy_hash_table(hash_table *){
+
+}
+
+
+
+
+
+
+/***********************************************************************/
+
+
+
+/*╭──────────────────────────────────────┬─────┬─────────────────────────────────────────╮
+  │                                       NOMES                                          │
+  ╰──────────────────────────────────────┴─────┴─────────────────────────────────────────╯
+*/
+
+
+
 
 /**/
 void destroy_hashnodes(hash_table HThead){

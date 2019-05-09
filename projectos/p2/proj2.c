@@ -27,10 +27,9 @@ void cont_dom();    /*conta todos os email com um dado dominio*/
 */
 
 int main(){
-    init_hash_dominio();
-    init_hash_table();
-    projeto2.head = NULL; /*inicializa o livro de contactos como vazio*/
-    projeto2.tail = NULL;
+    init_adress_book(adress_book);
+    init_hash_table(HTname);
+    init_hash_table(HTdom);
     while((scanf("%c", &buffer.comando)),buffer.comando!='x'){
         switch (buffer.comando){
             case 'a':
@@ -57,15 +56,16 @@ int main(){
                 cont_dom();
                 break;
             case 'd':
-                debug_hash_n();
-                debug_hash_d();
+                if((scanf("%c", &buffer.comando)),buffer.comando='n')
+                    debug_hash_n();
+                else
+                    debug_hash_d();
                 break;
         }  
     }
     /*liberta toda a memoria ainda alocada*/
-    destroi_lista();
-    destroy_hashT();
-    destroy_hashD();
+    destroy_adress_book();
+    destroy_hash_table();
     return 0;
 }
 

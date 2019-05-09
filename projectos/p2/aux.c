@@ -7,13 +7,49 @@
 
 #include "aux.h"
 
+/*le do stdin e guarda no buffer*/
+void read_stdin(){
+    if(buffer.comando == 'c')
+        scanf("%s", buffer.dominio);
+    else{
+        scanf("%s", buffer.nome);
+        if (buffer.comando == 'a' || buffer.comando == 'e'){
+            scanf("%s", buffer.email);
+            split_email();
+        }
+        if (buffer.comando == 'a')
+            scanf("%s", buffer.tel);
+    }
+}
+
+/*inicializa um livro de contactos*/
+void init_adress_book(d_linked_list AB){
+    AB.head = NULL;
+    AB.tail = NULL;
+}
+
+/*apaga todo o livro de contactos*/
+void destroy_adress_book(d_linked_list AB){
+
+}
+
+
+
+
+
+
+
+
+
+
+
+/***********************************************************************/
+
 
 /*Aloca um contacto na memoria e devolve o seu ponteiro*/
 contact *malloc_contacto(){
     contact *p;
     p = malloc(sizeof(contact));
-    p->next = NULL;
-    p->previous = NULL;
     return p;
 }
 
@@ -33,20 +69,7 @@ void destroi_contacto(contact *p){
     free(p);
 }
 
-/*le do stdin e guarda no buffer*/
-void read_stdin(){
-    if(buffer.comando == 'c')
-        scanf("%s", buffer.dominio);
-    else{
-            scanf("%s", buffer.nome);
-        if (buffer.comando == 'a' || buffer.comando == 'e'){
-            scanf("%s", buffer.email);
-            split_email();
-        }
-        if (buffer.comando == 'a')
-            scanf("%s", buffer.tel);
-    }
-}
+
 
 /*pega no email do buffer e divide-o em local/dominio*/
 void split_email(){

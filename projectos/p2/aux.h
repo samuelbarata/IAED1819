@@ -18,17 +18,27 @@
 #include "estruturas.h"
 #include "hash.h"
 
-
 /*╭───────────────────╮
   │ variaveis globais │
   ╰───────────────────╯*/
-livro projeto2; /*livro de contactos; inicio e fim da lista ligada*/
-buff buffer;    /*auxiliar das varias variaveis existentes*/
+d_linked_list adress_book;    /*livro de contactos; inicio e fim da lista ligada*/
+buff buffer;                /*auxiliar das varias variaveis existentes*/
+
 
 /*╭────────────────────╮
   │ funcoes auxiliares │
   ╰────────────────────╯*/
-void read_stdin ();                         /*le do stdin para a estrutura buffer*/
+void read_stdin();                          /*le do stdin para a estrutura buffer*/
+
+/*livro contactos*/
+void init_adress_book(d_linked_list);
+void destroy_adress_book(d_linked_list);
+
+
+
+
+
+
 contact *cria_contacto();                   /*cria um contacto com o conteudo do buffer*/
 contact *malloc_contacto();                 /*cria um contacto vazio*/
 void destroi_contacto(contact *);           /*destroi um contacto recebendo o seu endereço*/

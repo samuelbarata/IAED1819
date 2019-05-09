@@ -16,21 +16,29 @@
 /*╭───────────────────╮
   │ variaveis globais │
   ╰───────────────────╯*/
+
 hash_table HTname[hash_size];
-hash_dominio HDom[hash_size];
+hash_table HTdom[hash_size];
 
 typedef unsigned int hash;
-
 hash hasher(char *);                                /*devolve a hash de uma string*/
 
-void init_hash_table();                 /*inicia hash table dos nomes a NULL*/
+/*hash tables*/
+void init_hash_table(hash_table *);                 /*inicia hash table dos nomes a NULL*/
+void destroy_hash_table(hash_table *);
+
+
+
+
+
+
 void delete_node(hash_table *, hash_node *, hash);        /*apaga um node da hashtable*/
 void destroy_hashnodes(hash_table);
 void destroy_hashT();                   /*destroi uma hash table*/
 void hash_push_nome(contact *contacto);
 void hash_pop_contacto(contact *contacto);
 contact *encontra_pessoa2(char *);
-hash_node *encrontra_hash_node(char *str, hash_table HT);
+hash_ *encrontra_hash_node(char *str, hash_table HT);
 
 void init_hash_dominio();
 void destroy_hashD();
