@@ -38,14 +38,14 @@ void destroy_adress_book(d_linked_list);
 contact *cria_contacto();
 dominio *cria_dominio(char *str);     /*inicializa um dominio*/
 
+void destroi_contacto(dominio *p);
+void destroi_dominio(dominio *p);
 
 
-contact *cria_contacto();                   /*cria um contacto com o conteudo do buffer*/
-contact *malloc_contacto();                 /*cria um contacto vazio*/
-void destroi_contacto(contact *);           /*destroi um contacto recebendo o seu endereço*/
 void split_email();                         /*divide o email local + dominio(inclui @)*/
 void printa_contacto(contact *);            /*imprime um contacto recebendo o seu endereço*/
-contact *encrontra_nome();                  /*procura o nome do buffer nos contactos do livro*/
+
+
 void destroi_lista();                       /*free toda a memoria ainda alocada*/
 
 #endif

@@ -57,31 +57,26 @@ dominio *cria_dominio(char *str){
     return dom;
 }
 
+/*recebe o endereço de um contacto e apaga o se conteudo*/
+void destroi_contacto(contact *p){
+    free(p->name);
+    free(p->local);
+    free(p->phone);
+    free(p);
+}
 
-
-
-
+/*recebe o endereço de um dominio e apaga o seu conteudo*/
+void destroi_dominio(dominio *p){
+    free(p->dom);
+    free(p);
+}
 
 /***********************************************************************/
 
 
 
 
-/*recebe o endereço de um contacto e remove-o da memória e atualiza o "livro"*/
-void destroi_contacto(contact *p){
-    if(p->previous)
-        p->previous->next = p->next;
-    if(p->next)
-        p->next->previous = p->previous;
-    free(p->name);
-    free(p->local);
-    free(p->phone);
-    if(p==projeto2.head)
-        projeto2.head = p->next;
-    else if(p==projeto2.tail)
-        projeto2.tail = p->previous;
-    free(p);
-}
+
 
 
 

@@ -76,8 +76,37 @@ void push(hash_table *HT, void *objeto){
 void pop(hash_table *HT, void *objeto){
     contact *contacto;
     dominio *dom;
-    node_linked *node;
-    
+    node_linked *atual, *node;
+    hash h;
+    if(buffer.comando == 'r'){
+        h = hasher(((contact *)objeto)->name);
+        node = encontra(HTname, ((contact*)objeto)->name);
+        contacto = (contact *)objeto;
+        dom = contacto->dom;
+        destroi_contacto(contacto); /*apaga o contacto*/
+        pop(HTdom, dom);
+    }
+    else{   /*comando e*/
+        dom = (dominio *)objeto;
+        if (dom->counter>1){
+            dom->counter--;
+            return;
+        }
+        node = encontra(HTdom, ((dominio *)objeto)->dom);
+        h = hasher(((dominio *)objeto)->dom);
+        destroi_dominio(dom);       /*apaga o dominio*/
+    }
+    atual = HT[h].head;
+    if(node == atual){
+        HT[h].head = atual->next;
+        free(node);                 /*apaga o node*/
+        return;
+    }
+    while(atual->next != node){
+        atual=atual->next;
+    }
+    atual->next = node->next;
+    free(node);
 }
 
 /***********************************************************************/
