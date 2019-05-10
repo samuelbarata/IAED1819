@@ -49,4 +49,6 @@ void printa_contacto(contact *);            /*imprime um contacto recebendo o se
 
 void printd(char *debug_message);
 
+void destroy_dominios(hash_table *);
+
 #endif

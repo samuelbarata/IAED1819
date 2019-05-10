@@ -136,3 +136,19 @@ void printd(char *debug_message){
     #endif
     debug_message++; /*para nao dar warnings de n usada*/
 }
+
+
+/*destroi todos os dominios ainda alocados*/
+void destroy_dominios(hash_table *HT){
+    int i;
+    node_linked *node, *aux;
+    for(i=0;i<hash_size;i++){
+        node = HT[i].head;
+        while(node){    
+            aux = node->next;
+            destroi_dominio(node->data);
+            node = aux;
+        }
+    }  
+}
+

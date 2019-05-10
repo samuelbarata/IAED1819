@@ -19,14 +19,12 @@ void init_hash_table(hash_table *HT){
 }
 
 /*faz free de uma hash table*/
-void destroy_hash_table(hash_table *HT, char c){
+void destroy_hash_table(hash_table *HT){
     int i;
     node_linked *aux;
     for(i=0;i<hash_size;i++){
         while(HT[i].head!=NULL){
             aux = HT[i].head->next;
-            if(c=='d')/*caso receba um dominio tem de fazer free aos dominio*/
-                destroi_dominio((dominio*)HT[i].head->data);
             free(HT[i].head);
             HT[i].head = aux;
         }
