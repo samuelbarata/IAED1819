@@ -57,6 +57,8 @@ for test_in in `ls -rS ${test_dir}/*.in`; do
     if [ ${rv_student} != 0 ]; then
         echo -e "${RED}ERROR${NC}: Program return ${YELLOW}${rv_student}${NC}!"
         rm -f ${student_out}
+        valgrind --tool=memcheck --leak-check=full ./${prog_name} < ${test_in}
+        rm -f ${prog_name}
         exit 1
     else
         echo "Program successfully ran..."
@@ -104,10 +106,10 @@ for test_in in `ls -rS ${test_dir}/*.in`; do
     else nofile=0; fi
 
     obs=''
-    if [[ $killed == 1 ]]; then obs="killed ${obs}"; fi
-    if [[ $noerrs == 0 ]]; then obs="ERRS ${obs}"; fi
-    if [[ $noleaks == 0 ]]; then obs="LEAKS ${obs}"; fi
-    if [[ $nofile == 1 ]]; then obs="nofile ${obs}"; fi
+    if [[ $killed == 1 ]]; then obs="${RED}killed${NC} ${obs}"; fi
+    if [[ $noerrs == 0 ]]; then obs="${RED}ERRS${NC} ${obs}"; fi
+    if [[ $noleaks == 0 ]]; then obs="${RED}LEAKS${NC} ${obs}"; fi
+    if [[ $nofile == 1 ]]; then obs="${RED}nofile${NC} ${obs}"; fi
 
     if [ ${rv_diff} == 0 ]; then
         echo -e "Test ${test_in} ${GREEN}PASSED${NC}!"
@@ -120,7 +122,7 @@ for test_in in `ls -rS ${test_dir}/*.in`; do
     if [ ${score} != 1 ]; then
         clear
         echo -e "${BLINK}${RED}STOP${NC}${NB}: Looks like there's an issue reported by valgrind!"
-        echo -e "ISSUE:${obs} File:${test_in}" 
+        echo -e "${YELLOW}ISSUE${NC}:${obs} ${YELLOW}File${NC}:${test_in}" 
         rv=1
         valgrind --tool=memcheck --leak-check=full ./${prog_name} < ${test_in}
         echo "File:${test_in}"
@@ -130,5 +132,13 @@ for test_in in `ls -rS ${test_dir}/*.in`; do
     rm -f ${student_out} ${vg_out}
 done
 rm -f ${student_out} ${vg_out}
-echo -e "${BLINK}${BLUE}DONE...${NC}${NB}"
+if [ ${rv} == 0 ]; then
+    echo -e "${YELLOW}╔═══════════════════════╗"
+    echo -e "║   ${GREEN}${BLINK}All Tests PASSED!${NB}${YELLOW}   ║"
+    echo -e "╚═══════════════════════╝${NC}"
+else
+    echo -e "${YELLOW}╔══════════════════════╗"
+    echo -e "║   ${RED}${BLINK}GIGANTIC FAILURE${NB}${YELLOW}   ║"
+    echo -e "╚══════════════════════╝${NC}"
+fi
 exit $rv

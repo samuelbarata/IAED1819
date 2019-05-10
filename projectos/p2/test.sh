@@ -26,6 +26,10 @@ NB='\e[25m'
 NC='\033[0m'
 
 
+if  ! ( which `cut <<<valgrind -f1 -d\ ` >/dev/null 2>&1 ) ; then		#se falhar aqui provavelmente não tem valgrind, provavelmente está num mac e apaga tralha desnecessária
+    BLINK=''
+    NB=''
+fi
 
 ${CC} -o ${prog_name} $*
 rv_compile=$?
@@ -36,15 +40,16 @@ else
     echo -e "${BLUE}Program successfully compiled...${NC}"
 fi
 
-if  [ -f /usr/bin/time ] ; then
-    time_cmd='/usr/bin/time'
-    time_args=(-f "Resources: real:%es mem:%MKB")
-else
-    time_cmd="time"
-    time_args=""
-fi
+#if  [ -f /usr/bin/time ] ; then
+#    time_cmd='/usr/bin/time'
+#    time_args=(-v "Resources: real:%es mem:%MKB")
+#else
+#    time_cmd="time"
+#    time_args=""
+#fi
 
-okay=1
+
+okay=0
 for test_in in `ls -rS ${test_dir}/*.in`; do
     #echo "Test:" "${test_in}"
     test_out="${test_in%.in}.out"
@@ -54,18 +59,17 @@ for test_in in `ls -rS ${test_dir}/*.in`; do
     rv_student=$?
 
     if [ ! -f "${student_out}" ]; then
-        echo "ERROR: The output of the exercise was not created (file ${student_out})!"
-        okay=0
+        echo "${RED}ERROR${NC}: The output of the exercise was not created (file ${student_out})!"
+        okay+=1
         break
     fi
 
     if [ ${rv_student} != 0 ]; then
         echo -e "${RED}ERROR${NC}: Program return ${YELLOW}${rv_student}${NC}!"
-        rm -f ${student_out}
-        okay=0
+        okay+=1
         break
-    else
-        echo "Program successfully ran..."
+    #else
+    #    echo "Program successfully ran..."
     fi
 
     ${DIFF} ${student_out} ${test_out}
@@ -75,16 +79,21 @@ for test_in in `ls -rS ${test_dir}/*.in`; do
     if [ ${rv_diff} == 0 ]; then
         echo -e "Test ${test_in} ${GREEN}PASSED${NC}!"
     else
-        echo "Test ${test_in} FAILURE!"
-        okay=0
+        echo "Test ${test_in} ${RED}FAILURE${NC}!"
+        okay+=1
         break
     fi
 done
-if [ ${okay} == 1 ]; then
-    echo "+++++++++++++++++++"
-    echo "+All Tests PASSED!+"
-    echo "+++++++++++++++++++"
+if [ ${okay} == 0 ]; then
+    echo -e "${YELLOW}╔═══════════════════════╗"
+    echo -e "║   ${GREEN}${BLINK}All Tests PASSED!${NB}${YELLOW}   ║"
+    echo -e "╚═══════════════════════╝${NC}"
+else
+    errors=$(printf "%03d" $okay)
+    echo -e "${YELLOW}╔══════════════════════╗"
+    echo -e "║   ${RED}${BLINK}GIGANTIC FAILURE${NB}${YELLOW}   ║"
+    echo -e "║   ${RED}FAILED testes:${BLUE}${errors}${YELLOW}  ║"
+    echo -e "╚══════════════════════╝${NC}"
 fi
 
-rm -f ${student_out}
-rm -f ${prog_name}
+rm -f ${student_out} ${prog_name}
