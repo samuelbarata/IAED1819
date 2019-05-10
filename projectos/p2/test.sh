@@ -36,26 +36,36 @@ else
     echo -e "${BLUE}Program successfully compiled...${NC}"
 fi
 
+if  [ -f /usr/bin/time ] ; then
+    time_cmd='/usr/bin/time'
+    time_args=(-f "Resources: real:%es mem:%MKB")
+else
+    time_cmd="time"
+    time_args=""
+fi
+
+okay=1
 for test_in in `ls -rS ${test_dir}/*.in`; do
     #echo "Test:" "${test_in}"
     test_out="${test_in%.in}.out"
     stamp="${RANDOM}${RANDOM}"
     student_out=/tmp/in_${stamp}
-    ./${prog_name} <${test_in} >${student_out}
+    ( ${time_cmd} "${time_args[@]}" ./${prog_name} <${test_in} >${student_out} )
     rv_student=$?
 
     if [ ! -f "${student_out}" ]; then
-        echo -e "${RED}ERROR${NC}: The output of the exercise was not created (file ${student_out})!"
-        rm -f ${prog_name}
-        exit 1
+        echo "ERROR: The output of the exercise was not created (file ${student_out})!"
+        okay=0
+        break
     fi
 
     if [ ${rv_student} != 0 ]; then
         echo -e "${RED}ERROR${NC}: Program return ${YELLOW}${rv_student}${NC}!"
         rm -f ${student_out}
-        exit 1
-    #else
-    #    echo "Program successfully ran..."
+        okay=0
+        break
+    else
+        echo "Program successfully ran..."
     fi
 
     ${DIFF} ${student_out} ${test_out}
@@ -65,9 +75,16 @@ for test_in in `ls -rS ${test_dir}/*.in`; do
     if [ ${rv_diff} == 0 ]; then
         echo -e "Test ${test_in} ${GREEN}PASSED${NC}!"
     else
-        echo -e "Test ${test_in} ${RED}FAILURE!${NC}"
-        rm -f ${prog_name}
-        exit 1
+        echo "Test ${test_in} FAILURE!"
+        okay=0
+        break
     fi
 done
+if [ ${okay} == 1 ]; then
+    echo "+++++++++++++++++++"
+    echo "+All Tests PASSED!+"
+    echo "+++++++++++++++++++"
+fi
+
+rm -f ${student_out}
 rm -f ${prog_name}
