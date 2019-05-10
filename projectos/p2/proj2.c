@@ -77,11 +77,7 @@ int main(){
   ╰────────────────────────────────┴──────────────────┴──────────────────────────────────╯
 */
 
-/*o buffer contem a informacao do contacto;
-cria contacto;
-copia os campos;
-verifica para erros
-adiciona ao "livro" ou apaga*/
+/*cria contacto e dominio a partir dos dados do buffer*/
 void adiciona(){
     contact *contacto;
     dominio *dom;
