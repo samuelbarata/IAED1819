@@ -74,14 +74,14 @@ for test_in in `ls -rS ${test_dir}/*.in`; do
     fi
 
     if [ ${rv_student} != 0 ]; then
-        echo -e "${RED}ERROR${NC}: Program return ${YELLOW}${rv_student}${NC}!"
+        echo -e "${RED}ERROR${NC}: Program return ${YELLOW}${rv_student}${NC}!" >> $error_file
         okay+=1
         break
     #else
     #    echo "Program successfully ran..."
     fi
 
-    ${DIFF} ${student_out} ${test_out}
+    ${DIFF} ${student_out} ${test_out} > /dev/null
     rv_diff=$?
     rm -f ${student_out}
 
@@ -89,11 +89,11 @@ for test_in in `ls -rS ${test_dir}/*.in`; do
         echo -e "Test ${test_in} ${GREEN}PASSED${NC}!"
         #echo -e "Test ${test_in} ${GREEN}PASSED${NC}!" >> $error_file
     else
-        echo "Test ${test_in} ${RED}FAILURE${NC}!"
-        echo "${test_in} ${RED}FAILURE${NC}!" >> $error_file
+        echo -e "Test ${test_in} ${RED}FAILURE${NC}!"
+        echo -e "${test_in} ${RED}FAILURE${NC}!" >> $error_file
         okay+=1
     fi
-done | pv -pte -i0.1 -l ${NOF} > /dev/null
+done | pv -pt -i0.1 -l ${NOF} > /dev/null
 
 if [ ${okay} == 0 ]; then
     echo -e "${YELLOW}╔═══════════════════════╗"
