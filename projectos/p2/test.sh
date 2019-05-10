@@ -25,6 +25,11 @@ BLINK='\e[5m'
 NB='\e[25m'
 NC='\033[0m'
 
+if  ! ( which `cut <<<pv -f1 -d\ ` >/dev/null 2>&1 ) ; then		#se falhar aqui provavelmente não tem valgrind, provavelmente está num mac e apaga tralha desnecessária
+    echo "${RED}Error${NC}: please install pv"
+    echo "${YELLOW}Example${NC}: sudo apt install pv"
+fi
+
 
 if  ! ( which `cut <<<valgrind -f1 -d\ ` >/dev/null 2>&1 ) ; then		#se falhar aqui provavelmente não tem valgrind, provavelmente está num mac e apaga tralha desnecessária
     BLINK=''
@@ -50,6 +55,9 @@ fi
 
 
 okay=0
+NOF="-s$(ls -rS ${test_dir}/*.in | wc -l)"
+error_file="${prog_name}.error"
+touch $error_file
 for test_in in `ls -rS ${test_dir}/*.in`; do
     #echo "Test:" "${test_in}"
     test_out="${test_in%.in}.out"
@@ -78,12 +86,14 @@ for test_in in `ls -rS ${test_dir}/*.in`; do
 
     if [ ${rv_diff} == 0 ]; then
         echo -e "Test ${test_in} ${GREEN}PASSED${NC}!"
+        #echo -e "Test ${test_in} ${GREEN}PASSED${NC}!" >> $error_file
     else
         echo "Test ${test_in} ${RED}FAILURE${NC}!"
+        echo "${test_in} ${RED}FAILURE${NC}!" >> $error_file
         okay+=1
-        break
     fi
-done
+done | pv -pte -i0.1 -l ${NOF} > /dev/null
+
 if [ ${okay} == 0 ]; then
     echo -e "${YELLOW}╔═══════════════════════╗"
     echo -e "║   ${GREEN}${BLINK}All Tests PASSED!${NB}${YELLOW}   ║"
@@ -92,8 +102,8 @@ else
     errors=$(printf "%03d" $okay)
     echo -e "${YELLOW}╔══════════════════════╗"
     echo -e "║   ${RED}${BLINK}GIGANTIC FAILURE${NB}${YELLOW}   ║"
-    echo -e "║   ${RED}FAILED testes:${BLUE}${errors}${YELLOW}  ║"
-    echo -e "╚══════════════════════╝${NC}"
+    echo -e "║   ${RED}FAILED ${BLUE}${BLINK}${errors}${NB} ${RED}tests${YELLOW}   ║"
+    echo -e "╚══════════════════════╝${NC}"   
 fi
-
-rm -f ${student_out} ${prog_name}
+cat $error_file
+rm -f ${student_out} ${prog_name} ${error_file}
