@@ -5,18 +5,19 @@
   │               e declaracoes de funcoes auxiliares                       │
   ╰─────────────────────────────────────────────────────────────────────────╯
 */
-
 #ifndef AUX_H
 #define AUX_H
 
 /*╭─────────────╮
   │ bibliotecas │
   ╰─────────────╯*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "estruturas.h"
 #include "hash.h"
+
 
 /*╭───────────────────╮
   │ variaveis globais │
@@ -47,6 +48,5 @@ void pop_list(d_linked_list *, contact *);  /*remove um conacto a uma double lin
 
 void split_email();                         /*divide o email em local@dominio no buffer*/
 void printa_contacto(contact *);            /*imprime um contacto recebendo o seu endereço*/
-
 
 #endif

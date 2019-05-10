@@ -44,7 +44,6 @@ void destroy_hash_table(hash_table *HT){
             HT[i].head = aux;
         }
     }
-    return;
 }
 
 /*╭─────────────────────────────╮

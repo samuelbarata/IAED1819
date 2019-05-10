@@ -4,7 +4,6 @@
   │  Description: Contem declaracoes de funcoes auxiliares de hashe tables  │
   ╰─────────────────────────────────────────────────────────────────────────╯
 */
-
 #ifndef HASH_H
 #define HASH_H
 

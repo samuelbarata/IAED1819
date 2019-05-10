@@ -4,7 +4,6 @@
   │  Description: Contem as Estruturas do projeto                           │
   ╰─────────────────────────────────────────────────────────────────────────╯
 */
-
 #ifndef ESTRUTURAS_H
 #define ESTRUTURAS_H
 
