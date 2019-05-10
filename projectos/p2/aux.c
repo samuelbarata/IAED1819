@@ -83,7 +83,7 @@ void destroi_dominio(dominio *p){
 }
 
 
-
+/*adiciona o contacto a uma double linked list*/
 void push_list(d_linked_list *AB, contact *c){
     if(!AB->head){
         AB->head = c;
@@ -95,6 +95,7 @@ void push_list(d_linked_list *AB, contact *c){
     }
 }
 
+/*remove e apaga o contacto de uma double linked list*/
 void pop_list(d_linked_list *AB, contact *c){
     if(c->prev)         /*se nao e o primeiro*/
         c->prev->next = c->next;
