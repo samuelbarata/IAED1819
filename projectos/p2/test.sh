@@ -6,7 +6,7 @@
 # Copyright (C) 2019, Mikolas Janota
 #
 if [ $# -lt 2 ] ; then
-    echo "Usage: $0 <test-dir> <src-file1> <src-file2> ..."
+    echo "Usage: $0 <test-dir> <src-file1> <src-file2> <flags>"
     echo "Example: ${0} testes_enunciado *.c"
     exit 1
 fi
@@ -15,7 +15,7 @@ test_dir="${1}"
 shift
 prog_name=foo_${RANDOM}
 DIFF="diff"
-CC="gcc -ansi -Wall -Wextra -pedantic -g"
+CC="gcc -ansi -Wall -Wextra -pedantic"
 
 RED='\033[0;31m'
 GREEN='\033[0;92m'
@@ -37,7 +37,7 @@ else
 fi
 
 for test_in in `ls -rS ${test_dir}/*.in`; do
-    echo "Test:" "${test_in}"
+    #echo "Test:" "${test_in}"
     test_out="${test_in%.in}.out"
     stamp="${RANDOM}${RANDOM}"
     student_out=/tmp/in_${stamp}
@@ -46,6 +46,7 @@ for test_in in `ls -rS ${test_dir}/*.in`; do
 
     if [ ! -f "${student_out}" ]; then
         echo -e "${RED}ERROR${NC}: The output of the exercise was not created (file ${student_out})!"
+        rm -f ${prog_name}
         exit 1
     fi
 
@@ -53,8 +54,8 @@ for test_in in `ls -rS ${test_dir}/*.in`; do
         echo -e "${RED}ERROR${NC}: Program return ${YELLOW}${rv_student}${NC}!"
         rm -f ${student_out}
         exit 1
-    else
-        echo "Program successfully ran..."
+    #else
+    #    echo "Program successfully ran..."
     fi
 
     ${DIFF} ${student_out} ${test_out}
@@ -65,8 +66,8 @@ for test_in in `ls -rS ${test_dir}/*.in`; do
         echo -e "Test ${test_in} ${GREEN}PASSED${NC}!"
     else
         echo -e "Test ${test_in} ${RED}FAILURE!${NC}"
+        rm -f ${prog_name}
         exit 1
     fi
 done
-
 rm -f ${prog_name}
