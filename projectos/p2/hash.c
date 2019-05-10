@@ -57,17 +57,15 @@ node_linked *encontra(hash_table *HT, char *str){
 void *push(hash_table *HT, void *objeto){
     contact *contacto;
     dominio *dom;
-    node_linked *node = malloc(sizeof(node_linked)), *aux;
+    node_linked *node, *aux;
     hash h;
     if(buffer.comando == 'a'){
-        printd("a");
         h = hasher(((contact*)objeto)->name);
         contacto = (contact*)objeto;
         push_list(&adress_book, contacto);
     }
 
     else{   /*comando == 'e'*/
-        printd("e");
         aux = encontra(HTdom, ((dominio *)objeto)->dom);
         if(aux){
             destroi_dominio((dominio *)objeto);
@@ -77,6 +75,7 @@ void *push(hash_table *HT, void *objeto){
         }
         h = hasher(((dominio *)objeto)->dom);
     }
+    node = malloc(sizeof(node_linked));
     node->data = objeto;
     node->next = HT[h].head;
     HT[h].head = node;
