@@ -67,6 +67,7 @@ int main(){
     /*liberta toda a memoria ainda alocada*/
     destroy_adress_book(&adress_book);
     destroy_hash_table(HTname, 'n');
+    /*destroy_dominios(HTdom);*/
     destroy_hash_table(HTdom, 'd');
     return 0;
 }

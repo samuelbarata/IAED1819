@@ -12,7 +12,7 @@
   │ constantes  │
   ╰─────────────╯*/
 #define max_str 1024    /*caracteres maximos numa string*/
-#define max_email 512   /*caracteres maximos nos emails: (511)@(511)*/
+#define max_email 512   /*caracteres maximos nos emails*/
 #define max_phone 64    /*caracteres maximos no telefone*/
 
 /*╭─────────────╮
