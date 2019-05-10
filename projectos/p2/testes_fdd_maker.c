@@ -3,9 +3,9 @@
 
 #define max_str 1022    // 1 -> 1022
 #define local   510     // 1 -> 510
-#define dominio 1       // 1 -> 510
+#define dominio 510     // 1 -> 510
 #define max_phone 63    // 1 -> 63
-#define n 10000         // 0 -> fds, n exagerem...
+#define n 100000        // 0 -> fds, n exagerem...
 
 
 /*gera uma letra A-Z ao calhas*/
@@ -17,8 +17,6 @@ char randleter(){
 char randcmd(){
     int x = (random() % 70);
     switch(x){
-        case 2:
-            return 'l';
         case 3:
         case 4:
         case 5:
@@ -51,31 +49,36 @@ char randcmd(){
 /*gera n inputs para o projeto*/
 int main(){
     char c;
+    unsigned size;
     for(int i = 0;i < n;i++){
         printf("%c", c=randcmd());
         if(c == 'a' | c == 'p' | c =='r' | c == 'e'){
             printf(" ");
-            for(int k = 0; k<max_str; k++){
+            size = random()%max_str;
+            for(int k = 0; k<size; k++){
                 putchar(randleter());
             }
             
         }
         if(c == 'a'|c=='e'){
             printf(" ");
-            for(int k=0; k<local; k++){
+            size = random() % local;
+            for(int k=0; k<size; k++){
                 putchar(randleter());
             }
             printf("@");
         }
         if (c == 'a' |c == 'e'|c=='c'){
             if(c=='c')printf(" ");
-            for(int k=0; k<dominio; k++){
+            size = random() % dominio;
+            for(int k=0; k<size; k++){
                 putchar(randleter());
             }
         }
         if(c=='a'){
             printf(" ");
-            for(int k=0; k<max_phone; k++){
+            size = random() % max_phone;
+            for(int k=0; k<size; k++){
                 putchar(randleter());
             }
         }

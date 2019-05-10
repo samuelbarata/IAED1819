@@ -59,12 +59,12 @@ contact *cria_contacto(){
     return contacto;
 }
 
+/*cria um dominio a partir da string recebida*/
 dominio *cria_dominio(char *str){
     dominio *dom = malloc(sizeof(dominio));
     dom->counter = 1;
     dom->dom = malloc(sizeof(char)*strlen(str)+1);
     strcpy(dom->dom, buffer.dominio);
-
     return dom;
 }
 
