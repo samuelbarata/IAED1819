@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define max_str 1022    // 1 -> 1022
-#define local   510     // 1 -> 510
-#define dominio 510     // 1 -> 510
-#define max_phone 63    // 1 -> 63
+#define max_str 1021    // 1 -> 1022
+#define local   509     // 1 -> 510
+#define dominio 509     // 1 -> 510
+#define max_phone 62    // 1 -> 63
 #define n 100000        // 0 -> fds, n exagerem...
 
 
@@ -55,7 +55,7 @@ int main(){
         if(c == 'a' | c == 'p' | c =='r' | c == 'e'){
             printf(" ");
             size = random()%max_str;
-            for(int k = 0; k<size; k++){
+            for(int k = 0; k<size+1; k++){
                 putchar(randleter());
             }
             
@@ -63,7 +63,7 @@ int main(){
         if(c == 'a'|c=='e'){
             printf(" ");
             size = random() % local;
-            for(int k=0; k<size; k++){
+            for(int k=0; k<size+1; k++){
                 putchar(randleter());
             }
             printf("@");
@@ -71,14 +71,14 @@ int main(){
         if (c == 'a' |c == 'e'|c=='c'){
             if(c=='c')printf(" ");
             size = random() % dominio;
-            for(int k=0; k<size; k++){
+            for(int k=0; k<size+1; k++){
                 putchar(randleter());
             }
         }
         if(c=='a'){
             printf(" ");
             size = random() % max_phone;
-            for(int k=0; k<size; k++){
+            for(int k=0; k<size+1; k++){
                 putchar(randleter());
             }
         }

@@ -11,9 +11,9 @@
 /*╭─────────────╮
   │ constantes  │
   ╰─────────────╯*/
-#define max_str 1023    /*caracteres maximos numa string*/
-#define max_email 511   /*caracteres maximos nos emails: (511)@(511)*/
-#define max_phone 63    /*caracteres maximos no telefone*/
+#define max_str 1024    /*caracteres maximos numa string*/
+#define max_email 512   /*caracteres maximos nos emails: (511)@(511)*/
+#define max_phone 64    /*caracteres maximos no telefone*/
 
 /*╭─────────────╮
   │  estruturas │
@@ -54,9 +54,9 @@ typedef struct contact{
 /*buff usado na variavel global buffer para receber informacao do stdin*/
 typedef struct buff{
     char comando;
-    char nome[max_str+1];
-    char email[max_str+1];
-    char tel[max_phone+1];
+    char nome[max_str];
+    char email[max_str];
+    char tel[max_phone];
     char local[max_email], dominio[max_email];
 } buff;
 
