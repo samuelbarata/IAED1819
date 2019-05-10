@@ -26,8 +26,9 @@ NB='\e[25m'
 NC='\033[0m'
 
 if  ! ( which `cut <<<pv -f1 -d\ ` >/dev/null 2>&1 ) ; then		#se falhar aqui provavelmente não tem valgrind, provavelmente está num mac e apaga tralha desnecessária
-    echo "${RED}Error${NC}: please install pv"
-    echo "${YELLOW}Example${NC}: sudo apt install pv"
+    echo -e "${RED}Error${NC}: please install pv"
+    echo -e "${YELLOW}Example${NC}: sudo apt install pv"
+    exit 2
 fi
 
 
