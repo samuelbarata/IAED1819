@@ -42,7 +42,7 @@ fi
 rv=0
 #NOF="-s$(ls -rS ${test_dir}/*.in | wc -l)"
 for test_in in `ls -rS ${test_dir}/*.in`; do
-    echo "Test:" "${test_in}"
+    #echo "Test:" "${test_in}"
     test_out="${test_in%.in}.out"
     stamp="${RANDOM}${RANDOM}"
     student_out=/tmp/out_${stamp}
