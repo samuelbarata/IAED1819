@@ -1,5 +1,5 @@
 /*╭─────────────────────────────────────────────────────────────────────────╮
-  │  File:  aux.h                                                           │
+  │  File:  estruturas.h                                                    │
   │  Author:  Samuel Barata (94230)                                         │
   │  Description: Contem as Estruturas do projeto                           │
   ╰─────────────────────────────────────────────────────────────────────────╯
@@ -18,6 +18,9 @@
 /*╭─────────────╮
   │  estruturas │
   ╰─────────────╯*/
+
+/*hash; usada nas hash tables*/
+typedef unsigned int hash;
 
 /*estrutura de uma double linked list [head = first; tail = last]*/
 typedef struct d_linked_list{

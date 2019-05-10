@@ -1,5 +1,5 @@
 /*╭─────────────────────────────────────────────────────────────────────────╮
-  │  File:  aux.h                                                           │
+  │  File:  hash.h                                                          │
   │  Author:  Samuel Barata (94230)                                         │
   │  Description: Contem declaracoes de funcoes auxiliares de hashe tables  │
   ╰─────────────────────────────────────────────────────────────────────────╯
@@ -13,6 +13,7 @@
 
 #define hash_size 1999 /*https://en.wikipedia.org/wiki/List_of_prime_numbers*/
 
+
 /*╭───────────────────╮
   │ variaveis globais │
   ╰───────────────────╯*/
@@ -20,7 +21,10 @@
 hash_table HTname[hash_size];     /*hash table dos nomes*/
 hash_table HTdom[hash_size];      /*hash table dos dominos*/
 
-typedef unsigned int hash;
+/*╭────────────────────╮
+  │ funcoes auxiliares │
+  ╰────────────────────╯*/
+
 hash hasher(char *);              /*gera a hash de uma determinada string*/
 
 void init_hash_table(hash_table *);       /*inicia hash table a NULL*/

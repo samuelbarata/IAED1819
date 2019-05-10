@@ -25,6 +25,7 @@
 d_linked_list adress_book;  /*livro de contactos; inicio e fim da lista ligada*/
 buff buffer;                /*auxiliar das varias variaveis existentes*/
 
+
 /*╭────────────────────╮
   │ funcoes auxiliares │
   ╰────────────────────╯*/
