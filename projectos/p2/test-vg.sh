@@ -40,6 +40,7 @@ else
 fi
 
 rv=0
+#NOF="-s$(ls -rS ${test_dir}/*.in | wc -l)"
 for test_in in `ls -rS ${test_dir}/*.in`; do
     echo "Test:" "${test_in}"
     test_out="${test_in%.in}.out"
@@ -61,7 +62,7 @@ for test_in in `ls -rS ${test_dir}/*.in`; do
         rm -f ${prog_name}
         exit 1
     else
-        echo "Program successfully ran..."
+        echo "Program successfully ran..." > /dev/null
     fi
 
     ${DIFF} ${student_out} ${test_out}
