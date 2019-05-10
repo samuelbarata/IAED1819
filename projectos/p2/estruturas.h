@@ -24,24 +24,33 @@ typedef struct d_linked_list{
     struct contact *head, *tail;
 } d_linked_list;
 
-/*hash_tables sao linked lists contem a head*/
+/*hash_tables sao linked lists contem a head a apontar para o ultimo */
+/*node a ser adicionado*/
 typedef struct hash_table{
     struct node_linked *head;
 } hash_table;
 
-/*node de linked list, contem conteudo e next node*/
+/*node de linked list, contem:  */
+/*data -> contacto/dominio      */
+/*next node -> node_linked      */
 typedef struct node_linked{
     struct node_linked *next;
     void *data;
 } node_linked;
 
-/*contem um dominio e o numero de ocorrencias*/
+/*contem um dominio [dom] e o numero de ocorrencias [counter]*/
 typedef struct dominio{
     unsigned int counter;
     char *dom;
 } dominio;
 
-/*contem um contacto, nome email e telefone*/
+/*contacto:*/
+/*prev -> contacto anterior*/
+/*name -> nome*/
+/*local -> primeira parte endereco email*/
+/*dom -> dominio*/
+/*phone -> telefone*/
+/*next-> contacto seguinte*/
 typedef struct contact{
     struct contact *prev;
     char *name;   /*maximo de 1023 caracteres ([0-9a-zA-Z-_]+)*/

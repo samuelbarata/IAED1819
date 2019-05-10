@@ -1,7 +1,11 @@
 #include "hash.h"
 
+/*╭───────────╮
+  │ geradores │
+  ╰───────────╯*/
+
 /*devolve uma hash para cada objeto [max = hash_size]*/
-/*http://www.cse.yorku.ca/~oz/hash.html*/
+/*http://www.cse.yorku.ca/~oz/hash.html */
 hash hasher(char *str){
     hash me = 5381;
     int c;
@@ -9,6 +13,10 @@ hash hasher(char *str){
         me = ((me << 5) + me) + c; /* hash * 33 + c */
     return me % hash_size;
 }
+
+/*╭────────────────╮
+  │ inicializacoes │
+  ╰────────────────╯*/
 
 /*inicializa uma hash table com "hash_size" nodes a NULL*/
 void init_hash_table(hash_table *HT){
@@ -32,6 +40,81 @@ void destroy_hash_table(hash_table *HT){
     return;
 }
 
+/*╭─────────────────────────────╮
+  │ operacoes sobre hash tables │
+  ╰─────────────────────────────╯*/
+
+/*recebe uma hash table e um contacto ou dominio e grava na hash table*/
+void *push(hash_table *HT, void *objeto){
+    dominio *dom;
+    node_linked *node, *aux;
+    hash h;
+    
+    if(buffer.comando == 'a'){                  /*recebe um contacto*/
+        h = hasher(((contact*)objeto)->name);       /*hash do nome*/
+        push_list(&adress_book, (contact*)objeto);  /*adiciona o contacto ao adressbook*/
+    }
+    else{                                       /*recebe um dominio*/
+        aux = encontra(HTdom, ((dominio *)objeto)->dom);
+        if(aux){                                    /*se o dominio existe incrementa*/
+            destroi_dominio((dominio *)objeto);         /*destroi o input*/
+            dom = ((dominio*)aux->data);
+            dom->counter++;
+            return (void*) dom;                         /*devolve o existente*/
+        }
+        /*se nao existe vai ser adicionado*/
+        h = hasher(((dominio *)objeto)->dom);
+    }
+    /*adiciona o node a hash table*/
+    node = malloc(sizeof(node_linked));
+    node->data = objeto;
+    node->next = HT[h].head;
+    HT[h].head = node;
+    return node->data;
+}
+
+/*recebe uma hash_table e um contacto ou dominio e remove da hash table*/
+void pop(hash_table *HT, void *objeto){
+    contact *contacto;
+    dominio *dom;
+    node_linked *atual, *node;
+    hash h;
+    if(buffer.comando == 'r'){                  /*recebe um contacto*/
+        h = hasher(((contact *)objeto)->name);
+        node = encontra(HTname, ((contact*)objeto)->name);
+        contacto = (contact *)objeto;
+        dom = contacto->dom;
+        pop_list(&adress_book, contacto);   /*remove o contacto do adress book*/
+        buffer.comando='x';             /*para fazer pop de um dominio*/
+        pop(HTdom, dom);                /*remove / decrementa o dominio associado a este contacto*/
+    }
+    else{                                       /*recebe um dominio*/
+        dom = (dominio *)objeto;
+        if (dom->counter>1){    /*se existir +, decrementa*/
+            dom->counter--;
+            return;
+        }/*se e o unico dominio, apaga*/
+        node = encontra(HTdom, ((dominio *)objeto)->dom);
+        h = hasher(((dominio *)objeto)->dom);
+        destroi_dominio(dom);       /*apaga o dominio*/
+    }
+    atual = HT[h].head;
+    if(node == atual){/*se o node e o primeiro da linked list*/
+        HT[h].head = atual->next;
+        free(node);
+        return;
+    }
+    while(atual->next != node){
+        atual=atual->next;
+    }
+    atual->next = node->next;
+    free(node);
+}
+
+/*╭────────────────────╮
+  │ funcoes auxiliares │
+  ╰────────────────────╯*/
+
 /*encontra um node numa determinada hash table*/
 node_linked *encontra(hash_table *HT, char *str){
     hash h = hasher(str);
@@ -52,80 +135,6 @@ node_linked *encontra(hash_table *HT, char *str){
     return NULL;
 }
 
-
-/*recebe uma hash table e um contacto ou dominio e grava na hash table*/
-void *push(hash_table *HT, void *objeto){
-    contact *contacto;
-    dominio *dom;
-    node_linked *node, *aux;
-    hash h;
-    /*recebe um contacto*/
-    if(buffer.comando == 'a'){
-        h = hasher(((contact*)objeto)->name);
-        contacto = (contact*)objeto;
-        push_list(&adress_book, contacto); /*adiciona o contacto ao adressbook*/
-    }
-    /*recebe um dominio*/
-    else{   /*comando == 'e'*/
-        aux = encontra(HTdom, ((dominio *)objeto)->dom);
-        if(aux){/*se o dominio existe incrementa*/
-            destroi_dominio((dominio *)objeto);
-            dom = ((dominio*)aux->data);
-            dom->counter++;
-            return (void*) dom;
-        }
-        h = hasher(((dominio *)objeto)->dom);
-    }
-    /*adiciona o node a hash table*/
-    node = malloc(sizeof(node_linked));
-    node->data = objeto;
-    node->next = HT[h].head;
-    HT[h].head = node;
-    return node->data;
-}
-
-/*recebe um contacto ou dominio e remove da hash table*/
-void pop(hash_table *HT, void *objeto){
-    contact *contacto;
-    dominio *dom;
-    node_linked *atual, *node;
-    hash h;
-    /*recebe um contacto*/
-    if(buffer.comando == 'r'){
-        h = hasher(((contact *)objeto)->name);
-        node = encontra(HTname, ((contact*)objeto)->name);
-        contacto = (contact *)objeto;
-        dom = contacto->dom;
-        pop_list(&adress_book, contacto); /*remove e apaga o contacto do adress book*/
-        buffer.comando='x'; /*para fazer pop de um dominio*/
-        pop(HTdom, dom);
-    }
-    /*recebe um dominio*/
-    else{
-        dom = (dominio *)objeto;
-        if (dom->counter>1){    /*se existir mais do que um dominio igual decrementa*/
-            dom->counter--;
-            return;
-        }/*se e o unico dominio apaga-o*/
-        node = encontra(HTdom, ((dominio *)objeto)->dom);
-        h = hasher(((dominio *)objeto)->dom);
-        destroi_dominio(dom);       /*apaga o dominio*/
-    }
-    atual = HT[h].head;
-    if(node == atual){/*o node e o primeiro da linked list*/
-        HT[h].head = atual->next;
-        free(node);
-        return;
-    }
-    while(atual->next != node){
-        atual=atual->next;
-    }
-    atual->next = node->next;
-    free(node);
-}
-
-
-
 /*╭──────────────────────────────────────┬─────┬─────────────────────────────────────────╮
   │                                       DEBUG                                          │
   ╰──────────────────────────────────────┴─────┴─────────────────────────────────────────╯
@@ -133,8 +142,7 @@ void pop(hash_table *HT, void *objeto){
 
 /*compilar com -D DEBUG */
 #ifdef DEBUG
-
-/*Imprime um esquema das hashes*/
+/*Imprime uma hash table*/
 void debug_hash(char c){
     int i;
     node_linked *k;

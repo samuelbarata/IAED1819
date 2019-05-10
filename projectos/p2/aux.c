@@ -7,6 +7,10 @@
 
 #include "aux.h"
 
+/*╭───────╮
+  │ input │
+  ╰───────╯*/
+
 /*le do stdin e guarda no buffer*/
 void read_stdin(){
     if(buffer.comando == 'c')
@@ -21,6 +25,10 @@ void read_stdin(){
             scanf("%s", buffer.tel);
     }
 }
+
+/*╭────────────────╮
+  │ inicializacoes │
+  ╰────────────────╯*/
 
 /*inicializa um livro de contactos*/
 void init_adress_book(d_linked_list *AB){
@@ -38,11 +46,13 @@ void destroy_adress_book(d_linked_list *AB){
     }
 }
 
+/*╭───────────╮
+  │ geradores │
+  ╰───────────╯*/
+
 /*cria um contacto com os dados contidos no buffer*/
 contact *cria_contacto(){
     contact *contacto;
-
-
     contacto = malloc(sizeof(contact));
 
     contacto->name = malloc(sizeof(char) * strlen(buffer.nome) + 1);
@@ -68,6 +78,10 @@ dominio *cria_dominio(char *str){
     return dom;
 }
 
+/*╭─────────────╮
+  │ destrutores │
+  ╰─────────────╯*/
+
 /*recebe o endereço de um contacto e apaga o se conteudo*/
 void destroi_contacto(contact *p){
     free(p->name);
@@ -82,6 +96,23 @@ void destroi_dominio(dominio *p){
     free(p);
 }
 
+/*destroi todos os dominios ainda alocados numa hash table*/
+void destroy_dominios(hash_table *HT){
+    int i;
+    node_linked *node, *aux;
+    for(i=0;i<hash_size;i++){
+        node = HT[i].head;
+        while(node){    
+            aux = node->next;
+            destroi_dominio(node->data);
+            node = aux;
+        }
+    }  
+}
+
+/*╭───────────────────────────────────────────╮
+  │ operacoes sobre listas duplamente ligadas │
+  ╰───────────────────────────────────────────╯*/
 
 /*adiciona o contacto a uma double linked list*/
 void push_list(d_linked_list *AB, contact *c){
@@ -109,7 +140,11 @@ void pop_list(d_linked_list *AB, contact *c){
     destroi_contacto(c);
 }
 
-/*pega no email do buffer e divide-o em local/dominio*/
+/*╭────────────────────╮
+  │ funcoes auxiliares │
+  ╰────────────────────╯*/
+
+/*pega no email do buffer e divide-o em local@dominio*/
 void split_email(){
     char *p;
     p = buffer.email;
@@ -122,33 +157,8 @@ void split_email(){
     strcpy(buffer.local, buffer.email);
 }
 
-
-
-/*imprime um contacto recebendo o seu endereço de memória*/
+/*imprime um contacto recebendo o seu endereço de memoria*/
 void printa_contacto(contact *contacto){
     printf("%s %s@%s %s\n",
     contacto->name,contacto->local,contacto->dom->dom,contacto->phone);
 }
-
-void printd(char *debug_message){
-    #ifdef DEBUG
-    puts(debug_message);
-    #endif
-    debug_message++; /*para nao dar warnings de n usada*/
-}
-
-
-/*destroi todos os dominios ainda alocados*/
-void destroy_dominios(hash_table *HT){
-    int i;
-    node_linked *node, *aux;
-    for(i=0;i<hash_size;i++){
-        node = HT[i].head;
-        while(node){    
-            aux = node->next;
-            destroi_dominio(node->data);
-            node = aux;
-        }
-    }  
-}
-

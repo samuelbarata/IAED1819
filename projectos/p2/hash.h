@@ -17,22 +17,22 @@
   │ variaveis globais │
   ╰───────────────────╯*/
 
-hash_table HTname[hash_size];
-hash_table HTdom[hash_size];
+hash_table HTname[hash_size];     /*hash table dos nomes*/
+hash_table HTdom[hash_size];      /*hash table dos dominos*/
 
 typedef unsigned int hash;
-hash hasher(char *);                        /*devolve a hash de uma string*/
+hash hasher(char *);              /*gera a hash de uma determinada string*/
 
-/*hash tables*/
-void init_hash_table(hash_table *);         /*inicia hash table dos nomes a NULL*/
+void init_hash_table(hash_table *);       /*inicia hash table a NULL*/
 void destroy_hash_table(hash_table *);    /*destroi uma hash table*/
 
-node_linked *encontra(hash_table *, char *);       /*recebe uma hash table e encontra o node com a string recebida*/
-void *push(hash_table *, void *);            /*recebe contacto ou dominio e grava*/
-void pop(hash_table *, void *);
+void *push(hash_table *, void *);             /*recebe contacto ou dominio e grava*/
+void pop(hash_table *, void *);               /*retira contacto / dominio / decrementa dominio*/
 
-#ifdef DEBUG
-void debug_hash(char);
+node_linked *encontra(hash_table *, char *);  /*recebe uma hash table e encontra o node com a string recebida*/
+
+#ifdef DEBUG /* compilar com -D DEBUG */
+void debug_hash(char);        /*printa uma hash table [dd / dn]*/
 #endif
 
 #endif
