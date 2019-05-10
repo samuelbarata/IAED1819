@@ -88,8 +88,9 @@ void adiciona(){
         return;
     }
     contacto = push(HTname, contacto);
-    dom = cria_dominio(buffer.dominio);
+
     buffer.comando='x';
+    dom = cria_dominio(buffer.dominio);
     contacto->dom = push(HTdom, dom);
 }
 
@@ -147,7 +148,7 @@ void altera_e(){
 
 /*recebe um dominio no buffer e conta o numero de email com o mesmo dominio*/
 void cont_dom(){
-    dominio *dom = NULL;
+    dominio *dom;
     node_linked *node = encontra(HTdom, buffer.dominio);
     unsigned int counter = 0;
     if(node){
