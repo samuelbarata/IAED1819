@@ -54,36 +54,33 @@ node_linked *encontra(hash_table *HT, char *str){
 
 
 /*recebe uma hash table e um contacto ou dominio e grava na hash table*/
-void push(hash_table *HT, void *objeto){
+void *push(hash_table *HT, void *objeto){
     contact *contacto;
     dominio *dom;
     node_linked *node = malloc(sizeof(node_linked)), *aux;
     hash h;
     if(buffer.comando == 'a'){
+        printd("a");
         h = hasher(((contact*)objeto)->name);
         contacto = (contact*)objeto;
-        /*  criar/incrementar o dominio         */
-        aux = encontra(HTdom, buffer.dominio);
-        if(aux){
-            dom = ((dominio*)aux->data);
-            dom->counter++;
-        }
-        else{
-            dom = cria_dominio(buffer.dominio);
-            /*gravar dominio*/
-            buffer.comando='x';
-            push(HTdom, dom);
-        }
-        /*                                      */
-        contacto->dom = dom;
         push_list(&adress_book, contacto);
     }
+
     else{   /*comando == 'e'*/
+        printd("e");
+        aux = encontra(HTdom, ((dominio *)objeto)->dom);
+        if(aux){
+            destroi_dominio((dominio *)objeto);
+            dom = ((dominio*)aux->data);
+            dom->counter++;
+            return (void*) dom;
+        }
         h = hasher(((dominio *)objeto)->dom);
     }
     node->data = objeto;
     node->next = HT[h].head;
     HT[h].head = node;
+    return node->data;
 }
 
 /*recebe um contacto ou dominio e remove da hash table*/

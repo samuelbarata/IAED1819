@@ -83,13 +83,17 @@ verifica para erros
 adiciona ao "livro" ou apaga*/
 void adiciona(){
     contact *contacto;
+    dominio *dom;
     contacto = cria_contacto();
     if (encontra(HTname, contacto->name)){
         printf("Nome existente.\n");
         destroi_contacto(contacto);
         return;
     }
-    push(HTname, contacto);
+    contacto = push(HTname, contacto);
+    dom = cria_dominio(buffer.dominio);
+    buffer.comando='x';
+    contacto->dom = push(HTdom, dom);
 }
 
 /*imprime todos os contactos por ordem de adicao*/
@@ -138,8 +142,7 @@ void altera_e(){
         dom = contacto->dom;
         pop(HTdom, dom);
         dom = cria_dominio(buffer.dominio);
-        push(HTdom, dom);
-        contacto->dom=dom;
+        contacto->dom=push(HTdom, dom);
     }
     else
         printf("Nome inexistente.\n");
