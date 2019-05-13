@@ -24,6 +24,9 @@ BLUE='\033[0;34m'
 BLINK='\e[5m'
 NB='\e[25m'
 NC='\033[0m'
+BOLD='\033[1m'
+NORM='\033[0m'
+
 
 if  ! ( which `cut <<<pv -f1 -d\ ` >/dev/null 2>&1 ) ; then		#se falhar aqui provavelmente não tem valgrind, provavelmente está num mac e apaga tralha desnecessária
     echo -e "${RED}Error${NC}: please install pv"
@@ -43,6 +46,7 @@ if [ ${rv_compile} != 0 ]; then
     echo -e "${RED}ERROR${NC}: Compilation failed!"
     exit 1
 else
+    clear
     echo -e "${BLUE}Program successfully compiled...${NC}"
 fi
 
@@ -52,10 +56,8 @@ if  [ -f /usr/bin/time ] ; then
         time_cmd='/usr/bin/time'
         time_args=(-p "Resources: real:%es mem:%MKB")
     fi
-
 fi
 
-okay=0
 NOF="-s$(ls -rS ${test_dir}/*.in | wc -l)"
 error_file="${prog_name}.error"
 touch $error_file
@@ -65,20 +67,24 @@ for test_in in `ls -rS ${test_dir}/*.in`; do
     stamp="${RANDOM}${RANDOM}"
     student_out=/tmp/in_${stamp}
     #( ${time_cmd} "${time_args[@]}" ... )
-    ./${prog_name} <${test_in} >${student_out} 
+    ./${prog_name} <${test_in} >${student_out} 2>/dev/null |:
     rv_student=$?
     if [ ! -f "${student_out}" ]; then
-        echo "${RED}ERROR${NC}: The output of the exercise was not created (file ${student_out})!"
-        okay+=1
-        break
+        echo -e "${RED}ERROR${NC}: The output of the exercise was not created (file ${student_out})!" >> $error_file
+        echo -e "${RED}ERROR${NC}: The output of the exercise was not created (file ${student_out})!"        
+        continue
+    fi
+
+    if [ ${rv_student} == 139 ]; then
+        echo -e "${RED}${BOLD}ERROR${NORM}${NC}: ${YELLOW}SEGFAULT${NC}: ${test_in%.in}" >> $error_file
+        echo -e "${RED}${BOLD}ERROR${NORM}${NC}: ${YELLOW}SEGFAULT${NC}: ${test_in%.in}"
+        continue
     fi
 
     if [ ${rv_student} != 0 ]; then
-        echo -e "${RED}ERROR${NC}: Program return ${YELLOW}${rv_student}${NC}!" >> $error_file
-        okay+=1
-        break
-    #else
-    #    echo "Program successfully ran..."
+        echo -e "${test_in%.in}:${RED}ERROR${NC}: Program return ${YELLOW}${rv_student}${NC}!" >> $error_file
+        echo -e "${test_in%.in}:${RED}ERROR${NC}: Program return ${YELLOW}${rv_student}${NC}!"
+        continue
     fi
 
     ${DIFF} ${student_out} ${test_out} > /dev/null
@@ -86,25 +92,30 @@ for test_in in `ls -rS ${test_dir}/*.in`; do
     rm -f ${student_out}
 
     if [ ${rv_diff} == 0 ]; then
-        echo -e "Test ${test_in} ${GREEN}PASSED${NC}!"
-        #echo -e "Test ${test_in} ${GREEN}PASSED${NC}!" >> $error_file
+        echo -e "Test ${test_in%.in} ${GREEN}PASSED${NC}!"
+        #echo -e "Test ${test_in%.in} ${GREEN}PASSED${NC}!" >> $error_file
     else
-        echo -e "Test ${test_in} ${RED}FAILURE${NC}!"
-        echo -e "${test_in} ${RED}FAILURE${NC}!" >> $error_file
-        okay+=1
+        echo -e "Test ${test_in%.in} ${RED}FAILURE${NC}!"
+        echo -e "${test_in%.in} ${RED}FAILURE${NC}!" >> $error_file
     fi
 done | pv -pt -i0.1 -l ${NOF} > /dev/null
 
-if [ ${okay} == 0 ]; then
+lol=$(wc -l < ${error_file})
+errors=$(printf "%d" $lol)
+if [ ${errors} == 0 ]; then
     echo -e "${YELLOW}╔═══════════════════════╗"
     echo -e "║   ${GREEN}${BLINK}All Tests PASSED!${NB}${YELLOW}   ║"
     echo -e "╚═══════════════════════╝${NC}"
+    echo
+    echo
 else
-    errors=$(printf "%03d" $okay)
+    errors=$(printf "%03d" $lol)
     echo -e "${YELLOW}╔══════════════════════╗"
     echo -e "║   ${RED}${BLINK}GIGANTIC FAILURE${NB}${YELLOW}   ║"
     echo -e "║   ${RED}FAILED ${BLUE}${BLINK}${errors}${NB} ${RED}tests${YELLOW}   ║"
-    echo -e "╚══════════════════════╝${NC}"   
+    echo -e "╚══════════════════════╝${NC}"
+    cat $error_file
+    echo
+    echo
 fi
-cat $error_file
 rm -f ${student_out} ${prog_name} ${error_file}
