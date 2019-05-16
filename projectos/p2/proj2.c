@@ -1,5 +1,5 @@
 /*╭─────────────────────────────────────────────╮
-  │  File:  proj1.c                             │
+  │  File:  proj2.c                             │
   │  Author:  Samuel Barata (94230)             │
   │  Description: Contem as funcoes principais  │
   ╰─────────────────────────────────────────────╯

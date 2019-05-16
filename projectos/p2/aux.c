@@ -36,16 +36,6 @@ void init_adress_book(d_linked_list *AB){
     AB->tail = NULL;
 }
 
-/*apaga todo o livro de contactos*/
-void destroy_adress_book(d_linked_list *AB){
-    contact *aux;
-    while(AB->head!=NULL){
-        aux = AB->head->next;
-        destroi_contacto(AB->head);
-        AB->head = aux;   
-    }
-}
-
 /*╭───────────╮
   │ geradores │
   ╰───────────╯*/
@@ -94,6 +84,16 @@ void destroi_contacto(contact *p){
 void destroi_dominio(dominio *p){
     free(p->dom);
     free(p);
+}
+
+/*apaga todo o livro de contactos*/
+void destroy_adress_book(d_linked_list *AB){
+    contact *aux;
+    while(AB->head!=NULL){
+        aux = AB->head->next;
+        destroi_contacto(AB->head);
+        AB->head = aux;   
+    }
 }
 
 /*destroi todos os dominios ainda alocados numa hash table*/
@@ -148,12 +148,12 @@ void pop_list(d_linked_list *AB, contact *c){
 void split_email(){
     char *p;
     p = buffer.email;
-    while(p[0]!='@')
+    do{
         p++;
-    p++;
-    strcpy(buffer.dominio, p);
-    p--;
-    *p='\0';
+    } while(p[0]!='@');      /*avança ate a posicao do @*/
+    *p = '\0';              /*substitui o @ por \0 para definir o fim do local*/
+    p++;                    /*avanca para o inicio do dominio*/
+    strcpy(buffer.dominio, p);          /*copia o dominio*/
     strcpy(buffer.local, buffer.email);
 }
 

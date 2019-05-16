@@ -66,9 +66,9 @@ typedef struct contact{
 typedef struct buff{
     char comando;
     char nome[max_str];
-    char email[max_str];
+    char email[max_email];
     char tel[max_phone];
-    char local[max_email], dominio[max_email];
+    char local[max_email-2], dominio[max_email-1];
 } buff;
 
 #endif

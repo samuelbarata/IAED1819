@@ -60,6 +60,7 @@ void *push(hash_table *HT, void *objeto){
         h = hasher(((contact*)objeto)->name);       /*hash do nome*/
         push_list(&adress_book, (contact*)objeto);  /*adiciona o contacto ao adressbook*/
     }
+
     else{                                       /*recebe um dominio*/
         aux = encontra(HTdom, ((dominio *)objeto)->dom);
         if(aux){                                    /*se o dominio existe incrementa*/
@@ -71,7 +72,8 @@ void *push(hash_table *HT, void *objeto){
         /*se nao existe vai ser adicionado*/
         h = hasher(((dominio *)objeto)->dom);
     }
-    /*adiciona o node a hash table*/
+
+    /*adiciona o node no inicio da hash table*/
     node = malloc(sizeof(node_linked));
     node->data = objeto;
     node->next = HT[h].head;
@@ -85,6 +87,7 @@ void pop(hash_table *HT, void *objeto){
     dominio *dom;
     node_linked *atual, *node;
     hash h;
+    
     if(buffer.comando == 'r'){                  /*recebe um contacto*/
         h = hasher(((contact *)objeto)->name);
         node = encontra(HTname, ((contact*)objeto)->name);
@@ -94,6 +97,7 @@ void pop(hash_table *HT, void *objeto){
         buffer.comando='x';             /*para fazer pop de um dominio*/
         pop(HTdom, dom);                /*remove / decrementa o dominio associado a este contacto*/
     }
+
     else{                                       /*recebe um dominio*/
         dom = (dominio *)objeto;
         if (dom->counter>1){    /*se existir +, decrementa*/
@@ -104,6 +108,7 @@ void pop(hash_table *HT, void *objeto){
         h = hasher(((dominio *)objeto)->dom);
         destroi_dominio(dom);       /*apaga o dominio*/
     }
+    
     atual = HT[h].head;
     if(node == atual){/*se o node e o primeiro da linked list*/
         HT[h].head = atual->next;
