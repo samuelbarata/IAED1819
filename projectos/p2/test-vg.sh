@@ -22,18 +22,27 @@ prog_name=foo_${RANDOM}
 DIFF="diff"
 CC="gcc -g -ansi -Wall -Wextra -pedantic"
 
+RED='\033[0;31m'
+GREEN='\033[0;92m'
+YELLOW='\033[0;33m'
+BLUE='\033[0;34m'
+BLINK='\e[5m'
+NB='\e[25m'
+NC='\033[0m'
+
 ${CC} -o ${prog_name} $*
 rv_compile=$?
 if [ ${rv_compile} != 0 ]; then
-    echo "ERROR: Compilation failed!"
+    echo -e "${RED}ERROR${NC}: Compilation failed!"
     exit 1
 else
-    echo "Program successfully compiled..."
+    echo -e "${BLUE}Program successfully compiled...${NC}"
 fi
 
 rv=0
+#NOF="-s$(ls -rS ${test_dir}/*.in | wc -l)"
 for test_in in `ls -rS ${test_dir}/*.in`; do
-    echo "Test:" "${test_in}"
+    #echo "Test:" "${test_in}"
     test_out="${test_in%.in}.out"
     stamp="${RANDOM}${RANDOM}"
     student_out=/tmp/out_${stamp}
@@ -42,16 +51,18 @@ for test_in in `ls -rS ${test_dir}/*.in`; do
     rv_student=$?
 
     if [ ! -f "${student_out}" ]; then
-        echo "ERROR: The output of the exercise was not created (file ${student_out})!"
+        echo -e "${RED}ERROR${NC}: The output of the exercise was not created (file ${student_out})!"
         exit 1
     fi
 
     if [ ${rv_student} != 0 ]; then
-        echo "ERROR: Program did not return 0!"
+        echo -e "${RED}ERROR${NC}: Program return ${YELLOW}${rv_student}${NC}!"
         rm -f ${student_out}
+        valgrind --tool=memcheck --leak-check=full ./${prog_name} < ${test_in}
+        rm -f ${prog_name}
         exit 1
     else
-        echo "Program successfully ran..."
+        echo "Program successfully ran..." > /dev/null
     fi
 
     ${DIFF} ${student_out} ${test_out}
@@ -96,26 +107,39 @@ for test_in in `ls -rS ${test_dir}/*.in`; do
     else nofile=0; fi
 
     obs=''
-    if [[ $killed == 1 ]]; then obs="killed ${obs}"; fi
-    if [[ $noerrs == 0 ]]; then obs="ERRS ${obs}"; fi
-    if [[ $noleaks == 0 ]]; then obs="LEAKS ${obs}"; fi
-    if [[ $nofile == 1 ]]; then obs="nofile ${obs}"; fi
+    if [[ $killed == 1 ]]; then obs="${RED}killed${NC} ${obs}"; fi
+    if [[ $noerrs == 0 ]]; then obs="${RED}ERRS${NC} ${obs}"; fi
+    if [[ $noleaks == 0 ]]; then obs="${RED}LEAKS${NC} ${obs}"; fi
+    if [[ $nofile == 1 ]]; then obs="${RED}nofile${NC} ${obs}"; fi
 
     if [ ${rv_diff} == 0 ]; then
-        echo "Test ${test_in} PASSED!"
+        echo -e "Test ${test_in} ${GREEN}PASSED${NC}!"
     else
-        echo "Test ${test_in} FAILURE!"
+        echo -e "Test ${test_in} ${RED}FAILURE!${NC}"
         rv=1
         break
     fi
 
     if [ ${score} != 1 ]; then
-        echo "STOP: Looks like there's an issue reported by valgrind!"
-        echo "ISSUE:${obs}" 
+        clear
+        echo -e "${BLINK}${RED}STOP${NC}${NB}: Looks like there's an issue reported by valgrind!"
+        echo -e "${YELLOW}ISSUE${NC}:${obs} ${YELLOW}File${NC}:${test_in}" 
         rv=1
+        valgrind --tool=memcheck --leak-check=full ./${prog_name} < ${test_in}
+        echo "File:${test_in}"
+        exit $rv
         break
     fi
     rm -f ${student_out} ${vg_out}
 done
 rm -f ${student_out} ${vg_out}
+if [ ${rv} == 0 ]; then
+    echo -e "${YELLOW}╔═══════════════════════╗"
+    echo -e "║   ${GREEN}${BLINK}All Tests PASSED!${NB}${YELLOW}   ║"
+    echo -e "╚═══════════════════════╝${NC}"
+else
+    echo -e "${YELLOW}╔══════════════════════╗"
+    echo -e "║   ${RED}${BLINK}GIGANTIC FAILURE${NB}${YELLOW}   ║"
+    echo -e "╚══════════════════════╝${NC}"
+fi
 exit $rv

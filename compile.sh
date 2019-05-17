@@ -5,7 +5,7 @@
 #
 
 show_help() {
-	echo "Usage: $0 <main-file> <src-file2>.c ..."
+	echo "Usage: $0 <main-file> <src-file2>.c ... <flags>"
 	echo "Example: $0 -y ex01 aux01.c aux02.c"
 	echo "-h | --help		-	mostra este menu"
 	echo "-c | --compila		-	compila o ficheiro"
@@ -25,7 +25,7 @@ NC='\033[0m'
 
 DIFF="diff --ignore-space-change --ignore-blank-lines"
 CC="gcc -ansi -Wall -Wextra -pedantic"
-MORE=" -g -fsanitize=address"
+MORE=" -fsanitize=address"
 COMMANDO=""
 
 codigo_geral(){
@@ -72,7 +72,7 @@ codigo_geral(){
 
 funcao_c() {
 	cat ${prog_name}.warnings
-	rm -f ${prog_name} ${prog_name}.warnings
+	rm -f ${prog_name}.warnings
 	exit 0
 }
 
@@ -201,9 +201,13 @@ funcao_v() {
 		fi
 
 		if [ ${score} != 1 ]; then
+			clear
 			echo -e "${RED}STOP:${NC} Looks like there's an issue reported by valgrind!"
 			echo -e "${YELLOW}ISSUE:${NC} ${obs}"
+			echo "file: ${test_in}"
+			valgrind --tool=memcheck --leak-check=full ./${prog_name} <${test_in}
 			rv=1
+			exit $rv
 			break
 		fi
 		rm -f ${student_out} ${vg_out}
@@ -212,7 +216,7 @@ funcao_v() {
 
 	cat ${prog_name}.warnings
 	rm -f ${prog_name} ${prog_name}.warnings
-	exit 0
+	exit $rv
 }
 
 funcao_n(){
