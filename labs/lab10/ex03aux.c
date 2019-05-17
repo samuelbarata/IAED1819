@@ -5,7 +5,7 @@ node *push(node *head, char *s){
     char *k = malloc(sizeof(char)*(strlen(s)+1));
     strcpy(k,s);
     p->s = k;
-    p->next = head;                         /*endereço anterior*/
+    p->next = head;                         /*endereco anterior*/
     return p;
 }
 
