@@ -21,7 +21,7 @@ void altera_duracao();              /*altera a duracao de um evento*/
 void altera_sala();                 /*altera a sala de um evento*/
 void adiciona_participante();       /*adiciona participante a um evento*/
 void remove_participante();         /*remove participante de um evento*/
-
+void conta_ze();                    /*conta o numero de responsaveis Ze*/
 
 /*╭───────────────────────────────────────┬────┬─────────────────────────────────────────╮
   │                                        main                                          │
@@ -75,6 +75,9 @@ int main(){
             case 'R':
                 read();
                 remove_participante();
+                break;
+            case 'Z':
+                conta_ze();
                 break;
         }
     }while(cmd!='x');
@@ -292,4 +295,14 @@ void lista_eventos(){
             if(sorter[i] == sala[i].total_eventos)
                 breaker += 1;
     }
+}
+
+/*conta o numero de responsaveis Ze*/
+void conta_ze(){
+    int ze = 0, room, id;
+    for(room=0;room<max_sala;room++)    /*percorre as salas*/
+        for(id=0;id<max_eventos;id++)   /*percorre os eventos*/
+            if (strcmp(sala[room].evento[id].participantes[0], "Ze"))
+                ze++;
+    printf("Ze e organizador de %d eventos\n", ze);
 }
