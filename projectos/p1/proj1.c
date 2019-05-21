@@ -302,7 +302,7 @@ void conta_ze(){
     int ze = 0, room, id;
     for(room=0;room<max_sala;room++)    /*percorre as salas*/
         for(id=0;id<max_eventos;id++)   /*percorre os eventos*/
-            if (strcmp(sala[room].evento[id].participantes[0], "Ze"))
+            if (!strcmp(sala[room].evento[id].participantes[0], "Ze"))
                 ze++;
     printf("Ze e organizador de %d eventos\n", ze);
 }
