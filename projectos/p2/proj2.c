@@ -160,5 +160,12 @@ void cont_dom(){
 }
 
 void prefixo(){
-    
+    int contador=0;
+    contact *contacto;
+    contacto = adress_book.head;
+    while(contacto){
+        contador += prefixo_aux(contacto);
+        contacto = contacto->next;
+    }
+    printf("%s:%d\n", buffer.nome, contador);
 }

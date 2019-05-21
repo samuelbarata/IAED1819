@@ -49,6 +49,7 @@ void pop_list(d_linked_list *, contact *);  /*remove um conacto a uma double lin
 void split_email();                         /*divide o email em local@dominio no buffer*/
 void printa_contacto(contact *);            /*imprime um contacto recebendo o seu endereço*/
 
-contact *adiciona_aux(contact *contacto);   /*verifica se o contacto existe e adiciona um prefixo*/
+contact *adiciona_aux(contact *);           /*verifica se o contacto existe e adiciona um prefixo*/
+int prefixo_aux(contact *);                 /*verifica se um dado contacto contem o prefixo*/
 
 #endif

@@ -16,7 +16,7 @@ void read_stdin(){
     if(buffer.comando == 'c')
         scanf("%s", buffer.dominio);
     else{
-        scanf("%s", buffer.nome);
+        scanf("%s", buffer.nome); /*no caso do comando P vai ler o prefixo*/
         if (buffer.comando == 'a' || buffer.comando == 'e'){
             scanf("%s", buffer.email);
             split_email();
@@ -171,4 +171,15 @@ contact* adiciona_aux(contact *contacto){
         return adiciona_aux(contacto);
     }
     return contacto;
+}
+
+/*verifica se um dado contacto contem o prefixo em buffer.nome, devolve 0 se nao tiver e 1 se tiver*/
+int prefixo_aux(contact *contacto){
+    int i, len=strlen(buffer.nome);
+    char *nome1=buffer.nome, *nome2=contacto->name;
+    for(i=0;i<len;i++)
+        if((*nome1)!=(*nome2))
+            return 0;
+    
+    return 1;
 }
