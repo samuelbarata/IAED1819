@@ -20,6 +20,7 @@ void remove_c();    /*remove um contacto dado um nome*/
 void altera_e();    /*altera o email de um contacto dado um nome*/
 void procura();     /*procura um contacto dado um nome*/
 void cont_dom();    /*conta todos os email com um dado dominio*/
+void prefixo();
 
 /*╭───────────────────────────────────────┬────┬─────────────────────────────────────────╮
   │                                        main                                          │
@@ -55,6 +56,10 @@ int main(){
                 read_stdin();
                 cont_dom();
                 break;
+            case 'P':
+                read_stdin();
+                prefixo();
+                break;
             #ifdef DEBUG
                 case 'd':  /*adicionar -D DEBUG no compilador*/
                     /*mostra esquema hash*/
@@ -82,11 +87,7 @@ void adiciona(){
     contact *contacto;
     dominio *dom;
     contacto = cria_contacto();
-    if (encontra(HTname, contacto->name)){
-        printf("Nome existente.\n");
-        destroi_contacto(contacto);
-        return;
-    }
+    contacto = adiciona_aux(contacto);
     contacto = push(HTname, contacto);
 
     buffer.comando='x';
@@ -156,4 +157,8 @@ void cont_dom(){
         counter = dom->counter;
     }
     printf("%s:%u\n", buffer.dominio, counter);
+}
+
+void prefixo(){
+    
 }

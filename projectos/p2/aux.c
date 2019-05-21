@@ -162,3 +162,13 @@ void printa_contacto(contact *contacto){
     printf("%s %s@%s %s\n",
     contacto->name,contacto->local,contacto->dom->dom,contacto->phone);
 }
+
+/*verifica se o contacto existe, se existir adiciona prefixo*/
+contact* adiciona_aux(contact *contacto){
+    if (encontra(HTname, contacto->name)){
+        contacto->name=realloc(contacto->name, strlen(contacto->name)+3);/*sizeof(char)=1*/
+        strcat(contacto->name, "_1");
+        return adiciona_aux(contacto);
+    }
+    return contacto;
+}
